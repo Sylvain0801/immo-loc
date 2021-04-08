@@ -1867,3 +1867,38 @@ input[type="checkbox"]:checked {
 		margin: 0;
 	}
 }
+// banner cookies
+.banner {
+	background-color: rgba($brand-white,.8);
+	position: fixed;
+	z-index: 1000;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 30px 20px;
+	& h4 {
+		margin: 10px;
+	}
+}
+
+.text-banner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-banner {
+	& a.btn.btn-primary {
+		padding: 6px 10px;
+		font-size: 12px;
+		margin: 3px;
+		width: 295px;
+	}
+	& a:nth-child(2) {
+		background-color: $brand-dark-footer;
+	}
+}
