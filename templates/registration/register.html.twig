@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace - LocationImmo
+{% endblock %}
+
+{% block body %}
+	<aside id="fh5co-hero" class="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<ul class="slides">
+				<li style="background-image: url({{asset('assets/images/properties/estate_01.jpg')}});">
+					<div class="overlay"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-1 text-center js-fullheight slider-text">
+								<div class="slider-text-inner">
+                  <div class="global-form">
+                    <h1 class="text-green">Register</h1>
+                    {% for flashError in app.flashes('verify_email_error') %}
+                      <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                    {% endfor %}
+                    {{ form_start(registrationForm) }}
+                      <div class="form-group">
+                        {{ form_row(registrationForm.firstname) }}
+                      </div>
+                      <div class="form-group">
+                        {{ form_row(registrationForm.lastname) }}
+                      </div>
+                      <div class="form-group">
+                        {{ form_label(registrationForm.email) }}
+                        {{ form_errors(registrationForm.email) }}
+                        {{ form_widget(registrationForm.email) }}
+                      </div>
+                      <div class="form-group">
+                        {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}
+                      </div>
+                      <div class="form-group">
+                        <div class="checkbox-group">
+                          {{ form_widget(registrationForm.agreeTerms) }}
+                          {{ form_label(registrationForm.agreeTerms) }}
+                        </div>
+                      </div>
+                      <div class="button-right">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                      </div>
+                    {{ form_end(registrationForm) }}
+								  </div>
+                </div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</aside>
+{% endblock %}
