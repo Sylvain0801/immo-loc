@@ -102,6 +102,8 @@ $form-group-margin-bottom: 30px;
 // Import 
 @import 'bootstrap/mixins';
 @import 'bootstrap/variables';
+@import 'bootstrap/icon';
+@import 'bootstrap/icons';
 
 
 
@@ -244,7 +246,7 @@ figure {
 	.btn {
 		font-size: 24px;
 		&.btn-primary {
-			padding: 14px 30px!important;
+			padding: 14px 30px;
 		}
 	}
 	.flexslider {
@@ -1815,6 +1817,7 @@ div.cs-select{
 	padding: 2rem;
 	border-radius: 4px;
 	max-width: 450px;
+	margin-top: 4rem;
 	& ul {
 		padding: 0;
 		& li {
@@ -1869,9 +1872,9 @@ input[type="checkbox"]:checked {
 }
 // banner cookies
 .banner {
-	background-color: rgba($brand-white,.8);
+	background-color: rgba($brand-white,.9);
 	position: fixed;
-	z-index: 1000;
+	z-index: 90000;
 	bottom: 0;
 	left: 0;
 	width: 100%;
@@ -1900,5 +1903,157 @@ input[type="checkbox"]:checked {
 	}
 	& a:nth-child(2) {
 		background-color: $brand-dark-footer;
+	}
+}
+
+// admin
+.main-bg-admin {
+	background: url(../images/main-bg-admin.jpg) center/cover;
+	height: 400px;
+}
+.admin {
+	background-color: $brand-white;
+	padding: 2rem;
+	border-radius: 4px;
+	min-height: 550px;
+	margin: 3rem auto;
+	& h3 {
+		text-align: left;
+		border-bottom: $brand-darker 2px solid;
+		padding-bottom: 3px;
+	}
+}
+.aside-buttons {
+	box-shadow: 2px 2px 2px;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+	height: 550px;
+	&>a {
+		margin: 5px auto;
+    width: 100%;
+		font-size: 14px !important;
+		&.btn.btn-primary {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+	}
+}
+@media (max-width: $screen-sm-max) {
+	.aside-buttons {
+		height: 100%;
+		&>a {
+			width: 140px;
+		}
+	}
+}
+
+// button sort headers table
+.headers {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.sort-buttons {
+	display: flex;
+	flex-direction: column;
+	padding-left: 0.3rem;
+	line-height: 0.6;
+	font-size: 16px;
+	&>a {
+		color: $brand-primary;
+		&:hover {
+			text-decoration: none;
+			opacity: 0.75;
+			transform: scale(1.4);
+		}
+	}
+}
+// buttons table
+.btn-table {
+	border: 0;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	padding: 0.8rem;
+	margin: 0.5rem 0.25rem;
+	&.btn-delete {
+		box-shadow: none;
+		background-color: $brand-primary;
+		text-decoration: none;
+		color: $brand-body-bg;
+	}
+	&.btn-edit {
+		background-color: transparent;
+		-webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+		color: rgba(0, 0, 0, 0.5) !important;
+		&:hover {
+			background-color: #e6e6e6;
+		}
+	}
+}
+// pagination
+.pagination {
+	display: flex;
+	justify-content: center;
+	& .first, .last, .page, .next, .previous, .current {
+		border: 0;
+		border-radius: 2px;
+		display: flex;
+		align-items: center;
+		font-weight: bold;
+		font-size: 12px;
+		line-height: 1;
+		text-align: center;
+		text-decoration: none;
+		white-space: nowrap;
+		padding: 0.8rem;
+		margin: 0.5rem 0.25rem;
+	}
+	& .first, .last, .page, .next, .previous {
+		cursor: pointer;
+		box-shadow: none;
+		background-color: $brand-primary;
+		text-decoration: none;
+		& >a {
+			color: #fff !important;
+		}
+		&:hover {
+			background-color: lighten($brand-primary, 5);
+			box-shadow: none;
+
+			&:active {
+				background-color: darken($brand-primary, 5);
+			}
+		}
+	}
+	.current {
+		background-color: transparent;
+    -webkit-box-shadow: inset 0 0 0 1px #555555;
+    box-shadow: inset 0 0 0 1px #555555;
+    color: #555555 !important;
+	}
+}
+.btn-default {
+	border: 1px solid #333 !important;
+}
+.button-between {
+	display: flex;
+	justify-content: space-between;
+	& >button, &>a {
+		line-height: normal!important;
+		padding: 10px 15px !important;
+		text-transform: uppercase !important;
+		font-size: 16px!important;
+    margin-top: 1rem;
+		&:hover {
+			text-decoration: none;
+		}
 	}
 }

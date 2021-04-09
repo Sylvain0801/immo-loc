@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Admin;
-use App\Form\RegistrationFormType;
+use App\Entity\User;
+use App\Form\UserRegistrationFormType;
 use App\Security\EmailVerifier;
-use App\Security\AuthenticatorAppAuthenticator;
+use App\Security\AppAuthenticator;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-class RegistrationController extends AbstractController
+class UserRegistrationController extends AbstractController
 {
     private $emailVerifier;
 
@@ -28,10 +28,10 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AuthenticatorAppAuthenticator $authenticator): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
     {
-        $user = new Admin();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $user = new User();
+        $form = $this->createForm(UserRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,8 +65,9 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('registration/userregister.html.twig', [
             'registrationForm' => $form->createView(),
+            'active' => 'myspace'
         ]);
     }
 

@@ -7,6 +7,46 @@
   font-style: normal;
 }
 
+/* Icon */
+.icon {
+  text-decoration: none;
+  border-bottom: none;
+  position: relative;
+}
+
+.icon:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none !important;
+}
+
+.icon > .label {
+  display: none;
+}
+
+/* Icons */
+ul.icons {
+  cursor: default;
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.icons li {
+  display: inline-block;
+  padding: 0 1rem 0 0;
+}
+
+ul.icons li:last-child {
+  padding-right: 0;
+}
+
+ul.icons li .icon:before {
+  font-size: 2rem;
+}
+
 /* =======================================================
 *
 * 	Template Style 
@@ -160,7 +200,7 @@ figure {
 }
 
 #fh5co-hero .btn.btn-primary {
-  padding: 14px 30px !important;
+  padding: 14px 30px;
 }
 
 #fh5co-hero .flexslider {
@@ -1931,6 +1971,7 @@ div.cs-select span {
   padding: 2rem;
   border-radius: 4px;
   max-width: 450px;
+  margin-top: 4rem;
 }
 
 .global-form ul {
@@ -1999,9 +2040,9 @@ input[type="checkbox"]:checked:before {
 }
 
 .banner {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   position: fixed;
-  z-index: 1000;
+  z-index: 90000;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -2044,5 +2085,209 @@ input[type="checkbox"]:checked:before {
 
 .button-banner a:nth-child(2) {
   background-color: #222831;
+}
+
+.main-bg-admin {
+  background: url(../images/main-bg-admin.jpg) center/cover;
+  height: 400px;
+}
+
+.admin {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 4px;
+  min-height: 550px;
+  margin: 3rem auto;
+}
+
+.admin h3 {
+  text-align: left;
+  border-bottom: #5a5a5a 2px solid;
+  padding-bottom: 3px;
+}
+
+.aside-buttons {
+  -webkit-box-shadow: 2px 2px 2px;
+          box-shadow: 2px 2px 2px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  height: 550px;
+}
+
+.aside-buttons > a {
+  margin: 5px auto;
+  width: 100%;
+  font-size: 14px !important;
+}
+
+.aside-buttons > a.btn.btn-primary {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 991px) {
+  .aside-buttons {
+    height: 100%;
+  }
+  .aside-buttons > a {
+    width: 140px;
+  }
+}
+
+.headers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sort-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-left: 0.3rem;
+  line-height: 0.6;
+  font-size: 16px;
+}
+
+.sort-buttons > a {
+  color: #44C662;
+}
+
+.sort-buttons > a:hover {
+  text-decoration: none;
+  opacity: 0.75;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+
+.btn-table {
+  border: 0;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.8rem;
+  margin: 0.5rem 0.25rem;
+}
+
+.btn-table.btn-delete {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #44C662;
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-table.btn-edit {
+  background-color: transparent;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.btn-table.btn-edit:hover {
+  background-color: #e6e6e6;
+}
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pagination .first, .pagination .last, .pagination .page, .pagination .next, .pagination .previous, .pagination .current {
+  border: 0;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.8rem;
+  margin: 0.5rem 0.25rem;
+}
+
+.pagination .first, .pagination .last, .pagination .page, .pagination .next, .pagination .previous {
+  cursor: pointer;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #44C662;
+  text-decoration: none;
+}
+
+.pagination .first > a, .pagination .last > a, .pagination .page > a, .pagination .next > a, .pagination .previous > a {
+  color: #fff !important;
+}
+
+.pagination .first:hover, .pagination .last:hover, .pagination .page:hover, .pagination .next:hover, .pagination .previous:hover {
+  background-color: #58cc72;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pagination .first:hover:active, .pagination .last:hover:active, .pagination .page:hover:active, .pagination .next:hover:active, .pagination .previous:hover:active {
+  background-color: #38b856;
+}
+
+.pagination .current {
+  background-color: transparent;
+  -webkit-box-shadow: inset 0 0 0 1px #555555;
+  box-shadow: inset 0 0 0 1px #555555;
+  color: #555555 !important;
+}
+
+.btn-default {
+  border: 1px solid #333 !important;
+}
+
+.button-between {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.button-between > button, .button-between > a {
+  line-height: normal !important;
+  padding: 10px 15px !important;
+  text-transform: uppercase !important;
+  font-size: 16px !important;
+  margin-top: 1rem;
+}
+
+.button-between > button:hover, .button-between > a:hover {
+  text-decoration: none;
 }
 /*# sourceMappingURL=style.css.map */

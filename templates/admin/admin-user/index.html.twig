@@ -1,0 +1,45 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block table %}
+<h3 class="icon fa-caret-right">&nbsp;SECTION : {{ section|upper }}</h3>
+{% for message in app.flashes('message_admin') %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+{% endfor %}
+<table class="table table-responsive table-striped text-left">
+  <thead>
+    <tr>
+      {% for key, header in headers %}
+        <th>
+          <div class="headers">
+            {{ header }}
+            <div class="sort-buttons">
+              <a href="{{ path('admin_useradmin_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
+              <a href="{{ path('admin_useradmin_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+            </div>
+          </div>
+        </th>
+      {% endfor %}
+      <th>Actions</th>  
+    </tr>
+  </thead>
+  <tbody>
+    {% for adminuser in adminusers %}   
+      <tr>
+        <td>{{ adminuser.firstname }}</td>
+        <td>{{ adminuser.lastname }}</td>
+        <td>{{ adminuser.email }}</td>
+        <td style="display: flex;">
+          <a href="{{ path('admin_useradmin_edit', {'id':adminuser.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="Editer"></a>
+          <a href="{{ path('admin_useradmin_delete', {'id':adminuser.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'administrateur {{ adminuser.firstname }} {{ adminuser.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% if adminusers.getTotalItemCount > 7 %}
+  {{ knp_pagination_render(adminusers) }}
+{% endif %}
+<div class="button-right">
+  <a href="{{ path('admin_app_register') }}" class="btn-lg btn-default icon fa-plus">&nbsp;Ajouter</a>
+</div>
+{% endblock %}

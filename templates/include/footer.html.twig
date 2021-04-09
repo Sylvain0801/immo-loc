@@ -58,20 +58,10 @@
 				</div>
 			</div>
 		</footer>
-		{% if bannerCookie %}
-			<div class="banner text-center">
-				<div class="text-banner">
-					<h4>Ce site web utilise des cookies</h4>
-				</div>
-				<div class="button-banner">
-					<a href="{{ path('accept_cookie') }}" class="btn btn-primary">Authoriser tous les cookies</a>
-					<a href="{{ path('refuse_cookie') }}" class="btn btn-primary">Uniquement les cookies nécessaires</a>
-				</div>
-			</div>
-		{% endif %}
-
+	
 	</div>
 	<!-- END fh5co-page -->
 
 	</div>
 	<!-- END fh5co-wrapper -->
+	{{ render(controller('App\\Controller\\MainController::displayCookieBanner')) }}

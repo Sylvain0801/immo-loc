@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\Admin;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class AuthenticatorAppAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+class AppAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
 
@@ -67,7 +68,11 @@ class AuthenticatorAppAuthenticator extends AbstractFormLoginAuthenticator imple
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(Admin::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+
+        if (!$user) {
+            $user = $this->entityManager->getRepository(Admin::class)->findOneBy(['email' => $credentials['email']]);
+        }
 
         if (!$user) {
             // fail authentication with a custom error
