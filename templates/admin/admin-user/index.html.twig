@@ -23,16 +23,18 @@
     </tr>
   </thead>
   <tbody>
-    {% for adminuser in adminusers %}   
-      <tr>
-        <td>{{ adminuser.firstname }}</td>
-        <td>{{ adminuser.lastname }}</td>
-        <td>{{ adminuser.email }}</td>
-        <td style="display: flex;">
-          <a href="{{ path('admin_useradmin_edit', {'id':adminuser.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="Editer"></a>
-          <a href="{{ path('admin_useradmin_delete', {'id':adminuser.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'administrateur {{ adminuser.firstname }} {{ adminuser.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
-        </td>
-      </tr>
+    {% for adminuser in adminusers %}
+      {% if adminuser.id != app.user.id %}
+        <tr>
+          <td>{{ adminuser.firstname }}</td>
+          <td>{{ adminuser.lastname }}</td>
+          <td>{{ adminuser.email }}</td>
+          <td style="display: flex;">
+            <a href="{{ path('admin_useradmin_edit', {'id':adminuser.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="Editer"></a>
+            <a href="{{ path('admin_useradmin_delete', {'id':adminuser.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'administrateur {{ adminuser.firstname }} {{ adminuser.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+          </td>
+        </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>

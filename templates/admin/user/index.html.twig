@@ -1,5 +1,54 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block table %}
-<h1>toto</h1>
+<h3 class="icon fa-caret-right">&nbsp;SECTION : {{ section|upper }}</h3>
+{% for message in app.flashes('message_admin') %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+{% endfor %}
+<table class="table table-responsive table-striped text-left">
+  <thead>
+    <tr>
+      {% for key, header in headers %}
+        <th>
+          <div class="headers">
+            {{ header }}
+            <div class="sort-buttons">
+              <a href="{{ path('admin_useradmin_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
+              <a href="{{ path('admin_useradmin_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+            </div>
+          </div>
+        </th>
+      {% endfor %}
+      <th>Rôle</th>  
+      <th>Actions</th>  
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          {% if user.roles|length == 1 %}
+            Locataire
+          {% else %}
+            {% for role in user.roles %}
+              {% if role == 'ROLE_AGENT' %}Agent{% endif %}
+              {% if role == 'ROLE_LEASEOWNER' %}Propriétaire bailleur{% endif %}
+              {% if role == 'ROLE_OWNER' %}Propriétaire{% endif %}
+            {% endfor %}
+          {% endif %}
+        </td>
+        <td style="display: flex;">
+          <a href="{{ path('admin_user_edit', {'id':user.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="Editer"></a>
+          <a href="{{ path('admin_user_delete', {'id':user.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'utilisateur {{ user.firstname }} {{ user.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% if users.getTotalItemCount > 7 %}
+  {{ knp_pagination_render(users) }}
+{% endif %}
 {% endblock %}

@@ -1870,6 +1870,16 @@ input[type="checkbox"]:checked {
 		margin: 0;
 	}
 }
+
+#user_edit_roles {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	&>label {
+		margin-bottom: 0;
+		margin-right: 2rem;
+	}
+}
 // banner cookies
 .banner {
 	background-color: rgba($brand-white,.9);

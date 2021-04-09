@@ -15,14 +15,14 @@
 							<li class="{{ active == 'myspace' ? 'active' : '' }}">
 								<a href="#" class="fh5co-sub-ddown">Mon espace</a>
 								<ul class="fh5co-sub-menu">
-									<li><a href="{{ path('app_register') }}">S'inscrire</a></li>
+									<li><a href="{{ path('app_register') }}" class="icon fa-id-card-o">&nbsp;S'inscrire</a></li>
 									{% if is_granted('ROLE_ADMIN') %}
-										<li><a href="{{ path('admin_home') }}">Administrateur</a></li>
+										<li><a href="{{ path('admin_home') }}" class="icon fa-superpowers">&nbsp;Administrateur</a></li>
 									{% endif %}
 									{% if is_granted('ROLE_USER') %}
-										<li><a href="{{ path('app_logout') }}">Se déconnecter&nbsp;<i class="icon-unlocked"></i></a></li>
+										<li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;Se déconnecter</a></li>
 									{% else %}
-										<li><a href="{{ path('app_login') }}">Se connecter</a></li>
+										<li><a href="{{ path('app_login') }}" class="icon fa-lock">&nbsp;Se connecter</a></li>
 									{% endif %}
 								</ul>
 							</li>

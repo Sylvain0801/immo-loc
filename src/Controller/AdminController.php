@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Form\AdminRegistrationFormType;
-use App\Form\UserAdminType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;

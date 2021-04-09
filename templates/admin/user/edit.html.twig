@@ -1,0 +1,30 @@
+{% extends "admin/index.html.twig" %}
+
+{% block table %}
+	<h3 class="icon fa-caret-right">&nbsp;SECTION : {{ section|upper }}</h3>
+  <div class="row text-left">
+    <div class="col-md-8">
+      {{ form_start(userEditForm) }}
+        <div class="form-group">
+          {{ form_row(userEditForm.firstname) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(userEditForm.lastname) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(userEditForm.email) }}
+          {{ form_errors(userEditForm.email) }}
+          {{ form_widget(userEditForm.email) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(userEditForm.roles) }}
+        </div>
+        <p class="icon fa-calendar text-right" style="color:#555">&nbsp;Profil créé le {{ createdAt|date('d/m/Y') }}</p>
+        <div class="button-between">
+          <a href="{{ path('admin_useradmin_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;Retour liste</a>
+          <button type="submit" class="btn btn-primary icon fa-save">&nbsp;Enregistrer</button>
+        </div>
+      {{ form_end(userEditForm) }}
+    </div>
+  </div>
+{% endblock %}

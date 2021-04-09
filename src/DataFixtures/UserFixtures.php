@@ -20,7 +20,11 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
+        $roles = ["ROLE_AGENT", "ROLE_LEASEOWNER", "ROLE_OWNER", "ROLE_USER"];
+        
         for($i = 1; $i < 20; $i++) {
+
+            $role = $roles[$faker->numberBetween(0, 3)];
     
             $user = new User();
             if($i === 1) {
@@ -34,7 +38,7 @@ class UserFixtures extends Fixture
                     ->setFirstname($faker->firstname())
                     ->setLastname($faker->lastname)
                     ->setEmail($faker->email)   
-                    ->setRoles(["ROLE_USER"]);
+                    ->setRoles([$role]);
                 }
             
             $user
