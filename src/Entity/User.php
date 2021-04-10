@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -56,6 +58,16 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Announce::class, mappedBy="created_by")
+     */
+    private $announces;
+
+    public function __construct()
+    {
+        $this->announces = new ArrayCollection();
+    }
     
 
     public function getId(): ?int
@@ -178,6 +190,36 @@ class User implements UserInterface
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
+    }
+
+    /**
+     * @return Collection|Announce[]
+     */
+    public function getAnnounces(): Collection
+    {
+        return $this->announces;
+    }
+
+    public function addAnnounce(Announce $announce): self
+    {
+        if (!$this->announces->contains($announce)) {
+            $this->announces[] = $announce;
+            $announce->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnounce(Announce $announce): self
+    {
+        if ($this->announces->removeElement($announce)) {
+            // set the owning side to null (unless already changed)
+            if ($announce->getCreatedBy() === $this) {
+                $announce->setCreatedBy(null);
+            }
+        }
+
+        return $this;
     }
 
 }

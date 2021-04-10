@@ -10,18 +10,18 @@
 				<li style="background-image: url({{asset('assets/images/properties/estate_01.jpg')}})">
 					<div class="overlay"></div>
 					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+						<div class="row" style="overflow-x: auto;">
+							<div class="col-sm-12 col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 								<div class="slider-text-inner">
                   <div class="admin">
                     <h1 class="h3 mb-3 font-weight-normal text-green">Espace administrateur</h1>
                     <div class="row">
-                      <div class="col-xs-12 col-md-3 aside-buttons">
+                      <div class="col-md-3 aside-buttons">
                         <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">Administrateurs</a>
                         <a href="{{ path('admin_user_list') }}" class="btn btn-primary">Utilisateurs</a>
                         <a href="" class="btn btn-primary">Documents</a>
                       </div>
-                      <div class="col-12 col-md-9">
+                      <div class="col-sm-12 col-md-9">
                       {% block table %}
                         <h3 class="icon fa-caret-right">&nbsp;Bienvenue {{ is_granted('ROLE_ADMIN') ? app.user.firstname : '' }}</h3>
                         <div class="main-bg-admin"></div>

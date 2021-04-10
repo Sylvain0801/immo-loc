@@ -1872,12 +1872,13 @@ input[type="checkbox"]:checked {
 }
 
 #user_edit_roles {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template: repeat(2, 26px)/20px 1.5fr 20px 1fr;
 	&>label {
 		margin-bottom: 0;
-		margin-right: 2rem;
+	}
+	&>input {
+		margin-top: 5px;
 	}
 }
 // banner cookies

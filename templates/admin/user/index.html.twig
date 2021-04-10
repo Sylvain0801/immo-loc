@@ -1,11 +1,12 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block table %}
+<div class="table-wrapper">
 <h3 class="icon fa-caret-right">&nbsp;SECTION : {{ section|upper }}</h3>
 {% for message in app.flashes('message_admin') %}
   <div class="alert alert-success" role="alert">{{ message }}</div>
 {% endfor %}
-<table class="table table-responsive table-striped text-left">
+<table class="table table-striped text-left">
   <thead>
     <tr>
       {% for key, header in headers %}
@@ -30,15 +31,10 @@
         <td>{{ user.lastname }}</td>
         <td>{{ user.email }}</td>
         <td>
-          {% if user.roles|length == 1 %}
-            Locataire
-          {% else %}
-            {% for role in user.roles %}
-              {% if role == 'ROLE_AGENT' %}Agent{% endif %}
-              {% if role == 'ROLE_LEASEOWNER' %}Propriétaire bailleur{% endif %}
-              {% if role == 'ROLE_OWNER' %}Propriétaire{% endif %}
-            {% endfor %}
-          {% endif %}
+          {% if 'ROLE_AGENT' in user.roles %}Agent{% endif %}
+          {% if 'ROLE_LEASEOWNER' in user.roles %}Propriétaire bailleur{% endif %}
+          {% if 'ROLE_OWNER' in user.roles %}Propriétaire{% endif %}
+          {% if 'ROLE_TENANT' in user.roles %}Locataire{% endif %}
         </td>
         <td style="display: flex;">
           <a href="{{ path('admin_user_edit', {'id':user.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="Editer"></a>
@@ -48,6 +44,7 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 {% if users.getTotalItemCount > 7 %}
   {{ knp_pagination_render(users) }}
 {% endif %}

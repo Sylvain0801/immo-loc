@@ -20,9 +20,9 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        $roles = ["ROLE_AGENT", "ROLE_LEASEOWNER", "ROLE_OWNER", "ROLE_USER"];
+        $roles = ["ROLE_AGENT", "ROLE_LEASEOWNER", "ROLE_OWNER", "ROLE_TENANT"];
         
-        for($i = 1; $i < 20; $i++) {
+        for($i = 1; $i <= 20; $i++) {
 
             $role = $roles[$faker->numberBetween(0, 3)];
     
@@ -45,6 +45,8 @@ class UserFixtures extends Fixture
                 ->setIsVerified(1)
                 ->setPassword($this->encoder->encodePassword($user, '123456'));
             $manager->persist($user);
+
+            $this->addReference('user_'.$i, $user);
 
         }
 

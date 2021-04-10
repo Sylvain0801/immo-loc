@@ -10,7 +10,7 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="{{ active == 'home' ? 'active' : '' }}"><a href="{{ path('home') }}">Accueil</a></li>
-							<li><a href="blog.html">Annonces</a></li>
+							<li class="{{ active == 'announce' ? 'active' : '' }}"><a href="{{ path('announce_list') }}">Annonces</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li class="{{ active == 'myspace' ? 'active' : '' }}">
 								<a href="#" class="fh5co-sub-ddown">Mon espace</a>

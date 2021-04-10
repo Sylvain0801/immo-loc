@@ -2040,19 +2040,19 @@ input[type="checkbox"]:checked:before {
 }
 
 #user_edit_roles {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (26px)[2];
+  -ms-grid-columns: 20px 1.5fr 20px 1fr;
+      grid-template: repeat(2, 26px)/20px 1.5fr 20px 1fr;
 }
 
 #user_edit_roles > label {
   margin-bottom: 0;
-  margin-right: 2rem;
+}
+
+#user_edit_roles > input {
+  margin-top: 5px;
 }
 
 .banner {

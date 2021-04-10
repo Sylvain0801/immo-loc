@@ -1,8 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - LocationImmo{% endblock %}
+{% block title %}Annonces - LocationImmo
+{% endblock %}
 
 {% block body %}
+
+	<aside id="fh5co-hero" class="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<ul class="slides">
+				<li style="background-image: url({{asset('assets/images/properties/home_04.jpg')}});">
+					<div class="overlay"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+								<div class="slider-text-inner">
+									<h2 class="heading-title">Nos annonces</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, itaque quas? Dolorum dolorem quod excepturi.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</aside>
+
 	<div id="fh5co-search-map">
 		<div class="search-property">
 			<div class="s-holder">
@@ -135,87 +157,42 @@
 		</div>
 		<div class="map" style="background-image: url({{asset('assets/images/properties/home_01.jpg')}});"></div>
 	</div>
-
-		<div id="fh5co-popular-properties" class="fh5co-section-gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Popular Properties</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 animate-box">
-						<a href="#" class="fh5co-property" style="background-image: url(images/property-1.jpg);">
-							<span class="status">Sale</span>
-							<div class="prop-details">
-								<span class="price">$3,000</span>
-								<h3>Properties Near in Beach, USA California</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-4 animate-box">
-						<a href="#" class="fh5co-property" style="background-image: url(images/property-2.jpg);">
-							<span class="status">Rent</span>
-							<div class="prop-details">
-								<span class="price">$200/mos</span>
-								<h3>Modern House at NZ</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-4 animate-box">
-						<a href="#" class="fh5co-property" style="background-image: url(images/property-3.jpg);">
-							<span class="status">Sale</span>
-							<div class="prop-details">
-								<span class="price">$3,000</span>
-								<h3>Bonggalo House</h3>
-							</div>
-						</a>
-					</div>
+	<div id="fh5co-properties" class="fh5co-section-gray">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+					<h3>Tous nos biens</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
 				</div>
 			</div>
-		</div>
-
-		<div id="fh5co-testimonial" style="background-image:url(images/img_bg_2.jpg);">
-			<div class="container">
-				<div class="row animate-box">
-					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<h2>Happy Clients</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="box-testimony animate-box">
-							<blockquote>
-								<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-							</blockquote>
-							<p class="author">John Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span></p>
+			<div class="row">
+				{% for announce in announces %}
+					<div class="col-md-4 animate-box">
+						<div class="property">
+							<a href="#" class="fh5co-property" style="background-image: url({{asset('assets/images/properties/home_07.jpg')}});">
+								<span class="status">{{ announce.type }}</span>
+								<ul class="list-details">
+									<li>{{ announce.area }} m²</li>
+									<li>{{ announce.rooms }} pièces</li>
+									<li>{{ announce.bedrooms }} chambres</li>
+								</ul>
+							</a>
+							<div class="property-details">
+								<h3>{{ announce.title }}</h3>
+								<span class="price">{{ announce.price }}
+									€ / mois</span>
+								<p>{{ announce.description|slice(0, 100) }}...</p>
+								<span class="address">
+									<i class="icon-map"></i>
+									{{ announce.city }}</span>
+							</div>
 						</div>
-						
 					</div>
-					<div class="col-md-4">
-						<div class="box-testimony animate-box">
-							<blockquote>
-								<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
-							</blockquote>
-							<p class="author">John Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span></p>
-						</div>
-						
-						
-					</div>
-					<div class="col-md-4">
-						<div class="box-testimony animate-box">
-							<blockquote>
-								<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-							</blockquote>
-							<p class="author">John Doe, Founder <a href="#">FREEHTML5.co</a> <span class="subtext">Creative Director</span></p>
-						</div>
-						
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
+    {% if announces.getTotalItemCount > 12 %}
+      {{ knp_pagination_render(announces) }}
+    {% endif %}
+	</div>
 {% endblock %}

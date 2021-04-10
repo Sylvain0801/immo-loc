@@ -66,7 +66,7 @@ class AdminUserController extends AbstractController
         return $this->render('admin/user/edit.html.twig', [
             'userEditForm' => $form->createView(),
             'createdAt' => $user->getCreatedAt(),
-            'section' => 'administrateurs',
+            'section' => 'utilisateurs',
             'active' => 'myspace'
         ]);
     }

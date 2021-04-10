@@ -29,7 +29,7 @@ class UserEditType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Locataire' => 'ROLE_USER', 
+                    'Locataire' => 'ROLE_TENANT', 
                     'Propriétaire' => 'ROLE_OWNER',
                     'Propriétaire bailleur' => 'ROLE_LEASEOWNER',
                     'Agent' => 'ROLE_AGENT'
