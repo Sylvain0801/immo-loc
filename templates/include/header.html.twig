@@ -9,23 +9,29 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="{{ active == 'home' ? 'active' : '' }}"><a href="{{ path('home') }}">Accueil</a></li>
-							<li class="{{ active == 'announce' ? 'active' : '' }}"><a href="{{ path('announce_list') }}">Annonces</a></li>
+							<li class="{{ active == 'home' ? 'active' : '' }}">
+								<a href="{{ path('home') }}">{% trans %}Home{% endtrans %}</a></li>
+							<li class="{{ active == 'announce' ? 'active' : '' }}"><a href="{{ path('announce_list') }}">{% trans %}Properties{% endtrans %}</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							<li class="{{ active == 'myspace' ? 'active' : '' }}">
-								<a href="#" class="fh5co-sub-ddown">Mon espace</a>
+								<a href="#" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
 								<ul class="fh5co-sub-menu">
-									<li><a href="{{ path('app_register') }}" class="icon fa-id-card-o">&nbsp;S'inscrire</a></li>
+									<li><a href="{{ path('app_register') }}" class="icon fa-id-card-o">&nbsp;{% trans %}Register{% endtrans %}</a></li>
 									{% if is_granted('ROLE_ADMIN') %}
-										<li><a href="{{ path('admin_home') }}" class="icon fa-superpowers">&nbsp;Administrateur</a></li>
+										<li><a href="{{ path('admin_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Administrator{% endtrans %}</a></li>
 									{% endif %}
 									{% if is_granted('ROLE_USER') %}
-										<li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;Se déconnecter</a></li>
+										<li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;{% trans %}Logout{% endtrans %}</a></li>
 									{% else %}
-										<li><a href="{{ path('app_login') }}" class="icon fa-lock">&nbsp;Se connecter</a></li>
+										<li><a href="{{ path('app_login') }}" class="icon fa-lock">&nbsp;{% trans %}Sign in{% endtrans %}</a></li>
 									{% endif %}
 								</ul>
 							</li>
+							{% for locale in locales %}
+								{% if locale != app.request.locale %}
+									<li><a href="{{ path('change_locale', {'locale': locale}) }}"><img src="{{ asset('assets/images/'~locale~'-flag.png') }}" alt="{{ locale }}-flag" height="25px"></a></li>
+								{% endif %}
+							{% endfor %}
 						</ul>
 					</nav>
 				</div>

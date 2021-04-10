@@ -1,11 +1,11 @@
 {% if bannerCookie %}
   <div class="banner text-center">
     <div class="text-banner">
-      <h4>Ce site web utilise des cookies</h4>
+      <h4>{% trans %}This website uses cookies{% endtrans %}</h4>
     </div>
     <div class="button-banner">
-      <a href="{{ path('accept_cookie') }}" class="btn btn-primary">Authoriser tous les cookies</a>
-      <a href="{{ path('refuse_cookie') }}" class="btn btn-primary">Uniquement les cookies nécessaires</a>
+      <a href="{{ path('accept_cookie') }}" class="btn btn-primary">{% trans %}Allow all cookies{% endtrans %}</a>
+      <a href="{{ path('refuse_cookie') }}" class="btn btn-primary">{% trans %}Only the necessary cookies{% endtrans %}</a>
     </div>
   </div>
 {% endif %}

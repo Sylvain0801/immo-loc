@@ -66,4 +66,16 @@ class MainController extends AbstractController
         return $this->redirectToRoute('home');
 
     }
+
+    /**
+     * @Route("/change-locale/{locale}", name="change_locale")
+     */
+    public function changeLocale($locale, Request $request)
+    {
+        // stocke la langue demandée dans la session
+        $request->getSession()->set('_locale', $locale);
+
+        //redirige vers la page précédente
+        return $this->redirect($request->headers->get('referer'));
+    }
 }

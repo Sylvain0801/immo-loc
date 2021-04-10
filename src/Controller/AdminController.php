@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/admin", name="admin_")
@@ -53,7 +54,7 @@ class AdminController extends AbstractController
     /**
     * @Route("/useradmin/edit/{id}", name="useradmin_edit")
     */
-    public function editUser(Admin $admin, Request $request): Response
+    public function editUser(Admin $admin, Request $request, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(AdminRegistrationFormType::class, $admin);
         $form->handleRequest($request);
@@ -63,7 +64,9 @@ class AdminController extends AbstractController
             $em->persist($admin);
             $em->flush();
 
-            $this->addFlash('message_admin', 'L\'administrateur a été modifié avec succès');
+            $message = $translator->trans('User modified succesfully');
+
+            $this->addFlash('message_admin', $message);
             return $this->redirectToRoute('admin_useradmin_list');
         }
         return $this->render('admin/admin-user/edit.html.twig', [

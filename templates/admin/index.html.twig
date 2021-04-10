@@ -23,7 +23,7 @@
                       </div>
                       <div class="col-sm-12 col-md-9">
                       {% block table %}
-                        <h3 class="icon fa-caret-right">&nbsp;Bienvenue {{ is_granted('ROLE_ADMIN') ? app.user.firstname : '' }}</h3>
+                        <h3 class="icon fa-caret-right">&nbsp;{% trans %}Welcome{% endtrans %} {{ is_granted('ROLE_ADMIN') ? app.user.firstname : '' }}</h3>
                         <div class="main-bg-admin"></div>
                       {% endblock %}
                       </div>
