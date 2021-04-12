@@ -1260,7 +1260,7 @@ div.cs-select{
 		}
 
 	}
-	input[type="text"] {
+	input[type="text"], input[type="email"] {
 		height: 50px;
 	}
 	.form-group {
@@ -1920,7 +1920,11 @@ input[type="checkbox"]:checked {
 // admin
 .main-bg-admin {
 	background: url(../images/main-bg-admin.jpg) center/cover;
-	height: 400px;
+	height: 490px;
+}
+.main-bg-agent {
+	background: url(../images/properties/home_05.jpg) center/cover;
+	height: 490px;
 }
 .admin {
 	background-color: $brand-white;

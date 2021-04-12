@@ -11,7 +11,6 @@ use Faker;
 class AnnounceFixtures extends Fixture implements DependentFixtureInterface
 {
    
-
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
@@ -19,7 +18,7 @@ class AnnounceFixtures extends Fixture implements DependentFixtureInterface
         
         for($i = 1; $i < 50; $i++) {
 
-            $user = $this->getReference('user_'.$faker->numberBetween(1, 20));
+            $user = $this->getReference('user_'.$faker->numberBetween(1, 40));
             $type = $types[$faker->numberBetween(0, 1)];
     
             $announce = new Announce();

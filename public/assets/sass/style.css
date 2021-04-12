@@ -1359,7 +1359,7 @@ div.cs-select span {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-#fh5co-contact input[type="text"] {
+#fh5co-contact input[type="text"], #fh5co-contact input[type="email"] {
   height: 50px;
 }
 
@@ -2105,7 +2105,12 @@ input[type="checkbox"]:checked:before {
 
 .main-bg-admin {
   background: url(../images/main-bg-admin.jpg) center/cover;
-  height: 400px;
+  height: 490px;
+}
+
+.main-bg-agent {
+  background: url(../images/properties/home_05.jpg) center/cover;
+  height: 490px;
 }
 
 .admin {

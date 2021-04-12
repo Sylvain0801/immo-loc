@@ -20,7 +20,7 @@ class AdminFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for($i = 1; $i < 10; $i++) {
+        for($i = 1; $i <= 10; $i++) {
     
             $admin = new Admin();
             if($i === 1) {

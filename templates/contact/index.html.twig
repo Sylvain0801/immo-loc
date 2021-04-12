@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - LocationImmo
+{% endblock %}
+
+{% block body %}
+
+<aside id="fh5co-hero" class="js-fullheight">
+	<div class="flexslider js-fullheight">
+		<ul class="slides">
+			<li style="background-image: url({{asset('assets/images/properties/home_04.jpg')}});">
+				<div class="overlay"></div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+							<div class="slider-text-inner">
+								<h2 class="heading-title">{% trans %}Contact us{% endtrans %}</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, itaque quas? Dolorum dolorem quod excepturi.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</aside>
+
+<div id="fh5co-contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+				<h3>{% trans %}Contact Information{% endtrans %}</h3>
+				<p>Et repellat nesciunt laboriosam aliquam, culpa debitis voluptatum deserunt. Autem rerum quo consequuntur ipsa, vel laudantium!
+				</p>
+			</div>
+		</div>
+		<div class="row animate-box">
+			<div class="col-md-6">
+				<h3 class="section-title text-green">{% trans %}Our Address{% endtrans %}</h3>
+				<p>Quasi hic labore officia animi beatae est vero placeat totam asperiores vel, mollitia qui enim possimus harum similique iste natus quisquam ut? Et dicta dolores sapiente, in eaque aliquid architecto. Tempora! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+				<hr>
+				<ul class="contact-info">
+					<li><i class="icon-location-pin"></i>123 Rue de démo, 33680 Le Porge</li>
+					<li><i class="icon-phone2"></i>+ 1235 2355 98</li>
+					<li><i class="icon-mail"></i><a href="#">Contact@LocationImmo.site</a></li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				{{ form_start(contactForm) }}
+					<div class="row">
+						<div class="col-md-12">
+							{% for message in app.flashes('message_user') %}
+								<div class="alert alert-success" role="alert">{{ message }}</div>
+							{% endfor %}
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form_row(contactForm.firstname_sender, {attr: {placeholder: 'Firstname'|trans}}) }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form_row(contactForm.lastname_sender, {attr: {placeholder: 'Lastname'|trans}}) }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								{{ form_row(contactForm.sender, {attr: {placeholder: 'Email', height: '50px'}}) }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								{{ form_row(contactForm.subject, {attr: {placeholder: 'Subject'|trans}}) }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								{{ form_row(contactForm.body, {attr: {placeholder: 'Your message here...'|trans}}) }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary icon fa-paper-plane-o">&nbsp;{{ 'Send Message'|trans }}</button>
+							</div>
+						</div>
+					</div>
+				{{ form_end(contactForm) }}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="fh5co-about" class="fh5co-agent">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+				<h3>{% trans %}Our Agents{% endtrans %}</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
+				<div class="fh5co-staff">
+					<img class="img-responsive" src="{{ asset('assets/images/agents/team_1.jpg') }}" alt="agent image">
+					<h3>Jean Smith</h3>
+					<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
+					<p class="fh5co-social-icons">
+						<a href="#"><i class="icon-twitter2"></i></a>
+						<a href="#"><i class="icon-facebook2"></i></a>
+						<a href="#"><i class="icon-instagram"></i></a>
+						<a href="#"><i class="icon-dribbble2"></i></a>
+						<a href="#"><i class="icon-youtube"></i></a>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
+				<div class="fh5co-staff">
+					<img class="img-responsive" src="{{ asset('assets/images/agents/team_2.jpg') }}" alt="agent image">
+					<h3>Hush Raven</h3>
+					<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
+					<p class="fh5co-social-icons">
+						<a href="#"><i class="icon-twitter2"></i></a>
+						<a href="#"><i class="icon-facebook2"></i></a>
+						<a href="#"><i class="icon-instagram"></i></a>
+						<a href="#"><i class="icon-dribbble2"></i></a>
+						<a href="#"><i class="icon-youtube"></i></a>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
+				<div class="fh5co-staff">
+					<img class="img-responsive" src="{{ asset('assets/images/agents/team_3.jpg') }}" alt="agent image">
+					<h3>Alex King</h3>
+					<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
+					<p class="fh5co-social-icons">
+						<a href="#"><i class="icon-twitter2"></i></a>
+						<a href="#"><i class="icon-facebook2"></i></a>
+						<a href="#"><i class="icon-instagram"></i></a>
+						<a href="#"><i class="icon-dribbble2"></i></a>
+						<a href="#"><i class="icon-youtube"></i></a>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
+				<div class="fh5co-staff">
+					<img class="img-responsive" src="{{ asset('assets/images/agents/team_4.jpg') }}" alt="agent image">
+					<h3>Hush Raven</h3>
+					<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
+					<p class="fh5co-social-icons">
+						<a href="#"><i class="icon-twitter2"></i></a>
+						<a href="#"><i class="icon-facebook2"></i></a>
+						<a href="#"><i class="icon-instagram"></i></a>
+						<a href="#"><i class="icon-dribbble2"></i></a>
+						<a href="#"><i class="icon-youtube"></i></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

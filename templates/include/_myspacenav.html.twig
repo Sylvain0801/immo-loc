@@ -1,0 +1,27 @@
+<li class="{{ active == 'myspace' ? 'active' : '' }}">
+  {% if not is_granted('ROLE_USER') %}
+	  <a href="{{ path('app_login') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+  {% endif %}
+  {% if is_granted('ROLE_ADMIN') %}
+	  <a href="{{ path('admin_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+  {% endif %}
+  {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
+	  <a href="{{ path('agent_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+  {% endif %}
+	<ul class="fh5co-sub-menu">
+    {% if not is_granted('ROLE_USER') %}
+      <li><a href="{{ path('app_register') }}" class="icon fa-id-card-o">&nbsp;{% trans %}Register{% endtrans %}</a></li>
+    {% endif %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<li><a href="{{ path('admin_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Administrator{% endtrans %}</a></li>
+		{% endif %}
+		{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
+			<li><a href="{{ path('agent_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Agent{% endtrans %}</a></li>
+		{% endif %}
+		{% if is_granted('ROLE_USER') %}
+			<li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;{% trans %}Logout{% endtrans %}</a></li>
+		{% else %}
+			<li><a href="{{ path('app_login') }}" class="icon fa-lock">&nbsp;{% trans %}Sign in{% endtrans %}</a></li>
+		{% endif %}
+	</ul>
+</li>

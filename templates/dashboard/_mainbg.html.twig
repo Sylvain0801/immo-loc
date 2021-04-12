@@ -1,0 +1,6 @@
+{% if is_granted('ROLE_ADMIN') %}
+  <div class="main-bg-admin"></div>
+{% endif %}
+{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
+  <div class="main-bg-agent"></div>
+{% endif %}

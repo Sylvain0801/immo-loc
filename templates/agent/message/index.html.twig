@@ -1,0 +1,48 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block table %}
+<div class="table-wrapper">
+{% include "dashboard/_sectiontitle.html.twig" %}
+{% for message in app.flashes('message_admin') %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+{% endfor %}
+<table class="table table-striped text-left">
+  <thead>
+    <tr>
+      {% for key, header in headers %}
+        <th>
+          <div class="headers">
+            {{ header }}
+            <div class="sort-buttons">
+              <a href="{{ path('message_agent_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="{{ 'Descending sorting'|trans }}"></a>
+              <a href="{{ path('message_agent_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="{{ 'Ascending sorting'|trans }}"></a>
+            </div>
+          </div>
+        </th>
+      {% endfor %}
+      <th>Actions</th>  
+    </tr>
+  </thead>
+  <tbody>
+    {% for message in messages %}
+      <tr>
+        <td><a href="#" class="{{ message.messageRead ? 'icon fa-envelope-open-o' : 'icon fa-envelope'}}"></a></td>
+        <td>{{ message.firstnameSender }}</td>
+        <td>{{ message.lastnameSender }}</td>
+        <td><strong>{{ message.subject }}</strong><br>{{ message.body|slice(0,100) }}...</td>
+        <td>
+          {{ message.createdAt|date('d/m/Y') }}<br>{{ message.createdAt|date('H:i') }}
+        </td>
+        <td style="display: flex;">
+          <a href="{{ path('admin_user_edit', {'id':message.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
+          <a href="{{ path('admin_user_delete', {'id':message.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% if messages.getTotalItemCount > 7 %}
+  {{ knp_pagination_render(messages) }}
+{% endif %}
+{% endblock %}

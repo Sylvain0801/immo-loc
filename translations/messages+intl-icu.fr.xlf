@@ -189,7 +189,7 @@
         <source>Month</source>
         <target>Mois</target>
       </trans-unit>
-      <trans-unit id="YRHOj0V" resname="Agree terms">
+      <trans-unit id="c1prjRW" resname="Agree terms">
         <source>Agree terms</source>
         <target>J'accepte les conditions d'utilisation</target>
       </trans-unit>
@@ -204,6 +204,42 @@
       <trans-unit id="_TJnqhH" resname="Remember me">
         <source>Remember me</source>
         <target>Se souvenir de moi</target>
+      </trans-unit>
+      <trans-unit id="GZpWmrw" resname="Your message has been sent successfully">
+        <source>Your message has been sent successfully</source>
+        <target>Votre message a été envoyé avec succès</target>
+      </trans-unit>
+      <trans-unit id="R6rzG4P" resname="Contact us">
+        <source>Contact us</source>
+        <target>Nous contacter</target>
+      </trans-unit>
+      <trans-unit id="fAGuw7H" resname="Contact Information">
+        <source>Contact Information</source>
+        <target>Informations de contact</target>
+      </trans-unit>
+      <trans-unit id="KwrkPa2" resname="Our Address">
+        <source>Our Address</source>
+        <target>Notre adresse</target>
+      </trans-unit>
+      <trans-unit id="aJcSg4Q" resname="Subject">
+        <source>Subject</source>
+        <target>Objet</target>
+      </trans-unit>
+      <trans-unit id="15lwSUw" resname="Your message here...">
+        <source>Your message here...</source>
+        <target>Votre message ici...</target>
+      </trans-unit>
+      <trans-unit id="D_BXH6z" resname="Send Message">
+        <source>Send Message</source>
+        <target>Envoyer</target>
+      </trans-unit>
+      <trans-unit id="AIm9SWK" resname="Our Agents">
+        <source>Our Agents</source>
+        <target>Nos Agents</target>
+      </trans-unit>
+      <trans-unit id="sPO.aqk" resname="Agent centre">
+        <source>Agent centre</source>
+        <target>Espace agent</target>
       </trans-unit>
     </body>
   </file>

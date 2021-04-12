@@ -14,18 +14,16 @@
 							<div class="col-sm-12 col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 								<div class="slider-text-inner">
                   <div class="admin">
-                    <h1 class="h3 mb-3 font-weight-normal text-green">{% trans %}Administrator centre{% endtrans %}</h1>
+										{% include "dashboard/_maintitle.html.twig" %}
                     <div class="row">
                       <div class="col-md-3 aside-buttons">
-                        <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">{% trans %}Administrators{% endtrans %}</a>
-                        <a href="{{ path('admin_user_list') }}" class="btn btn-primary">{% trans %}Users{% endtrans %}</a>
-                        <a href="" class="btn btn-primary">Documents</a>
+												{% include "dashboard/_navigation.html.twig" %}
                       </div>
                       <div class="col-sm-12 col-md-9">
-                      {% block table %}
-                        <h3 class="icon fa-caret-right">&nbsp;{% trans %}Welcome{% endtrans %} {{ is_granted('ROLE_ADMIN') ? app.user.firstname : '' }}</h3>
-                        <div class="main-bg-admin"></div>
-                      {% endblock %}
+												{% block table %}
+													<h3 class="icon fa-caret-right">&nbsp;{% trans %}Welcome{% endtrans %} {{ is_granted('ROLE_USER') ? app.user.firstname : '' }}</h3>
+													{% include "dashboard/_mainbg.html.twig" %}
+												{% endblock %}
                       </div>
                     </div> 
 								  </div>

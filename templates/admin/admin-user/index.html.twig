@@ -1,7 +1,7 @@
-{% extends 'admin/index.html.twig' %}
+{% extends 'dashboard/index.html.twig' %}
 
 {% block table %}
-<h3 class="icon fa-caret-right">&nbsp;SECTION : {{ section|upper|trans }}</h3>
+{% include "dashboard/_sectiontitle.html.twig" %}
 {% for message in app.flashes('message_admin') %}
   <div class="alert alert-success" role="alert">{{ message }}</div>
 {% endfor %}

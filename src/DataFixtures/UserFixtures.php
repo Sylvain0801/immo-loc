@@ -21,32 +21,31 @@ class UserFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
         $roles = ["ROLE_AGENT", "ROLE_LEASEOWNER", "ROLE_OWNER", "ROLE_TENANT"];
+        $cpt = 1;
         
-        for($i = 1; $i <= 20; $i++) {
+        for($i = 1; $i <= 40; $i++) {
 
-            $role = $roles[$faker->numberBetween(0, 3)];
-    
             $user = new User();
-            if($i === 1) {
-                $user
-                    ->setFirstname('John')
-                    ->setLastname('Doe')
-                    ->setEmail('user@demo.fr')
-                    ->setRoles(["ROLE_USER"]);
-                } else {
-                    $user
-                    ->setFirstname($faker->firstname())
-                    ->setLastname($faker->lastname)
-                    ->setEmail($faker->email)   
-                    ->setRoles([$role]);
-                }
-            
+            $role = $roles[$i % 4];
+        
             $user
+                ->setFirstname($faker->firstname())
+                ->setLastname($faker->lastname)
+                ->setEmail(explode('_', $role)[1] . $cpt . '@demo.fr')   
+                ->setRoles([$role])
                 ->setIsVerified(1)
                 ->setPassword($this->encoder->encodePassword($user, '123456'));
             $manager->persist($user);
 
             $this->addReference('user_'.$i, $user);
+            
+            if($i % 4 === 0) {
+                $this->addReference('agent_'.$cpt, $user);
+                $cpt++; 
+             }
+            if($i % 4 === 2) {
+                $this->addReference('owner_'.$cpt, $user);
+             }
 
         }
 

@@ -1,0 +1,10 @@
+{% if is_granted('ROLE_ADMIN') %}
+  <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">{% trans %}Administrators{% endtrans %}</a>
+  <a href="{{ path('admin_user_list') }}" class="btn btn-primary">{% trans %}Users{% endtrans %}</a>
+  <a href="" class="btn btn-primary">Documents</a>
+{% endif %}
+{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
+  <a href="{{ path('message_agent_list') }}" class="btn btn-primary">Messages</a>
+  <a href="" class="btn btn-primary">Documents</a>
+{% endif %}
+

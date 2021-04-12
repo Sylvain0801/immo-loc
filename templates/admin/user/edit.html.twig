@@ -1,7 +1,7 @@
-{% extends "admin/index.html.twig" %}
+{% extends "dashboard/index.html.twig" %}
 
 {% block table %}
-	<h3 class="icon fa-caret-right">&nbsp;SECTION : {{ section|upper }}</h3>
+	{% include "dashboard/_sectiontitle.html.twig" %}
   <div class="row text-left">
     <div class="col-md-8">
       {{ form_start(userEditForm) }}

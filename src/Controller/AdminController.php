@@ -22,7 +22,7 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', [
+        return $this->render('dashboard/index.html.twig', [
             'active' => 'myspace'
         ]);
     }
@@ -80,8 +80,8 @@ class AdminController extends AbstractController
             'createdAt' => $admin->getCreatedAt(),
             'section' => $section,
             'active' => 'myspace'
-            ]);
-        }
+        ]);
+    }
     
     /**
     * @Route("/useradmin/delete/{id}", name="useradmin_delete")
