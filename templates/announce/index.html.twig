@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonces - LocationImmo
+{% block title %}{% trans %}Properties{% endtrans %} - LocationImmo
 {% endblock %}
 
 {% block body %}
@@ -14,7 +14,7 @@
 						<div class="row">
 							<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
 								<div class="slider-text-inner">
-									<h2 class="heading-title">Nos annonces</h2>
+									<h2 class="heading-title">{% trans %}Our properties{% endtrans %}</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, itaque quas? Dolorum dolorem quod excepturi.</p>
 								</div>
 							</div>
@@ -161,7 +161,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-					<h3>Tous nos biens</h3>
+					<h3>{% trans %}All our properties{% endtrans %}</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
 				</div>
 			</div>
@@ -173,14 +173,14 @@
 								<span class="status">{{ announce.type }}</span>
 								<ul class="list-details">
 									<li>{{ announce.area }} m²</li>
-									<li>{{ announce.rooms }} pièces</li>
-									<li>{{ announce.bedrooms }} chambres</li>
+									<li>{{ announce.rooms }} {% trans %}Rooms{% endtrans %}</li>
+									<li>{{ announce.bedrooms }} {% trans %}Bedrooms{% endtrans %}</li>
 								</ul>
 							</a>
 							<div class="property-details">
 								<h3>{{ announce.title }}</h3>
 								<span class="price">{{ announce.price }}
-									€ / mois</span>
+									€ / {% trans %}Month{% endtrans %}</span>
 								<p>{{ announce.description|slice(0, 100) }}...</p>
 								<span class="address">
 									<i class="icon-map"></i>

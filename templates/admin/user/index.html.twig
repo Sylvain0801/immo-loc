@@ -14,13 +14,13 @@
           <div class="headers">
             {{ header }}
             <div class="sort-buttons">
-              <a href="{{ path('admin_useradmin_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
-              <a href="{{ path('admin_useradmin_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+              <a href="{{ path('admin_user_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="{{ 'Descending sorting'|trans }}"></a>
+              <a href="{{ path('admin_user_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="{{ 'Ascending sorting'|trans }}"></a>
             </div>
           </div>
         </th>
       {% endfor %}
-      <th>Rôle</th>  
+      <th>{% trans %}Role{% endtrans %}</th>  
       <th>Actions</th>  
     </tr>
   </thead>
@@ -31,15 +31,15 @@
         <td>{{ user.lastname }}</td>
         <td>{{ user.email }}</td>
         <td>
-          {% if 'ROLE_AGENT' in user.roles %}Agent{% endif %}
-          {% if 'ROLE_LEASEOWNER' in user.roles %}Propriétaire bailleur{% endif %}
-          {% if 'ROLE_OWNER' in user.roles %}Propriétaire{% endif %}
-          {% if 'ROLE_TENANT' in user.roles %}Locataire{% endif %}
+          {% if 'ROLE_AGENT' in user.roles %}{% trans %}Agent{% endtrans %}{% endif %}
+          {% if 'ROLE_LEASEOWNER' in user.roles %}{% trans %}Lease owner{% endtrans %}{% endif %}
+          {% if 'ROLE_OWNER' in user.roles %}{% trans %}Owner{% endtrans %}{% endif %}
+          {% if 'ROLE_TENANT' in user.roles %}{% trans %}Tenant{% endtrans %}{% endif %}
         </td>
         <td style="display: flex;">
-          <a href="{{ path('admin_user_edit', {'id':user.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="Editer"></a>
-          <a href="{{ path('admin_user_delete', {'id':user.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'utilisateur {{ user.firstname }} {{ user.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
-        </td>
+            <a href="{{ path('admin_user_edit', {'id':user.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
+            <a href="{{ path('admin_user_delete', {'id':user.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ user.firstname }} {{ user.lastname }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
+          </td>
       </tr>
     {% endfor %}
   </tbody>

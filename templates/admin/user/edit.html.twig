@@ -6,10 +6,10 @@
     <div class="col-md-8">
       {{ form_start(userEditForm) }}
         <div class="form-group">
-          {{ form_row(userEditForm.firstname) }}
+          {{ form_row(userEditForm.firstname, {label: 'Firstname'|trans}) }}
         </div>
         <div class="form-group">
-          {{ form_row(userEditForm.lastname) }}
+          {{ form_row(userEditForm.lastname, {label: 'Lastname'|trans}) }}
         </div>
         <div class="form-group">
           {{ form_label(userEditForm.email) }}
@@ -17,12 +17,12 @@
           {{ form_widget(userEditForm.email) }}
         </div>
         <div class="form-group">
-          {{ form_row(userEditForm.roles) }}
+          {{ form_row(userEditForm.roles, {label: 'Role'|trans}) }}
         </div>
-        <p class="icon fa-calendar text-right" style="color:#555">&nbsp;Profil créé le {{ createdAt|date('d/m/Y') }}</p>
+        <p class="icon fa-calendar text-right" style="color:#555">&nbsp;{% trans %}Profile created at{% endtrans %} {{ createdAt|date('d/m/Y') }}</p>
         <div class="button-between">
-          <a href="{{ path('admin_useradmin_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;Retour liste</a>
-          <button type="submit" class="btn btn-primary icon fa-save">&nbsp;Enregistrer</button>
+          <a href="{{ path('admin_user_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+          <button type="submit" class="btn btn-primary icon fa-save">&nbsp;{% trans %}Save{% endtrans %}</button>
         </div>
       {{ form_end(userEditForm) }}
     </div>

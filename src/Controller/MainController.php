@@ -40,7 +40,7 @@ class MainController extends AbstractController
     /**
      * @Route("/accept", name="accept_cookie")
      */
-    public function acceptCookie():RedirectResponse
+    public function acceptCookie(Request $request):RedirectResponse
     {
         $cookie = new Cookie('accept-cookie', 'accept', strtotime('now') + 24 * 3600);
             
@@ -48,14 +48,15 @@ class MainController extends AbstractController
         $response->headers->setcookie($cookie);
         $response->send();
 
-        return $this->redirectToRoute('home');
+       //redirige vers la page précédente
+       return $this->redirect($request->headers->get('referer'));
 
     }
 
     /**
      * @Route("/refuse", name="refuse_cookie")
      */
-    public function refuseCookie():RedirectResponse
+    public function refuseCookie(Request $request):RedirectResponse
     {
         $cookie = new Cookie('accept-cookie', 'refuse', strtotime('now') + 24 * 3600);
             
@@ -63,7 +64,8 @@ class MainController extends AbstractController
         $response->headers->setcookie($cookie);
         $response->send();
 
-        return $this->redirectToRoute('home');
+        //redirige vers la page précédente
+        return $this->redirect($request->headers->get('referer'));
 
     }
 

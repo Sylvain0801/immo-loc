@@ -41,6 +41,170 @@
         <source>Sign in</source>
         <target>Se connecter</target>
       </trans-unit>
+      <trans-unit id="G5wZgwQ" resname="This website uses cookies">
+        <source>This website uses cookies</source>
+        <target>Ce site wb utilise des cookies</target>
+      </trans-unit>
+      <trans-unit id="FSkRxXO" resname="Allow all cookies">
+        <source>Allow all cookies</source>
+        <target>Accepter tous les cookies</target>
+      </trans-unit>
+      <trans-unit id=".hSfmWg" resname="Only the necessary cookies">
+        <source>Only the necessary cookies</source>
+        <target>Uniquement les cookies nécessaires</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="ZHz6kbI" resname="Firstname">
+        <source>Firstname</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="htiPHRy" resname="Lastname">
+        <source>Lastname</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="CNsokdr" resname="Profile created at">
+        <source>Profile created at</source>
+        <target>Profil créé le</target>
+      </trans-unit>
+      <trans-unit id="Xaj3_8K" resname="Back to list">
+        <source>Back to list</source>
+        <target>Retour liste</target>
+      </trans-unit>
+      <trans-unit id="R1lJisK" resname="Create">
+        <source>Create</source>
+        <target>Créer</target>
+      </trans-unit>
+      <trans-unit id="PFMML0S" resname="administrators">
+        <source>administrators</source>
+        <target>administrateurs</target>
+      </trans-unit>
+      <trans-unit id="kl8u9OV" resname="Administrator modified succesfully">
+        <source>Administrator modified succesfully</source>
+        <target>L'administrateur a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="pE6Trhr" resname="Administrator deleted succesfully">
+        <source>Administrator deleted succesfully</source>
+        <target>L'administrateur a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="fftM9nd" resname="users">
+        <source>users</source>
+        <target>utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="byH9cpw" resname="User deleted succesfully">
+        <source>User deleted succesfully</source>
+        <target>L'utilisateur a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="msZ0gK_" resname="Administrator created succesfully">
+        <source>Administrator created succesfully</source>
+        <target>L'administrateur a été créé avec succès</target>
+      </trans-unit>
+      <trans-unit id="hpWlheT" resname="Please Confirm your Email">
+        <source>Please Confirm your Email</source>
+        <target>Merci de confirmer votre email</target>
+      </trans-unit>
+      <trans-unit id="WGihIc_" resname="Descending sorting">
+        <source>Descending sorting</source>
+        <target>Tri décroissant</target>
+      </trans-unit>
+      <trans-unit id="gyxbBJY" resname="Ascending sorting">
+        <source>Ascending sorting</source>
+        <target>Tri croissant</target>
+      </trans-unit>
+      <trans-unit id="RkxP.QG" resname="Edit">
+        <source>Edit</source>
+        <target>Editer</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="_CcJmF2" resname="Administrator ">
+        <source>Administrator </source>
+        <target>L'adminitrateur </target>
+      </trans-unit>
+      <trans-unit id="n9coxmy" resname="Add">
+        <source>Add</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="5fSAPfT" resname="Administrator centre">
+        <source>Administrator centre</source>
+        <target>Espace administrateur</target>
+      </trans-unit>
+      <trans-unit id="kZ_yJKP" resname="Administrators">
+        <source>Administrators</source>
+        <target>Administrateurs</target>
+      </trans-unit>
+      <trans-unit id="awzJBNC" resname="Users">
+        <source>Users</source>
+        <target>Utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="0MqlsA9" resname="will be definitely deleted, this choice must be confirmed ?">
+        <source>will be definitely deleted, this choice must be confirmed ?</source>
+        <target>va être définitivement supprimé, ce choix doit être confirmé ?</target>
+      </trans-unit>
+      <trans-unit id="FHNqLrn" resname="Role">
+        <source>Role</source>
+        <target>Rôle</target>
+      </trans-unit>
+      <trans-unit id="EbOck3d" resname="Agent">
+        <source>Agent</source>
+        <target>Agent</target>
+      </trans-unit>
+      <trans-unit id="_FG9KCz" resname="Lease owner">
+        <source>Lease owner</source>
+        <target>Propriétaire bailleur</target>
+      </trans-unit>
+      <trans-unit id="SxuKo2C" resname="Owner">
+        <source>Owner</source>
+        <target>Propriétaire</target>
+      </trans-unit>
+      <trans-unit id="4jlp0oT" resname="Tenant">
+        <source>Tenant</source>
+        <target>Locataire</target>
+      </trans-unit>
+      <trans-unit id="KxwXLhy" resname="Our properties">
+        <source>Our properties</source>
+        <target>Nos annonces</target>
+      </trans-unit>
+      <trans-unit id="WJuyDh1" resname="All our properties">
+        <source>All our properties</source>
+        <target>Toutes nos annonces</target>
+      </trans-unit>
+      <trans-unit id="vTL2ztt" resname="Rooms">
+        <source>Rooms</source>
+        <target>Pièces</target>
+      </trans-unit>
+      <trans-unit id="JHfzFD0" resname="Bedrooms">
+        <source>Bedrooms</source>
+        <target>Chambres</target>
+      </trans-unit>
+      <trans-unit id="MQylA_8" resname="Month">
+        <source>Month</source>
+        <target>Mois</target>
+      </trans-unit>
+      <trans-unit id="YRHOj0V" resname="Agree terms">
+        <source>Agree terms</source>
+        <target>J'accepte les conditions d'utilisation</target>
+      </trans-unit>
+      <trans-unit id="acVpEs4" resname="You are logged in as">
+        <source>You are logged in as</source>
+        <target>Vous êtes connecté avec</target>
+      </trans-unit>
+      <trans-unit id="dDUw20Q" resname="Please sign in">
+        <source>Please sign in</source>
+        <target>Merci d'entrer vos identifiants</target>
+      </trans-unit>
+      <trans-unit id="_TJnqhH" resname="Remember me">
+        <source>Remember me</source>
+        <target>Se souvenir de moi</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -30,11 +30,15 @@ class AdminController extends AbstractController
     /**
      * @Route("/useradmin/list/{header}/{sorting}", name="useradmin_list", defaults={"header": "id", "sorting": "ASC"})
      */
-    public function usersAdminList($header, $sorting, Request $request, PaginatorInterface $paginator): Response
+    public function usersAdminList($header, $sorting, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator): Response
     {
+        $section = $translator->trans('administrators');
+        $firstname = $translator->trans('Firstname');
+        $lastname = $translator->trans('Lastname');
+
         $headers = [
-            'firstname' => 'Prénom',
-            'lastname' => 'Nom',
+            'firstname' => $firstname,
+            'lastname' => $lastname,
             'email' => 'Email'
         ];
         $data = $this->getDoctrine()->getRepository(Admin::class)->findBy([], [$header => $sorting]);
@@ -46,7 +50,7 @@ class AdminController extends AbstractController
         return $this->render('admin/admin-user/index.html.twig', [
             'adminusers' => $adminusers,
             'headers' => $headers,
-            'section' => 'administrateurs',
+            'section' => $section,
             'active' => 'myspace'
         ]);
     }
@@ -59,12 +63,14 @@ class AdminController extends AbstractController
         $form = $this->createForm(AdminRegistrationFormType::class, $admin);
         $form->handleRequest($request);
 
+        $section = $translator->trans('administrators');
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($admin);
             $em->flush();
 
-            $message = $translator->trans('User modified succesfully');
+            $message = $translator->trans('Administrator modified succesfully');
 
             $this->addFlash('message_admin', $message);
             return $this->redirectToRoute('admin_useradmin_list');
@@ -72,7 +78,7 @@ class AdminController extends AbstractController
         return $this->render('admin/admin-user/edit.html.twig', [
             'registrationForm' => $form->createView(),
             'createdAt' => $admin->getCreatedAt(),
-            'section' => 'administrateurs',
+            'section' => $section,
             'active' => 'myspace'
             ]);
         }
@@ -80,13 +86,16 @@ class AdminController extends AbstractController
     /**
     * @Route("/useradmin/delete/{id}", name="useradmin_delete")
     */   
-    public function delete(Admin $admin): RedirectResponse
+    public function delete(Admin $admin, TranslatorInterface $translator): RedirectResponse
     {
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($admin);
         $em->flush();
         
-        $this->addFlash('message_admin', 'L\'administrateur a été supprimé avec succès');
+        $message = $translator->trans('Administrator deleted succesfully');
+
+        $this->addFlash('message_admin', $message);
 
     return $this->redirectToRoute('admin_useradmin_list');
     }

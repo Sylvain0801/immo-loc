@@ -9,17 +9,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdminRegistrationController extends AbstractController
 {
     /**
      * @Route("/admin/register", name="admin_app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator): Response
     {
         $user = new Admin();
         $form = $this->createForm(AdminRegistrationFormType::class, $user);
         $form->handleRequest($request);
+
+        $section = $translator->trans('administrators');
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -34,7 +37,8 @@ class AdminRegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-            $this->addFlash('message_admin', 'L\'administrateur a été créé avec succès');
+            $message = $translator->trans('Administrator created succesfully');
+            $this->addFlash('message_admin', $message);
 
             return $this->redirectToRoute('admin_useradmin_list');
         }
@@ -42,7 +46,7 @@ class AdminRegistrationController extends AbstractController
         return $this->render('registration/adminregister.html.twig', [
             'registrationForm' => $form->createView(),
             'createdAt' => null,
-            'section' => 'administrateurs',
+            'section' => $section,
             'active' => 'myspace'
         ]);
     }

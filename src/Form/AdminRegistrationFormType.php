@@ -16,14 +16,13 @@ class AdminRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('firstname', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-                'label' => 'Prénom'
+                'attr' => ['class' => 'form-control']
                 ])
             ->add('lastname', TextType::class, [
                 'attr' => ['class' => 'form-control'],
-                'label' => 'Nom'
                 ])
             ->add('email', EmailType::class,  [
                 'attr' => ['class' => 'form-control'],
@@ -33,7 +32,6 @@ class AdminRegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'label' => 'Mot de passe',
                 'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new NotBlank([

@@ -17,11 +17,9 @@ class UserEditType extends AbstractType
         $builder
         ->add('firstname', TextType::class, [
             'attr' => ['class' => 'form-control'],
-            'label' => 'Prénom'
             ])
         ->add('lastname', TextType::class, [
             'attr' => ['class' => 'form-control'],
-            'label' => 'Nom'
             ])
         ->add('email', EmailType::class,  [
             'attr' => ['class' => 'form-control'],
@@ -29,14 +27,13 @@ class UserEditType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Locataire' => 'ROLE_TENANT', 
-                    'Propriétaire' => 'ROLE_OWNER',
-                    'Propriétaire bailleur' => 'ROLE_LEASEOWNER',
+                    'Tenant' => 'ROLE_TENANT', 
+                    'Owner' => 'ROLE_OWNER',
+                    'Lease owner' => 'ROLE_LEASEOWNER',
                     'Agent' => 'ROLE_AGENT'
                 ],
                 'expanded' => true,
                 'multiple' => true,
-                'label' => 'Rôles'
             ])
            
         ;

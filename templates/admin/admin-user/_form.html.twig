@@ -7,10 +7,10 @@
       {% endfor %}
       {{ form_start(registrationForm) }}
         <div class="form-group">
-          {{ form_row(registrationForm.firstname) }}
+          {{ form_row(registrationForm.firstname, {label: 'Firstname'|trans}) }}
         </div>
         <div class="form-group">
-          {{ form_row(registrationForm.lastname) }}
+          {{ form_row(registrationForm.lastname, {label: 'Lastname'|trans}) }}
         </div>
         <div class="form-group">
           {{ form_label(registrationForm.email) }}
@@ -18,13 +18,13 @@
           {{ form_widget(registrationForm.email) }}
         </div>
         <div class="form-group">
-          {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}
+          {{ form_row(registrationForm.plainPassword, {label: 'Password'|trans}) }}
         </div>
         {% if createdAt %}
-        <p class="icon fa-calendar text-right" style="color:#555">&nbsp;Profil créé le {{ createdAt|date('d/m/Y') }}</p>
+        <p class="icon fa-calendar text-right" style="color:#555">&nbsp;{% trans %}Profile created at{% endtrans %} {{ createdAt|date('d/m/Y') }}</p>
         {% endif %}
         <div class="button-between">
-          <a href="{{ path('admin_useradmin_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;Retour liste</a>
+          <a href="{{ path('admin_useradmin_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
           <button type="submit" class="btn btn-primary icon fa-save">&nbsp;{{ btncaption }}</button>
         </div>
       {{ form_end(registrationForm) }}

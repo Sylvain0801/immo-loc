@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon espace - LocationImmo
+{% block title %}{% trans %}My space{% endtrans %} - LocationImmo
 {% endblock %}
 
 {% block body %}
 	<div id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
-				<li style="background-image: url({{asset('assets/images/properties/estate_01.jpg')}})">
+				<li style="background-image: url({{asset('assets/images/properties/home_07.jpg')}})">
 					<div class="overlay"></div>
 					<div class="container-fluid">
 						<div class="row" style="overflow-x: auto;">
 							<div class="col-sm-12 col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 								<div class="slider-text-inner">
                   <div class="admin">
-                    <h1 class="h3 mb-3 font-weight-normal text-green">Espace administrateur</h1>
+                    <h1 class="h3 mb-3 font-weight-normal text-green">{% trans %}Administrator centre{% endtrans %}</h1>
                     <div class="row">
                       <div class="col-md-3 aside-buttons">
-                        <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">Administrateurs</a>
-                        <a href="{{ path('admin_user_list') }}" class="btn btn-primary">Utilisateurs</a>
+                        <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">{% trans %}Administrators{% endtrans %}</a>
+                        <a href="{{ path('admin_user_list') }}" class="btn btn-primary">{% trans %}Users{% endtrans %}</a>
                         <a href="" class="btn btn-primary">Documents</a>
                       </div>
                       <div class="col-sm-12 col-md-9">
