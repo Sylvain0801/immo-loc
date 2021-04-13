@@ -3,7 +3,7 @@ window.onload = () => {
   for(let btn of btnMessageRead) {
     btn.addEventListener("click", function() {
       let xhr = new XMLHttpRequest()
-      xhr.open("get", `/message/agent/read/${this.dataset.id}`)
+      xhr.open("get", `/message/read/${this.dataset.id}`)
       xhr.addEventListener('readystatechange', function() {
         if(xhr.readyState === 4) {
             if(xhr.status !== 200) {
@@ -16,6 +16,23 @@ window.onload = () => {
                   btn.setAttribute('value', '1'),
                   btn.setAttribute('class', 'icon fa-envelope-open-o btn-message')
                   )
+            }
+        }
+      })
+      xhr.send()
+    })
+  }
+  let btnDeletMessage = document.querySelectorAll("a.btn-delete-message")
+  for(let btn of btnDeletMessage) {
+    btn.addEventListener("click", function() {
+      let xhr = new XMLHttpRequest()
+      xhr.open("get", `/message/delete/${this.dataset.id}`)
+      xhr.addEventListener('readystatechange', function() {
+        if(xhr.readyState === 4) {
+            if(xhr.status !== 200) {
+                alert('Une erreur s\'est produite, veuillez réessayer plus tard')
+            } else {
+                btn.parentNode.parentNode.remove()
             }
         }
       })

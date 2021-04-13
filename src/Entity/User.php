@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -254,6 +255,30 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function getUserMailRole()
+    {
+        $roles = $this->getRoles();
+        
+        if(in_array('ROLE_ADMIN', $roles)){
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.'Admin';
+        }
+        if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_AGENT', $roles)){
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.'Agent';
+        }
+        if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_OWNER', $roles)){
+            $message = new TranslatableMessage('Owner');
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.$message;
+        }
+        if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_LEASEOWNER', $roles)){
+            $message = new TranslatableMessage('Lease owner');
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.$message;
+        }
+        if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_TENANT', $roles)){
+            $message = new TranslatableMessage('Tenant');
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.$message;
+        }
     }
 
 }

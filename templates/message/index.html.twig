@@ -14,8 +14,8 @@
           <div class="headers">
             {{ header }}
             <div class="sort-buttons">
-              <a href="{{ path('message_agent_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="{{ 'Descending sorting'|trans }}"></a>
-              <a href="{{ path('message_agent_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="{{ 'Ascending sorting'|trans }}"></a>
+              <a href="{{ path('message_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="{{ 'Descending sorting'|trans }}"></a>
+              <a href="{{ path('message_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="{{ 'Ascending sorting'|trans }}"></a>
             </div>
           </div>
         </th>
@@ -34,13 +34,13 @@
           {{ message.createdAt|date('d/m/Y') }}<br>{{ message.createdAt|date('H:i') }}
         </td>
         <td style="display: flex;">
-          <a href="{{ path('admin_user_edit', {'id':message.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
-          <a href="{{ path('admin_user_delete', {'id':message.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
+          <a href="{{ path('message_edit', {'id':message.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
+          <a class="btn-table btn-delete icon fa-trash btn-delete-message" data-id="{{ message.id }}" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ 'Message of'|trans }} {{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
         </td>
       </tr>
     {% else %}
       <tr>
-        <td clospan="6">Il n'y a aucun message à afficher</td>
+        <td colspan="6">Il n'y a aucun message à afficher</td>
       </tr>
     {% endfor %}
   </tbody>
@@ -49,4 +49,7 @@
 {% if messages.getTotalItemCount > 7 %}
   {{ knp_pagination_render(messages) }}
 {% endif %}
+<div class="button-right">
+  <a href="{{ path('message_new') }}" class="btn-lg btn-default icon fa-envelope-o">&nbsp;{% trans %}New{% endtrans %}</a>
+</div>
 {% endblock %}

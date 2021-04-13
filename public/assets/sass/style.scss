@@ -232,7 +232,7 @@ figure {
 	}
 }
 #fh5co-hero {
-	min-height: 700px;
+	// min-height: 700px;
 	background: $brand-white url(../images/loader.gif) no-repeat center center;
 	position: relative;
 	.overlay{
@@ -261,7 +261,7 @@ figure {
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-position: center center;
-				min-height: 700px;
+				// min-height: 700px;
 				position: relative;
 			}
 		}
@@ -296,7 +296,7 @@ figure {
 			> .slider-text-inner {
 				display: table-cell;
 				vertical-align: middle;
-				min-height: 700px;
+				// min-height: 700px;
 				h1, h2 {
 					margin: 0;
 					padding: 0;
@@ -2076,6 +2076,48 @@ input[type="checkbox"]:checked {
 .table {
 	font-size: 14px!important;
 }
+// buttons message
 a.icon.fa-envelope-open-o.btn-message {
 	color: #848484;
+}
+.btn-message, .btn-delet-message {
+	cursor:pointer;
+}
+// edit message
+.edit-message {
+	h4 {
+		margin-bottom: 15px!important;
+	}
+	p {
+		color: #5a5a5a!important;
+		font-size: 16px!important;
+	}
+}
+
+// css select2
+.select2-selection.select2-selection--multiple {
+	color: #555555;
+	min-height: 50px!important;
+	border: 1px solid #ccc!important;
+}
+.select2.select2-container.select2-container--default {
+	width: 100% !important;
+	margin-bottom: 1.5rem;
+	&.select2-container--focus.select2-container--below.select2-container--open {
+		// border: 1px solid #ce1b28!important;
+		// box-shadow: 0 0 0 1px #ce1b28!important;
+		border-radius: 4px!important;
+	}
+}
+input.select2-search__field {
+	margin-top:0 !important;
+	width: 100%!important;
+}
+li.select2-selection__choice {
+	background-color: #d1d1d1!important;
+}
+
+// adjust padding button
+button {
+	padding: 10px 15px!important;
 }

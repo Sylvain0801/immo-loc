@@ -45,7 +45,7 @@ class ContactController extends AbstractController
             $successmsg = $translator->trans('Your message has been sent successfully');
 
             $this->addFlash('message_user', $successmsg);
-            return $this->redirectToRoute('message_home');
+            return $this->redirectToRoute('contact_home');
         }
        
         return $this->render('contact/index.html.twig', [

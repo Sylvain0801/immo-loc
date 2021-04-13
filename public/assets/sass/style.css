@@ -181,7 +181,6 @@ figure {
 }
 
 #fh5co-hero {
-  min-height: 700px;
   background: #fff url(../images/loader.gif) no-repeat center center;
   position: relative;
 }
@@ -218,7 +217,6 @@ figure {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  min-height: 700px;
   position: relative;
 }
 
@@ -261,7 +259,6 @@ figure {
 #fh5co-hero .flexslider .slider-text > .slider-text-inner {
   display: table-cell;
   vertical-align: middle;
-  min-height: 700px;
 }
 
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h1, #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
@@ -2318,5 +2315,46 @@ input[type="checkbox"]:checked:before {
 
 a.icon.fa-envelope-open-o.btn-message {
   color: #848484;
+}
+
+.btn-message, .btn-delet-message {
+  cursor: pointer;
+}
+
+.edit-message h4 {
+  margin-bottom: 15px !important;
+}
+
+.edit-message p {
+  color: #5a5a5a !important;
+  font-size: 16px !important;
+}
+
+.select2-selection.select2-selection--multiple {
+  color: #555555;
+  min-height: 50px !important;
+  border: 1px solid #ccc !important;
+}
+
+.select2.select2-container.select2-container--default {
+  width: 100% !important;
+  margin-bottom: 1.5rem;
+}
+
+.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below.select2-container--open {
+  border-radius: 4px !important;
+}
+
+input.select2-search__field {
+  margin-top: 0 !important;
+  width: 100% !important;
+}
+
+li.select2-selection__choice {
+  background-color: #d1d1d1 !important;
+}
+
+button {
+  padding: 10px 15px !important;
 }
 /*# sourceMappingURL=style.css.map */

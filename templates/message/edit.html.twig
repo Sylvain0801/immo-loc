@@ -1,0 +1,35 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block table %}
+	{% include "dashboard/_sectiontitle.html.twig" %}
+	<div class="text-left edit-message">
+		<h4>
+			<strong>{% trans %}From{% endtrans %}
+				:</strong>
+			{{ message.firstnameSender }}
+			{{ message.lastnameSender }}</h4>
+		<h4><strong>Email : </strong>{{ message.sender }}</h4>
+		<h4>
+			<strong>{% trans %}Sent at{% endtrans %}
+				:</strong>
+			{{ message.createdAt|date('d/m/Y') }}
+			{% trans %}at{% endtrans %}
+			{{ message.createdAt|date('H:i') }}</h4>
+		<hr>
+		<h4>
+			<strong>{% trans %}Subject{% endtrans %}
+				:</strong>
+			{{ message.subject }}</h4>
+		<h4>
+			<strong>Message :</strong>
+		</h4>
+		<p>{{ message.body }}</p>
+	</div>
+	<form action="{{ path('message_new') }}" method="post">
+		<input type="hidden" name="sender" value="{{ message.sender }}">
+		<div class="button-between">
+			<a href="{{ path('message_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+			<button type="submit" class="btn btn-primary icon fa-mail-reply">&nbsp;{% trans %}Answer{% endtrans %}</button>
+		</div>
+	</form>
+{% endblock %}

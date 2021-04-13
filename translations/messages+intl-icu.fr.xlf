@@ -253,6 +253,38 @@
         <source>Read</source>
         <target>Lu</target>
       </trans-unit>
+      <trans-unit id="IYGXaTQ" resname="From">
+        <source>From</source>
+        <target>De</target>
+      </trans-unit>
+      <trans-unit id="sda5G2f" resname="at">
+        <source>at</source>
+        <target>à</target>
+      </trans-unit>
+      <trans-unit id="sqOqYCd" resname="Answer">
+        <source>Answer</source>
+        <target>Répondre</target>
+      </trans-unit>
+      <trans-unit id="dhL.iDb" resname="Message of">
+        <source>Message of</source>
+        <target>Le message de</target>
+      </trans-unit>
+      <trans-unit id="VRayy7F" resname="--Recipient list--">
+        <source>--Recipient list--</source>
+        <target>--Liste destinataire--</target>
+      </trans-unit>
+      <trans-unit id="GP3VSbL" resname="New">
+        <source>New</source>
+        <target>Nouveau</target>
+      </trans-unit>
+      <trans-unit id="UfrJhel" resname="Recipient">
+        <source>Recipient</source>
+        <target>Destinataire</target>
+      </trans-unit>
+      <trans-unit id="k6JrHq." resname="Send message">
+        <source>Send message</source>
+        <target>Envoyer</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
