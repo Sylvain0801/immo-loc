@@ -26,7 +26,7 @@
   <tbody>
     {% for message in messages %}
       <tr>
-        <td><a href="#" class="{{ message.messageRead ? 'icon fa-envelope-open-o' : 'icon fa-envelope'}}"></a></td>
+        <td><a class="{{ message.messageRead ? 'icon fa-envelope-open-o btn-message' : 'icon fa-envelope btn-message'}}" data-id="{{ message.id }}" value="{{ message.messageRead }}"></a></td>
         <td>{{ message.firstnameSender }}</td>
         <td>{{ message.lastnameSender }}</td>
         <td><strong>{{ message.subject }}</strong><br>{{ message.body|slice(0,100) }}...</td>
@@ -37,6 +37,10 @@
           <a href="{{ path('admin_user_edit', {'id':message.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
           <a href="{{ path('admin_user_delete', {'id':message.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
         </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td clospan="6">Il n'y a aucun message à afficher</td>
       </tr>
     {% endfor %}
   </tbody>

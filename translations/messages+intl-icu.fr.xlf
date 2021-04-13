@@ -43,7 +43,7 @@
       </trans-unit>
       <trans-unit id="G5wZgwQ" resname="This website uses cookies">
         <source>This website uses cookies</source>
-        <target>Ce site wb utilise des cookies</target>
+        <target>Ce site web utilise des cookies</target>
       </trans-unit>
       <trans-unit id="FSkRxXO" resname="Allow all cookies">
         <source>Allow all cookies</source>
@@ -240,6 +240,18 @@
       <trans-unit id="sPO.aqk" resname="Agent centre">
         <source>Agent centre</source>
         <target>Espace agent</target>
+      </trans-unit>
+      <trans-unit id="9czPtzd" resname="messages">
+        <source>messages</source>
+        <target>messages</target>
+      </trans-unit>
+      <trans-unit id="N2zgT9." resname="Sent at">
+        <source>Sent at</source>
+        <target>Envoyé le</target>
+      </trans-unit>
+      <trans-unit id="m5qNBaf" resname="Read">
+        <source>Read</source>
+        <target>Lu</target>
       </trans-unit>
     </body>
   </file>

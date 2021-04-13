@@ -2311,4 +2311,12 @@ input[type="checkbox"]:checked:before {
 .button-between > button:hover, .button-between > a:hover {
   text-decoration: none;
 }
+
+.table {
+  font-size: 14px !important;
+}
+
+a.icon.fa-envelope-open-o.btn-message {
+  color: #848484;
+}
 /*# sourceMappingURL=style.css.map */

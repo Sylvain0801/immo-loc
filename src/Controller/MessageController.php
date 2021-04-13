@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Repository\MessageRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,4 +50,17 @@ class MessageController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/agent/read/{id}", name="read")
+     */
+    public function messageRead(Message $message):Response
+    {
+        $message->setMessageRead($message->getMessageRead() ? false : true);
+
+        $em= $this->getDoctrine()->getManager();
+        $em->persist($message);
+        $em->flush();
+
+        return new Response('true');
+    }
 }
