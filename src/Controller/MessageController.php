@@ -30,7 +30,7 @@ class MessageController extends AbstractController
         $section = $translator->trans('messages');
         $firstname = $translator->trans('Firstname');
         $lastname = $translator->trans('Lastname');
-        $subject =$translator->trans('Subject');
+        $subject = $translator->trans('Subject');
         $createdat = $translator->trans('Sent at');
         $read = $translator->trans('Read');
 
@@ -43,10 +43,17 @@ class MessageController extends AbstractController
         ];
 
         $roles = $this->getUser()->getRoles();
+        // si l'utilisateur connecté est un agent, il a accès à tous les messages des agents
         if(in_array('ROLE_AGENT', $roles)) {
             $role = 'ROLE_AGENT';
+            $data = $messageRepository->findMessagesByRecipientRole($role, $header, $sorting);
         }
-        $data = $messageRepository->findMessagesByRecipientRole($role, $header, $sorting);
+
+        // si c'est un autre profil, il a accès uniquement aux messages qui lui sont propres
+        if(in_array('ROLE_OWNER', $roles) || in_array('ROLE_LEASEOWNER', $roles) || in_array('ROLE_TENANT', $roles)) {
+            $data = $messageRepository->findMessagesByUser($this->getUser()->getId(), $header, $sorting);
+        }
+
         $messages = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),

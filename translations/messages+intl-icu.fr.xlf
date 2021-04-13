@@ -285,6 +285,10 @@
         <source>Send message</source>
         <target>Envoyer</target>
       </trans-unit>
+      <trans-unit id="ssEkU20" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

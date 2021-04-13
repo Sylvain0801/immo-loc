@@ -8,6 +8,9 @@
   {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
 	  <a href="{{ path('agent_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
   {% endif %}
+  {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
+	  <a href="{{ path('owner_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+  {% endif %}
 	<ul class="fh5co-sub-menu">
     {% if not is_granted('ROLE_USER') %}
       <li><a href="{{ path('app_register') }}" class="icon fa-id-card-o">&nbsp;{% trans %}Register{% endtrans %}</a></li>
@@ -17,6 +20,9 @@
 		{% endif %}
 		{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
 			<li><a href="{{ path('agent_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Agent{% endtrans %}</a></li>
+		{% endif %}
+		{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
+			<li><a href="{{ path('owner_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Owner{% endtrans %}</a></li>
 		{% endif %}
 		{% if is_granted('ROLE_USER') %}
 			<li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;{% trans %}Logout{% endtrans %}</a></li>

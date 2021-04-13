@@ -181,6 +181,7 @@ figure {
 }
 
 #fh5co-hero {
+  min-height: 700px;
   background: #fff url(../images/loader.gif) no-repeat center center;
   position: relative;
 }
@@ -259,6 +260,7 @@ figure {
 #fh5co-hero .flexslider .slider-text > .slider-text-inner {
   display: table-cell;
   vertical-align: middle;
+  min-height: 700px;
 }
 
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h1, #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
@@ -2107,6 +2109,11 @@ input[type="checkbox"]:checked:before {
 
 .main-bg-agent {
   background: url(../images/properties/home_05.jpg) center/cover;
+  height: 490px;
+}
+
+.main-bg-owner {
+  background: url(../images/properties/home_08.jpg) center/cover;
   height: 490px;
 }
 

@@ -4,4 +4,7 @@
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
   <h1 class="h3 mb-3 font-weight-normal text-green">{% trans %}Agent centre{% endtrans %}</h1>
 {% endif %}
+{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
+  <h1 class="h3 mb-3 font-weight-normal text-green">{% trans %}Owner centre{% endtrans %}</h1>
+{% endif %}
 

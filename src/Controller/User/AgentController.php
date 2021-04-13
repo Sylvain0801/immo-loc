@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,6 @@ class AgentController extends AbstractController
     {
         return $this->render('agent/index.html.twig', [
             'active' => 'myspace',
-            'section' => 'messages'
         ]);
     }
 }

@@ -30,6 +30,17 @@ class MessageRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findMessagesByUser(int $id, string $header, string $sorting)
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb->leftJoin('m.recipient', 'r')
+            ->where('r.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('m.'.$header, $sorting);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Message[] Returns an array of Message objects
     //  */
