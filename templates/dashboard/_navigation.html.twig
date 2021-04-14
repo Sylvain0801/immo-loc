@@ -1,19 +1,28 @@
+{# navigation espace admin #}
 {% if is_granted('ROLE_ADMIN') %}
   <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">{% trans %}Administrators{% endtrans %}</a>
   <a href="{{ path('admin_user_list') }}" class="btn btn-primary">{% trans %}Users{% endtrans %}</a>
   <a href="" class="btn btn-primary">Documents</a>
 {% endif %}
+
+{# navigation espace agent #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
-  <a href="{{ path('message_list') }}" class="btn btn-primary">Messages</a>
+  {{ render(controller('App\\Controller\\User\\AgentController::messageNotRead')) }}
   <a href="" class="btn btn-primary">Documents</a>
 {% endif %}
+
+{# navigation espace propriétaire #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
-  <a href="{{ path('message_list') }}" class="btn btn-primary">Messages</a>
+  {{ render(controller('App\\Controller\\User\\OwnerController::messageNotRead')) }}
 {% endif %}
+
+{# navigation espace propriétaire bailleur #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_LEASEOWNER') %}
-  <a href="{{ path('message_list') }}" class="btn btn-primary">Messages</a>
+  {{ render(controller('App\\Controller\\User\\LeaseownerController::messageNotRead')) }}
 {% endif %}
+
+{# navigation espace locataire #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_TENANT') %}
-  <a href="{{ path('message_list') }}" class="btn btn-primary">Messages</a>
+  {{ render(controller('App\\Controller\\User\\TenantController::messageNotRead')) }}
 {% endif %}
 

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Message;
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,7 +19,7 @@ class MessageFormType extends AbstractType
         $builder
             ->add('recipient', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => function(User $user) {
+                'choice_label' => function(User $user) {                    
                     return $user->getUserMailRole();
                 },
                 'attr' => ['class' => 'form-control'],

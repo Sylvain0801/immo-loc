@@ -119,11 +119,6 @@ class MessageController extends AbstractController
             if($senderInternal) { $message->addRecipient($senderInternal);}
 
             $recipients = $contact->get('recipient')->getData();
-            if($recipients) {
-                foreach ($recipients as $recipient) {
-                    $message->addRecipient($recipient);
-                }  
-            }
 
             if($senderInternal || $recipients) {
 

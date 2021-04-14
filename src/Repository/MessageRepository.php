@@ -41,6 +41,30 @@ class MessageRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findMessageNotReadByRole(string $role)
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb->leftJoin('m.recipient', 'r')
+            ->where('r.roles LIKE :roles')
+            ->setParameter('roles', '%"'.$role.'"%')
+            ->andWhere('m.message_read =:val')
+            ->setParameter('val', 0);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findMessageNotReadByUserID(int $userId)
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb->leftJoin('m.recipient', 'r')
+            ->where('r.id =:id')
+            ->setParameter('id', $userId)
+            ->andWhere('m.message_read =:val')
+            ->setParameter('val', 0);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Message[] Returns an array of Message objects
     //  */

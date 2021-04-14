@@ -1,9 +1,9 @@
 {% if is_granted('ROLE_ADMIN') %}
   <div class="main-bg-admin"></div>
 {% endif %}
-{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
+{% if not is_granted('ROLE_ADMIN') and (is_granted('ROLE_AGENT') or is_granted('ROLE_TENANT'))%}
   <div class="main-bg-agent"></div>
 {% endif %}
-{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
+{% if not is_granted('ROLE_ADMIN') and (is_granted('ROLE_OWNER') or is_granted('ROLE_LEASEOWNER')) %}
   <div class="main-bg-owner"></div>
 {% endif %}

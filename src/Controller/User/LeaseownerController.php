@@ -8,24 +8,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/agent", name="agent_")
+ * @Route("/leaseowner", name="leaseowner_")
  */
-class AgentController extends AbstractController
+class LeaseownerController extends AbstractController
 {
     /**
      * @Route("/home", name="home")
      */
     public function index(): Response
     {
-        
-        return $this->render('agent/index.html.twig', [
+        return $this->render('leaseowner/index.html.twig', [
             'active' => 'myspace',
-            ]);
+        ]);
     }
 
     public function messageNotRead(MessageRepository $messageRepository)
     {
-        $messageNotRead = $messageRepository->findMessageNotReadByRole('ROLE_AGENT');
+        $messageNotRead = $messageRepository->findMessageNotReadByUserID($this->getUser()->getId());
 
         return $this->render('dashboard/_messagenotread.html.twig', [
             'messageNotRead' => $messageNotRead

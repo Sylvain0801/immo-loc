@@ -181,7 +181,6 @@ figure {
 }
 
 #fh5co-hero {
-  min-height: 700px;
   background: #fff url(../images/loader.gif) no-repeat center center;
   position: relative;
 }
@@ -260,7 +259,6 @@ figure {
 #fh5co-hero .flexslider .slider-text > .slider-text-inner {
   display: table-cell;
   vertical-align: middle;
-  min-height: 700px;
 }
 
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h1, #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {

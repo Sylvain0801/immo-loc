@@ -2,6 +2,7 @@
 
 namespace App\Controller\User;
 
+use App\Repository\MessageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,5 +20,15 @@ class OwnerController extends AbstractController
         return $this->render('owner/index.html.twig', [
             'active' => 'myspace',
         ]);
+    }
+
+    public function messageNotRead(MessageRepository $messageRepository)
+    {
+        $messageNotRead = $messageRepository->findMessageNotReadByUserID($this->getUser()->getId());
+
+        return $this->render('dashboard/_messagenotread.html.twig', [
+            'messageNotRead' => $messageNotRead
+            ]);
+
     }
 }

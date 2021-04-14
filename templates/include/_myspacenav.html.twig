@@ -11,6 +11,12 @@
   {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
 	  <a href="{{ path('owner_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
   {% endif %}
+  {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_LEASEOWNER') %}
+	  <a href="{{ path('leaseowner_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+  {% endif %}
+  {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_TENANT') %}
+	  <a href="{{ path('tenant_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+  {% endif %}
 	<ul class="fh5co-sub-menu">
     {% if not is_granted('ROLE_USER') %}
       <li><a href="{{ path('app_register') }}" class="icon fa-id-card-o">&nbsp;{% trans %}Register{% endtrans %}</a></li>
@@ -23,6 +29,12 @@
 		{% endif %}
 		{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
 			<li><a href="{{ path('owner_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Owner{% endtrans %}</a></li>
+		{% endif %}
+		{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_LEASEOWNER') %}
+			<li><a href="{{ path('leaseowner_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Lease owner{% endtrans %}</a></li>
+		{% endif %}
+		{% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_TENANT') %}
+			<li><a href="{{ path('tenant_home') }}" class="icon fa-superpowers">&nbsp;{% trans %}Tenant{% endtrans %}</a></li>
 		{% endif %}
 		{% if is_granted('ROLE_USER') %}
 			<li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;{% trans %}Logout{% endtrans %}</a></li>
