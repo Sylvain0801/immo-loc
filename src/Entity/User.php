@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Translation\TranslatableMessage;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -70,11 +70,14 @@ class User implements UserInterface
      */
     private $messages;
 
+    private $translator;
 
-    public function __construct()
+    public function __construct(TranslatorInterface $translator)
     {
         $this->announces = new ArrayCollection();
         $this->messages = new ArrayCollection();
+
+        $this->translator = $translator;
     }
     
 
@@ -268,17 +271,20 @@ class User implements UserInterface
             return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.'Agent';
         }
         if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_OWNER', $roles)){
-            $message = new TranslatableMessage('Owner');
-            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.$message;
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.'Owner';
         }
         if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_LEASEOWNER', $roles)){
-            $message = new TranslatableMessage('Lease owner');
-            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.$message;
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.'Lease owner';
         }
         if(!in_array('ROLE_ADMIN', $roles) && in_array('ROLE_TENANT', $roles)){
-            $message = new TranslatableMessage('Tenant');
-            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.$message;
+            return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' '.'Tenant';
         }
     }
+
+    public function __toString()
+    {
+        return $this->getUserMailRole();
+    }
+
 
 }

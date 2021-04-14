@@ -285,9 +285,105 @@
         <source>Send message</source>
         <target>Envoyer</target>
       </trans-unit>
-      <trans-unit id="ssEkU20" resname="Name">
+      <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
         <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="lq25JFK" resname="properties">
+        <source>properties</source>
+        <target>annonces</target>
+      </trans-unit>
+      <trans-unit id="InLlvjm" resname="Owner centre">
+        <source>Owner centre</source>
+        <target>Espace propriétaire</target>
+      </trans-unit>
+      <trans-unit id="TW7YNJ0" resname="Lease owner centre">
+        <source>Lease owner centre</source>
+        <target>Espace propriétaire bailleur</target>
+      </trans-unit>
+      <trans-unit id="cnB3Sbx" resname="Tenant centre">
+        <source>Tenant centre</source>
+        <target>Espace locataire</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>titre</target>
+      </trans-unit>
+      <trans-unit id="EaYsI0E" resname="city">
+        <source>city</source>
+        <target>ville</target>
+      </trans-unit>
+      <trans-unit id="aDtTH0H" resname="price">
+        <source>price</source>
+        <target>prix</target>
+      </trans-unit>
+      <trans-unit id="6dqG01H" resname="tenant">
+        <source>tenant</source>
+        <target>locataire</target>
+      </trans-unit>
+      <trans-unit id="QCqGXeY" resname="firstpage">
+        <source>firstpage</source>
+        <target>1ère page</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes">
+        <source>yes</source>
+        <target>oui</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no">
+        <source>no</source>
+        <target>non</target>
+      </trans-unit>
+      <trans-unit id="nLfbvHg" resname="The property">
+        <source>The property</source>
+        <target>L'annonce</target>
+      </trans-unit>
+      <trans-unit id="8FUYAXp" resname="There are no properties to display">
+        <source>There are no properties to display</source>
+        <target>Il n'y a aucune annonce à afficher</target>
+      </trans-unit>
+      <trans-unit id="mWBfmvp" resname="There are no mail to display">
+        <source>There are no mail to display</source>
+        <target>Il n'y a aucun mail à afficher</target>
+      </trans-unit>
+      <trans-unit id="fozSBW2" resname="Title">
+        <source>Title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="uq3fcPt" resname="Type">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="Vu_PIJV" resname="Address">
+        <source>Address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id=".DP3Mkb" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="k8kchR5" resname="Price">
+        <source>Price</source>
+        <target>Prix</target>
+      </trans-unit>
+      <trans-unit id="Ak3CBNe" resname="Area">
+        <source>Area</source>
+        <target>Surface</target>
+      </trans-unit>
+      <trans-unit id="TqFAWIF" resname="home">
+        <source>home</source>
+        <target>Maison</target>
+      </trans-unit>
+      <trans-unit id="XcJ68of" resname="flat">
+        <source>flat</source>
+        <target>Appartement</target>
+      </trans-unit>
+      <trans-unit id="I5IIxl." resname="--Owner list--">
+        <source>--Owner list--</source>
+        <target>--Liste propriétaire--</target>
+      </trans-unit>
+      <trans-unit id="StwHYxM" resname="--Tenant list--">
+        <source>--Tenant list--</source>
+        <target>--Liste locataire--</target>
       </trans-unit>
     </body>
   </file>

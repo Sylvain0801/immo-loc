@@ -2148,7 +2148,7 @@ input[type="checkbox"]:checked:before {
   padding-right: 0 !important;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .aside-buttons {
     height: 100%;
   }
@@ -2322,7 +2322,7 @@ a.icon.fa-envelope-open-o.btn-message {
   color: #848484;
 }
 
-.btn-message, .btn-delet-message {
+.btn-message, .btn-delete-message {
   cursor: pointer;
 }
 
@@ -2361,5 +2361,169 @@ li.select2-selection__choice {
 
 button {
   padding: 10px 15px !important;
+}
+
+.card-firstpage, .card-active {
+  margin: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  line-height: 1;
+  /* The switch - the box around the slider */
+  /* Hide default HTML checkbox */
+  /* The slider */
+  /* Rounded sliders */
+}
+
+.card-firstpage .switch, .card-active .switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  margin-bottom: 0;
+}
+
+.card-firstpage .switch input, .card-active .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.card-firstpage .slider, .card-active .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.card-firstpage .slider:before, .card-active .slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.card-firstpage input:checked + .slider, .card-active input:checked + .slider {
+  background-color: #5cb85c;
+}
+
+.card-firstpage input:focus + .slider, .card-active input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #5cb85c;
+          box-shadow: 0 0 1px #5cb85c;
+}
+
+.card-firstpage input:checked + .slider:before, .card-active input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+          transform: translateX(13px);
+}
+
+.card-firstpage .slider.round, .card-active .slider.round {
+  border-radius: 17px;
+}
+
+.card-firstpage .slider.round:before, .card-active .slider.round:before {
+  border-radius: 50%;
+}
+
+#announce_form_type {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (20px)[2];
+  -ms-grid-columns: 18px 1fr;
+      grid-template: repeat(2, 20px)/18px 1fr;
+}
+
+#announce_form_type label, #announce_form_type input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+}
+
+#announce_form_type input {
+  margin: 0;
+}
+
+#announce_form_owner, #announce_form_tenant {
+  height: 42px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+}
+
+.checkbox-group-announce-form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+  -ms-grid-columns: 20px 1fr 20px 1fr;
+      grid-template: 1fr / 20px 1fr 20px 1fr;
+}
+
+.checkbox-group-announce-form label, .checkbox-group-announce-form input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkbox-group-announce-form input {
+  margin: 4px 0;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  border-radius: 50%;
+  outline: none;
+  border: 0.5px solid #ccc;
+  height: 15px;
+  width: 15px;
+  background: #fff;
+}
+
+input[type="radio"]:focus {
+  outline: none;
+}
+
+input[type="radio"]:checked {
+  border: 0.5px solid #44C662;
+  position: relative;
+}
+
+input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  background-color: #44C662;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-5px, -5px);
+          transform: translate(-5px, -5px);
 }
 /*# sourceMappingURL=style.css.map */

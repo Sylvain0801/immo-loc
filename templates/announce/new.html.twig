@@ -1,0 +1,82 @@
+{% extends 'dashboard/index.html.twig' %}
+{% block table %}
+	{% include "dashboard/_sectiontitle.html.twig" %}
+	{% for message in app.flashes('announce_admin') %}
+		<div class="alert alert-success" role="alert">{{ message }}</div>
+	{% endfor %}
+	<div class="row text-left">
+    {{ form_start(announceForm) }}
+    	<div class="col-sm-6">
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="form-group">
+							{{ form_row(announceForm.title, {label: 'Title'|trans}) }}
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="form-group">
+							{{ form_row(announceForm.type, {label: 'Type'|trans}) }}
+						</div>
+					</div>
+				</div>
+        <div class="form-group">
+          {{ form_row(announceForm.description) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(announceForm.address, {label: 'Address'|trans}) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(announceForm.city, {label: 'City'|trans}) }}
+        </div>
+      </div>
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							{{ form_row(announceForm.price, {label: 'Price'|trans}) }}
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							{{ form_row(announceForm.area, {label: 'Area'|trans}) }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							{{ form_row(announceForm.rooms, {label: 'Rooms'|trans}) }}
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							{{ form_row(announceForm.bedrooms, {label: 'Bedrooms'|trans}) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+          {{ form_row(announceForm.owner, {label: 'Owner'|trans}) }}
+        </div>
+				<div class="form-group">
+          {{ form_row(announceForm.tenant, {label: 'Tenant'|trans}) }}
+        </div>
+				<div class="form-group checkbox-group-announce-form">
+          {{ form_widget(announceForm.active) }}
+          {{ form_label(announceForm.active) }}
+          {{ form_widget(announceForm.firstpage) }}
+          {{ form_label(announceForm.firstpage, 'firstpage'|trans) }}
+        </div>
+				<div class="form-group">
+          {{ form_row(announceForm.images) }}
+        </div>
+        <div class="button-between">
+          <a href="{{ path('announce_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+          <button type="submit" class="btn btn-primary icon fa-save">&nbsp;{% trans %}Save{% endtrans %}</button>
+        </div>
+    	</div>
+    {{ form_end(announceForm) }}
+  </div>
+	{# <div class="button-right">
+	  <a href="{{ path('announce_new') }}" class="btn-lg btn-default icon fa-envelope-o">&nbsp;{% trans %}New{% endtrans %}</a>
+	</div> #}
+{% endblock %}

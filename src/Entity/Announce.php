@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnounceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -86,6 +88,27 @@ class Announce
      * @ORM\Column(type="boolean")
      */
     private $firstpage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $owner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $tenant;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="announce", orphanRemoval=true,cascade={"persist"})
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -240,4 +263,59 @@ class Announce
 
         return $this;
     }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getTenant(): ?User
+    {
+        return $this->tenant;
+    }
+
+    public function setTenant(?User $tenant): self
+    {
+        $this->tenant = $tenant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setAnnounce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getAnnounce() === $this) {
+                $image->setAnnounce(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

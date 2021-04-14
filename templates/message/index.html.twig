@@ -35,12 +35,12 @@
         </td>
         <td style="display: flex;">
           <a href="{{ path('message_edit', {'id':message.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
-          <a class="btn-table btn-delete icon fa-trash btn-delete-message" data-id="{{ message.id }}" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ 'Message of'|trans }} {{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
+          <a class="btn-table btn-delete icon fa-trash btn-delete-message" data-id="{{ message.id }}" role="button" title="{{ 'Delete'|trans }}" data-confirm="{{ 'Message of'|trans }} {{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}"></a>
         </td>
       </tr>
     {% else %}
       <tr>
-        <td colspan="6">Il n'y a aucun message à afficher</td>
+        <td colspan="6">{% trans %}There are no mail to display{% endtrans %}</td>
       </tr>
     {% endfor %}
   </tbody>

@@ -8,6 +8,7 @@
 {# navigation espace agent #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
   {{ render(controller('App\\Controller\\User\\AgentController::messageNotRead')) }}
+  <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}Properties{% endtrans %}</a>
   <a href="" class="btn btn-primary">Documents</a>
 {% endif %}
 
