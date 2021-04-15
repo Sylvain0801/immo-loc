@@ -2,7 +2,7 @@
 {% block table %}
 	<div class="table-wrapper">
 		{% include "dashboard/_sectiontitle.html.twig" %}
-		{% for message in app.flashes('announce_admin') %}
+		{% for message in app.flashes('announce_message') %}
 			<div class="alert alert-success" role="alert">{{ message }}</div>
 		{% endfor %}
 		<table class="table table-striped text-left">
@@ -48,7 +48,7 @@
             </td>
 						<td>{{ announce.tenant ? 'yes'|trans : 'no'|trans }}</td>
 						<td style="display: flex;">
-							<a href="" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
+							<a href="{{ path('announce_edit', {'id': announce.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
 							<a class="btn-table btn-delete icon fa-trash btn-delete-announce" data-id="{{ announce.id }}" role="button" title="{{ 'Delete'|trans }}" data-confirm="{{'The property'|trans }} {{ announce.title }} {{'will be definitely deleted, this choice must be confirmed ?'|trans }}"></a>
 						</td>  
 					</tr>
@@ -63,7 +63,9 @@
 	{% if announces.getTotalItemCount > 7 %}
 		{{ knp_pagination_render(announces) }}
 	{% endif %}
-	{# <div class="button-right">
-	  <a href="{{ path('announce_new') }}" class="btn-lg btn-default icon fa-envelope-o">&nbsp;{% trans %}New{% endtrans %}</a>
-	</div> #}
+  {% if is_granted('ROLE_AGENT') or is_granted('ROLE_LEASEOWNER') %}
+    <div class="button-right">
+      <a href="{{ path('announce_new') }}" class="btn-lg btn-default icon fa-plus">&nbsp;{% trans %}Add{% endtrans %}</a>
+    </div>
+  {% endif %}
 {% endblock %}

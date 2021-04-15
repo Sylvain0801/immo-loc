@@ -42,7 +42,11 @@ class AnnounceController extends AbstractController
      */
     public function announceList($header, $sorting, Request $request, TranslatorInterface $translator, PaginatorInterface $paginator): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        // gestion des accès
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_OWNER') && !$this->isGranted('ROLE_LEASEOWNER')){
+            $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
+            throw $this->createAccessDeniedException($messageAccessDeny);
+        }
 
         $section = $translator->trans('properties');
         $title = $translator->trans('title');
@@ -80,6 +84,12 @@ class AnnounceController extends AbstractController
      */
     public function announceNew(Request $request, TranslatorInterface $translator):Response
     {
+        // gestion des accès
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_LEASEOWNER')){
+            $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
+            throw $this->createAccessDeniedException($messageAccessDeny);
+        }
+
         $announce = new Announce();
         $form = $this->createForm(AnnounceFormType::class, $announce);
         $form->handleRequest($request);
@@ -106,13 +116,67 @@ class AnnounceController extends AbstractController
             $em->persist($announce);
             $em->flush();
 
+            $successmsg = $translator->trans('Property created succesfully');
+            $this->addFlash('announce_message', $successmsg);
+
             return $this->redirectToRoute('announce_list');
         }
         
         return $this->render('announce/new.html.twig', [
             'active' => 'myspace',
             'section' => $section,
-            'announceForm' => $form->createView()
+            'announceForm' => $form->createView(),
+            'images' => null
+        ]);
+    }
+    /**
+     * @Route("/edit/{id}", name="edit")
+     */
+    public function announceEdit(Announce $announce, Request $request, TranslatorInterface $translator):Response
+    {
+        // gestion des accès
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_LEASEOWNER')){
+            $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
+            throw $this->createAccessDeniedException($messageAccessDeny);
+        }
+
+        $form = $this->createForm(AnnounceFormType::class, $announce);
+        $form->handleRequest($request);
+        $imgview = $announce->getImages();
+
+        $section = $translator->trans('properties');
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $images = $form->get('images')->getData();
+            
+            foreach($images as $image){
+                $file = md5(uniqid()).'.'.$image->guessExtension();
+                
+                $image->move($this->getParameter('images_directory'), $file);
+                
+                $img = new Image();
+                $img->setImage($file);
+                $announce->addImage($img);
+            }
+
+            $announce->setCreatedBy($this->getUser());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($announce);
+            $em->flush();
+
+            $successmsg = $translator->trans('Property modified succesfully');
+            $this->addFlash('announce_message', $successmsg);
+
+            return $this->redirectToRoute('announce_list');
+        }
+        
+        return $this->render('announce/edit.html.twig', [
+            'active' => 'myspace',
+            'section' => $section,
+            'announceForm' => $form->createView(),
+            'images' => $imgview
         ]);
     }
 

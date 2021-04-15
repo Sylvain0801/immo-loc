@@ -1,0 +1,36 @@
+{% if images %}
+  <div class="col-xs-12" style="margin-top:3rem">
+    <section class="carousel" aria-label="Gallery">
+      <ol class="carousel__viewport">
+        {% set prev, next = '', '' %}
+        {% for key, image in images %}
+          {% if key > 0 %}
+            {% set prev = key %}
+          {% else %}
+            {% set prev = images|length %}
+          {% endif %}
+          {% if key + 1 < images|length %}
+            {% set next = key + 2 %}
+          {% else %}
+            {% set next = 1 %}
+          {% endif %}
+          <li id="{{ 'carousel__slide' }}{{ key + 1 }}" tabindex="0" class="carousel__slide">
+            <div class="carousel__snapper" style="background: url({{ asset('/images/announces/'~image.image) }}) center/cover;">
+              <a href="{{ '#carousel__slide'~prev }}" class="carousel__prev">Go to last slide</a>
+              <a href="{{ '#carousel__slide'~next }}" class="carousel__next">Go to next slide</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+      <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+          {% for key, image in images %}
+            <li class="carousel__navigation-item">
+              <a href="{{ '#carousel__slide' }}{{ key + 1 }}" class="carousel__navigation-button">Go to slide 1</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </aside>
+    </section>
+  </div>
+{% endif %}

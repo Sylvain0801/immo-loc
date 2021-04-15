@@ -173,9 +173,10 @@ class MessageController extends AbstractController
      */
     public function messageDelete(Message $message):Response
     {
+        $message->removeRecipient($this->getUser());
 
         $em= $this->getDoctrine()->getManager();
-        $em->remove($message);
+        $em->persist($message);
         $em->flush();
 
         return new Response('true');

@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
  * @ORM\Entity(repositoryClass=AnnounceRepository::class)
+ * @ORM\Table(name="announce", indexes={@ORM\Index(columns={"title", "description", "type", "city"}, flags={"fulltext"})})
  */
 class Announce
 {
@@ -48,21 +50,25 @@ class Announce
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=15, max=600)
      */
     private $area;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=150, max=6000)
      */
     private $price;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Range(min=0, max=20)
      */
     private $rooms;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Range(min=1, max=20)
      */
     private $bedrooms;
 
@@ -100,7 +106,7 @@ class Announce
     private $tenant;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="announce", orphanRemoval=true,cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="announce", orphanRemoval=true, cascade={"persist"})
      */
     private $images;
 

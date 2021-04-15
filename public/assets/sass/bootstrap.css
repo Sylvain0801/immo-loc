@@ -2725,6 +2725,8 @@ th {
   line-height: 1.42857;
   vertical-align: top;
   border-top: 1px solid #ddd;
+  max-height: 100px;
+  overflow: hidden;
 }
 
 .table > thead > tr > th {

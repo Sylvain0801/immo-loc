@@ -2,6 +2,7 @@
 {% block table %}
 	{% include "dashboard/_sectiontitle.html.twig" %}
 	<div class="row text-left">
-		{{ include ('announce/_form.html.twig', { btncaption : 'Create'|trans}) }}
-  </div>
+		{{ include ('announce/_form.html.twig', { btncaption : 'Save'|trans}) }}
+		{{ include ('announce/_carousel.html.twig') }}
+	</div>
 {% endblock %}

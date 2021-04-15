@@ -35,6 +35,8 @@ th {
         line-height: $line-height-base;
         vertical-align: top;
         border-top: 1px solid $table-border-color;
+        max-height: 100px;
+        overflow: hidden;
       }
     }
   }
