@@ -1,0 +1,68 @@
+<div class="search-property">
+  <div class="s-holder">
+    <h2>{% trans %}Search Properties{% endtrans %}</h2>
+    <div class="row">
+      {{ form_start(searchAnnounceForm) }}
+      <div class="col-xxs-12 col-xs-12">
+        <div class="input-field">
+          <label for="from">{% trans %}Keyword{% endtrans %} :</label>
+          {{ form_row(searchAnnounceForm.words) }}
+        </div>
+      </div>
+      <div class="col-xxs-12 col-xs-12">
+        <section>
+          <label for="class">{% trans %}Property Type{% endtrans %} :</label>
+          {{ form_row(searchAnnounceForm.type) }}
+        </section>
+      </div>
+      <div class="col-xxs-12 col-xs-12">
+        <section>
+          <label for="class">{% trans %}City{% endtrans %} :</label>
+          {{ form_row(searchAnnounceForm.city) }}
+        </section>
+      </div>
+      <div class="col-xxs-12 col-xs-12">
+        <section>
+          <label for="class">{% trans %}Price{% endtrans %} :</label>
+          <div class="wide">
+            {{ form_widget(searchAnnounceForm.priceMin) }}
+            {{ form_widget(searchAnnounceForm.priceMax) }}
+          </div>
+        </section>
+      </div>
+      <div class="col-xxs-12 col-xs-12">
+        <section>
+          <label for="class">{% trans %}Area{% endtrans %} :</label>
+          <div class="wide">
+            {{ form_widget(searchAnnounceForm.areaMin) }}
+            {{ form_widget(searchAnnounceForm.areaMax) }}
+          </div>
+        </section>
+      </div>
+      <div class="col-xxs-12 col-xs-12">
+        <section>
+          <label for="class">{% trans %}Rooms{% endtrans %} :</label>
+          <div class="wide">
+            {{ form_widget(searchAnnounceForm.roomsMin) }}
+            {{ form_widget(searchAnnounceForm.roomsMax) }}
+          </div>
+        </section>
+      </div>
+      <div class="col-xxs-12 col-xs-12">
+        <section>
+          <label for="class">{% trans %}Bedrooms{% endtrans %} :</label>
+          <div class="wide">
+            {{ form_widget(searchAnnounceForm.bedroomsMin) }}
+            {{ form_widget(searchAnnounceForm.bedroomsMax) }}
+          </div>
+        </section>
+      </div>
+      <div class="col-xxs-12 col-xs-12 text-center">
+        <p>
+          <button role="submit" class="btn btn-primary btn-lg icon fa-search" style="text-transform: none; letter-spacing: normal;">&nbsp;{% trans %}Learn More{% endtrans %}</button>
+        </p>
+      </div>
+      {{ form_end(searchAnnounceForm) }}
+    </div>
+  </div>
+</div>

@@ -105,6 +105,7 @@ $form-group-margin-bottom: 30px;
 @import 'bootstrap/icon';
 @import 'bootstrap/icons';
 @import 'bootstrap/tables';
+@import 'bootstrap/grid';
 
 
 
@@ -117,6 +118,9 @@ $form-group-margin-bottom: 30px;
 * ======================================================= */
 
 // Template Base
+html {
+	scroll-behavior: smooth;
+}
 
 body {
 	font-family: $font-primary;
@@ -710,7 +714,7 @@ figure {
 				margin-top: 13px;
 			}
 		}
-		input[type="text"]{
+		input[type="text"], input[type="search"], input[type="number"] {
 			padding: 24px 10px !important;
 			font-weight: 700;
 			font-size: 12px;
@@ -727,7 +731,7 @@ figure {
 			  color: $brand-primary !important;
 			}
 		}
-		input[type="text"], .cs-select{
+		input[type="text"], input[type="search"], .cs-select{
 			width: 60% !important;
 			float: right;
 			background: $brand-white !important;
@@ -759,6 +763,11 @@ figure {
 		position: relative;
 		width: 66.5%;
 		float: right;
+	}
+	@media screen and (max-width: $screen-sm-min) {
+		.map {
+			width: 100%;
+		}
 	}
 }
 
@@ -2475,4 +2484,18 @@ ol, li {
 
 .carousel::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+//search form
+.cs-select ul {
+	overflow-y: auto;
+	max-height: 300px;
+}
+
+// homepage
+.btn-homepage {
+	text-transform: none;
+	letter-spacing: normal;
+	width: 180px;
+	margin: 10px;
 }

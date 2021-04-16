@@ -385,6 +385,54 @@
         <source>--Tenant list--</source>
         <target>--Liste locataire--</target>
       </trans-unit>
+      <trans-unit id="j1LjDB3" resname="--City--">
+        <source>--City--</source>
+        <target>--City--</target>
+      </trans-unit>
+      <trans-unit id="blC0fXX" resname="Not privileged to request the resource.">
+        <source>Not privileged to request the resource.</source>
+        <target>Privilèges insuffisants pour accéder à la ressource.</target>
+      </trans-unit>
+      <trans-unit id="3HmgO0N" resname="Property created succesfully">
+        <source>Property created succesfully</source>
+        <target>L'annonce a été créée avec succès</target>
+      </trans-unit>
+      <trans-unit id="ktaHNRJ" resname="Property modified succesfully">
+        <source>Property modified succesfully</source>
+        <target>L'annonce a été créée avec succès</target>
+      </trans-unit>
+      <trans-unit id="vy8d2XL" resname="Search Properties">
+        <source>Search Properties</source>
+        <target>Rechercher des biens</target>
+      </trans-unit>
+      <trans-unit id="pmgCKu0" resname="Keyword">
+        <source>Keyword</source>
+        <target>Mots clé</target>
+      </trans-unit>
+      <trans-unit id="8a9TiGo" resname="Property Type">
+        <source>Property Type</source>
+        <target>Type de Bien</target>
+      </trans-unit>
+      <trans-unit id="jYzVRrW" resname="Learn More">
+        <source>Learn More</source>
+        <target>Rechercher</target>
+      </trans-unit>
+      <trans-unit id="6I2CSzt" resname="There is no property corresponding to the search criteria">
+        <source>There is no property corresponding to the search criteria</source>
+        <target>Il n'y a aucune annonce correspondant aux critères de recherche</target>
+      </trans-unit>
+      <trans-unit id="Tvyg0Qx" resname="About">
+        <source>About</source>
+        <target>À propos de</target>
+      </trans-unit>
+      <trans-unit id="ZFJIOo5" resname="Newest Properties">
+        <source>Newest Properties</source>
+        <target>Nouveautés</target>
+      </trans-unit>
+      <trans-unit id="0oJctry" resname="Testimonials">
+        <source>Testimonials</source>
+        <target>Témoignages</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

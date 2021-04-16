@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Announce;
 use App\Entity\Image;
 use App\Form\AnnounceFormType;
+use App\Form\SearchAnnounceType;
+use App\Repository\AnnounceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +23,36 @@ class AnnounceController extends AbstractController
     /**
      * @Route("/home", name="home")
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function index(AnnounceRepository $announceRepository, Request $request, PaginatorInterface $paginator): Response
     {
-       
-        $data = $this->getDoctrine()->getRepository(Announce::class)->findBy(['active' => true]);
+        $data = $announceRepository->findBy(['active' => true]);
+        $form = $this->createForm(SearchAnnounceType::class);
+        $search = $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $city = null;
+            if($search->get('city')->getData()) {
+                $city = $search->get('city')->getData()->getCity();
+            }
+            
+            $data = $announceRepository->searchAnnounceByWordsCriteria(
+                $search->get('words')->getData(),
+                $search->get('type')->getData(),
+                $city,
+                $search->get('priceMin')->getData(),
+                $search->get('priceMax')->getData(),
+                $search->get('areaMin')->getData(),
+                $search->get('areaMax')->getData(),
+                $search->get('roomsMin')->getData(),
+                $search->get('roomsMax')->getData(),
+                $search->get('bedroomsMin')->getData(),
+                $search->get('bedroomsMax')->getData()
+    
+            );    
+
+        }
+        
         $announces = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -33,6 +61,7 @@ class AnnounceController extends AbstractController
     
         return $this->render('announce/index.html.twig', [
             'announces' => $announces,
+            'searchAnnounceForm' => $form->createView(),
             'active' => 'announce'
         ]);
     }
@@ -222,5 +251,5 @@ class AnnounceController extends AbstractController
         return new Response("true");
 
     }
-    
+
 }

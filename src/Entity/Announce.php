@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnounceRepository::class)
- * @ORM\Table(name="announce", indexes={@ORM\Index(columns={"title", "description", "type", "city"}, flags={"fulltext"})})
+ * @ORM\Table(name="announce", indexes={@ORM\Index(columns={"title", "description"}, flags={"fulltext"})})
  */
 class Announce
 {

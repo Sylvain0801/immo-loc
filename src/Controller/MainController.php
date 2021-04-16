@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AnnounceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,19 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(AnnounceRepository $announceRepository)
     {
 
+        $announces = $announceRepository->findBy([
+                'active' => true,
+                'firstpage' => true
+            ],
+            ['price' => 'ASC']
+        );
+
         return $this->render('main/home/index.html.twig', [
-            'active' => 'home'
+            'active' => 'home',
+            'announces' => $announces
         ]);
 
     }

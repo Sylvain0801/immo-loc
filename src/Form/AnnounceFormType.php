@@ -57,19 +57,31 @@ class AnnounceFormType extends AbstractType
                 'attr' => ['class' => 'form-control']
                 ])
             ->add('area', IntegerType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'min' => 15,
+                    'max' => 600],
                 'required' => false
                 ])
             ->add('price', IntegerType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'min' => 150,
+                    'max' => 6000],
                 'required' => false
                 ])
             ->add('rooms', IntegerType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'min' => 0,
+                    'max' => 20],
                 'required' => false
                 ])
             ->add('bedrooms', IntegerType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'min' => 1,
+                    'max' => 20],
                 'required' => false
                 ])
             ->add('active', CheckboxType::class, [
@@ -92,7 +104,7 @@ class AnnounceFormType extends AbstractType
                 'placeholder' => $tenantList,
                 'required' => false
                 ])
-                ->add('images', FileType::class,[
+            ->add('images', FileType::class,[
                 'label' => false,
                 'multiple' => true,
                 'mapped' => false,

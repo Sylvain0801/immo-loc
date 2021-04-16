@@ -4,158 +4,29 @@
 {% endblock %}
 
 {% block body %}
-
-	<aside id="fh5co-hero" class="js-fullheight">
-		<div class="flexslider js-fullheight">
-			<ul class="slides">
-				<li style="background-image: url({{asset('assets/images/properties/home_04.jpg')}});">
-					<div class="overlay"></div>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-								<div class="slider-text-inner">
-									<h2 class="heading-title">{% trans %}Our properties{% endtrans %}</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, itaque quas? Dolorum dolorem quod excepturi.</p>
+	<div id="fh5co-search-map">
+		{% include "announce/_searchForm.html.twig" %}
+		<div class="map">
+			<aside id="fh5co-hero" class="js-fullheight">
+				<div class="flexslider js-fullheight">
+					<ul class="slides">
+						<li style="background-image: url({{asset('assets/images/properties/home_04.jpg')}});">
+							<div class="overlay"></div>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+										<div class="slider-text-inner">
+											<h2 class="heading-title">{% trans %}Our properties{% endtrans %}</h2>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, itaque quas? Dolorum dolorem quod excepturi.</p>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</aside>
-
-	<div id="fh5co-search-map">
-		<div class="search-property">
-			<div class="s-holder">
-				<h2>Search Properties</h2>
-				<div class="row">
-					<div class="col-xxs-12 col-xs-12">
-						<div class="input-field">
-							<label for="from">Keyword:</label>
-							<input type="text" class="form-control" id="from-place" placeholder="Any"/>
-						</div>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Property Status:</label>
-							<select class="cs-select cs-skin-border">
-								<option value="" disabled selected>Any</option>
-								<option value="1">Rent</option>
-								<option value="2">Sale</option>
-							</select>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Property Type:</label>
-							<select class="cs-select cs-skin-border input-half">
-								<option value="" disabled selected>Any</option>
-								<option value="1">Building</option>
-								<option value="2">Office</option>
-							</select>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<div class="input-field">
-							<label for="from">Location:</label>
-							<input type="text" class="form-control" id="from-place" placeholder="Any"/>
-						</div>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Price:</label>
-							<div class="wide">
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-							</div>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Bedrooms:</label>
-							<div class="wide">
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-							</div>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Bathrooms:</label>
-							<div class="wide">
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-							</div>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Area:</label>
-							<div class="wide">
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-							</div>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12">
-						<section>
-							<label for="class">Parking spots:</label>
-							<div class="wide">
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-								<select class="cs-select cs-select-half cs-skin-border input-half">
-									<option value="" disabled selected>Any</option>
-									<option value="1">Building</option>
-									<option value="2">Office</option>
-								</select>
-							</div>
-						</section>
-					</div>
-					<div class="col-xxs-12 col-xs-12 text-center">
-						<p>
-							<a class="btn btn-primary btn-lg" href="#">Learn More</a>
-						</p>
-					</div>
+						</li>
+					</ul>
 				</div>
-			</div>
+			</aside>
 		</div>
-		<div class="map" style="background-image: url({{asset('assets/images/properties/home_01.jpg')}});"></div>
 	</div>
 	<div id="fh5co-properties" class="fh5co-section-gray">
 		<div class="container">
@@ -166,11 +37,14 @@
 				</div>
 			</div>
 			<div class="row">
+				{% set index = '' %}
 				{% for announce in announces %}
+					{% set index = random(1, 14) %}
+					{% if index < 10 %}{% set index = '0'~index %}{% endif %}
 					<div class="col-md-4 animate-box">
 						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url({{asset('assets/images/properties/home_07.jpg')}});">
-								<span class="status">{{ announce.type }}</span>
+							<a href="#" class="fh5co-property" style="{% if announce.images|length > 0 %}background-image:url({{asset('images/announces/'~announce.images[0].image)}}){% else %}background-image:url({{asset('assets/images/properties/home_'~index~'.jpg')}}){% endif %}">
+								<span class="status">{{ announce.type|trans }}</span>
 								<ul class="list-details">
 									<li>{{ announce.area }} m²</li>
 									<li>{{ announce.rooms }} {% trans %}Rooms{% endtrans %}</li>
@@ -179,13 +53,18 @@
 							</a>
 							<div class="property-details">
 								<h3>{{ announce.title }}</h3>
-								<span class="price">{{ announce.price }}
-									€ / {% trans %}Month{% endtrans %}</span>
+								<span class="price">{{ announce.price }} € / {% trans %}Month{% endtrans %}</span>
 								<p>{{ announce.description|slice(0, 100) }}...</p>
 								<span class="address">
 									<i class="icon-map"></i>
 									{{ announce.city }}</span>
 							</div>
+						</div>
+					</div>
+				{% else %}
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<div class="alert alert-danger">
+							<i class="icon-sad"></i>&nbsp;{% trans %}There is no property corresponding to the search criteria{% endtrans %}
 						</div>
 					</div>
 				{% endfor %}

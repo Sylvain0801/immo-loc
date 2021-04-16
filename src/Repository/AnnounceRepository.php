@@ -19,6 +19,66 @@ class AnnounceRepository extends ServiceEntityRepository
         parent::__construct($registry, Announce::class);
     }
 
+    public function findCities()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->orderBy('a.city', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function searchAnnounceByWordsCriteria($words = null, $type = null, $city = null, int $priceMin = null, int $priceMax = null, $areaMin = null, $areaMax = null, $roomsMin = null, $roomsMax = null, $bedroomsMin = null, $bedroomsMax = null) {
+        $qb = $this->createQueryBuilder('a');
+        if($words != null) {
+            $qb->where('MATCH_AGAINST(a.title, a.description) AGAINST(:words boolean)>0')
+                ->setParameter('words', $words);
+        }
+        if($type != null) {
+            $qb->andWhere('a.type = :type')
+                ->setParameter('type', $type);
+        }
+        if($city != null) {
+            $qb->andWhere('a.city = :city')
+                ->setParameter('city', $city);
+        }
+        if($priceMin != null) {
+            $qb->andWhere('a.price >= :pricemin')
+                ->setParameter('pricemin', $priceMin);
+        }
+        if($priceMax != null) {
+            $qb->andWhere('a.price <= :pricemax')
+                ->setParameter('pricemax', $priceMax);
+        }
+        if($areaMin != null) {
+            $qb->andWhere('a.area >= :areamin')
+                ->setParameter('areamin', $areaMin);
+        }
+        if($areaMax != null) {
+            $qb->andWhere('a.area <= :areamax')
+                ->setParameter('areamax', $areaMax);
+        }
+        if($roomsMin != null) {
+            $qb->andWhere('a.rooms >= :roomsmin')
+                ->setParameter('roomsmin', $roomsMin);
+        }
+        if($roomsMax != null) {
+            $qb->andWhere('a.rooms <= :roomsmax')
+                ->setParameter('roomsmax', $roomsMax);
+        }
+        if($bedroomsMin != null) {
+            $qb->andWhere('a.bedrooms >= :bedroomsmin')
+                ->setParameter('bedroomsmin', $bedroomsMin);
+        }
+        if($bedroomsMax != null) {
+            $qb->andWhere('a.bedrooms <= :bedroomsmax')
+                ->setParameter('bedroomsmax', $bedroomsMax);
+        }
+            // $qb->andWhere('a.active = :val')
+            //     ->setParameters('val', true);
+        
+        return $qb->getQuery()->getResult();
+   }
+
     // /**
     //  * @return Announce[] Returns an array of Announce objects
     //  */
