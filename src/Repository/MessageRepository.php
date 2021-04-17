@@ -19,7 +19,7 @@ class MessageRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
 
-    public function findMessagesByRecipientRole(string $role, string $header, string $sorting)
+    public function findMessagesByRecipientRole($user, string $role, string $header, string $sorting)
     {
         $qb = $this->createQueryBuilder('m');
         $qb->leftJoin('m.recipient', 'r')
@@ -30,41 +30,26 @@ class MessageRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findMessagesByUser(int $id, string $header, string $sorting)
+    public function findMessagesByUser($user, string $header, string $sorting)
     {
         $qb = $this->createQueryBuilder('m');
         $qb->leftJoin('m.recipient', 'r')
             ->where('r.id = :id')
-            ->setParameter('id', $id)
-            ->orderBy('m.'.$header, $sorting);
+            ->setParameter('id', $user->getId())
+            ->leftJoin('m.messageReads', 'mr')
+            ->addSelect('mr')
+            ->andWhere('mr.user = :user')
+            ->setParameter('user', $user);
+        if($header = 'messageReads') {
+            $qb->orderBy('mr.not_read', $sorting);
+        } else {
+            $qb->orderBy('m.'.$header, $sorting);
+        }
 
         return $qb->getQuery()->getResult();
     }
 
-    public function findMessageNotReadByRole(string $role)
-    {
-        $qb = $this->createQueryBuilder('m');
-        $qb->leftJoin('m.recipient', 'r')
-            ->where('r.roles LIKE :roles')
-            ->setParameter('roles', '%"'.$role.'"%')
-            ->andWhere('m.message_read =:val')
-            ->setParameter('val', 0);
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findMessageNotReadByUserID(int $userId)
-    {
-        $qb = $this->createQueryBuilder('m');
-        $qb->leftJoin('m.recipient', 'r')
-            ->where('r.id =:id')
-            ->setParameter('id', $userId)
-            ->andWhere('m.message_read =:val')
-            ->setParameter('val', 0);
-
-        return $qb->getQuery()->getResult();
-    }
-
+    
     // /**
     //  * @return Message[] Returns an array of Message objects
     //  */

@@ -1,0 +1,30 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block table %}
+	{% include "dashboard/_sectiontitle.html.twig" %}
+  {% for message in app.flashes('message_user') %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+	<div class="row text-left">
+    <div class="col-md-6">
+      {{ form_start(documentForm) }}
+        <div class="form-group">
+          {{ form_row(documentForm.name, {label: 'Name'|trans}) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(documentForm.category, {label: 'Category'|trans}) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(documentForm.files) }}
+        </div>
+        <div class="button-between">
+          <a href="{{ path('document_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+          <button type="submit" class="btn btn-primary icon fa-save">&nbsp;{% trans %}Save{% endtrans %}</button>
+        </div>
+      {{ form_end(documentForm) }}
+    </div>
+    <div class="col-md-6"> 
+      <div style="background: url({{ asset('assets/images/bg-document.jpg') }}) center/cover; height: 315px"></div>
+    </div>
+  </div>
+{% endblock %}

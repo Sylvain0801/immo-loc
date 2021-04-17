@@ -34,6 +34,8 @@ class AnnounceFormType extends AbstractType
     {
         $ownerList = $this->translator->trans('--Owner list--');
         $tenantList = $this->translator->trans('--Tenant list--');
+        $home = $this->translator->trans('home');
+        $flat = $this->translator->trans('flat');
 
         $builder
             ->add('title', TextType::class, [
@@ -46,7 +48,7 @@ class AnnounceFormType extends AbstractType
                     'style' => 'resize:none']
                 ])
             ->add('type', ChoiceType::class, [
-                'choices' => ['home' => 'home', 'flat' => 'flat'],
+                'choices' => [ $home => 'home', $flat => 'flat'],
                 'expanded' => true,
                 'multiple' => false
             ])

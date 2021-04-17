@@ -2496,6 +2496,15 @@ ol, li {
 .btn-homepage {
 	text-transform: none;
 	letter-spacing: normal;
-	width: 180px;
+	width: 200px;
 	margin: 10px;
+}
+
+#fh5co-testimonial .overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba($brand-black,.4);
 }

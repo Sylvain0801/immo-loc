@@ -2,28 +2,33 @@
 {% if is_granted('ROLE_ADMIN') %}
   <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">{% trans %}Administrators{% endtrans %}</a>
   <a href="{{ path('admin_user_list') }}" class="btn btn-primary">{% trans %}Users{% endtrans %}</a>
-  <a href="" class="btn btn-primary">Documents</a>
+  <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
 {% endif %}
 
 {# navigation espace agent #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
-  {{ render(controller('App\\Controller\\User\\AgentController::messageNotRead')) }}
+  {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
   <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}Properties{% endtrans %}</a>
-  <a href="" class="btn btn-primary">Documents</a>
+  <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
 {% endif %}
 
 {# navigation espace propriétaire #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
-  {{ render(controller('App\\Controller\\User\\OwnerController::messageNotRead')) }}
+  {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
+  <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}My Properties{% endtrans %}</a>
+  <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
 {% endif %}
 
 {# navigation espace propriétaire bailleur #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_LEASEOWNER') %}
-  {{ render(controller('App\\Controller\\User\\LeaseownerController::messageNotRead')) }}
+  {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
+  <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}My Properties{% endtrans %}</a>
+  <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
 {% endif %}
 
 {# navigation espace locataire #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_TENANT') %}
-  {{ render(controller('App\\Controller\\User\\TenantController::messageNotRead')) }}
+  {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
+  <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
 {% endif %}
 

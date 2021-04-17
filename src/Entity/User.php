@@ -70,14 +70,23 @@ class User implements UserInterface
      */
     private $messages;
 
-    private $translator;
+    /**
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="owner")
+     */
+    private $documents;
 
-    public function __construct(TranslatorInterface $translator)
+    /**
+     * @ORM\OneToMany(targetEntity=MessageRead::class, mappedBy="user")
+     */
+    private $messageReads;
+
+    public function __construct()
     {
         $this->announces = new ArrayCollection();
         $this->messages = new ArrayCollection();
 
-        $this->translator = $translator;
+        $this->documents = new ArrayCollection();
+        $this->messageReads = new ArrayCollection();
     }
     
 
@@ -284,6 +293,66 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getUserMailRole();
+    }
+
+    /**
+     * @return Collection|Document[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Document $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): self
+    {
+        if ($this->documents->removeElement($document)) {
+            // set the owning side to null (unless already changed)
+            if ($document->getOwner() === $this) {
+                $document->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MessageRead[]
+     */
+    public function getMessageReads(): Collection
+    {
+        return $this->messageReads;
+    }
+
+    public function addMessageRead(MessageRead $messageRead): self
+    {
+        if (!$this->messageReads->contains($messageRead)) {
+            $this->messageReads[] = $messageRead;
+            $messageRead->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageRead(MessageRead $messageRead): self
+    {
+        if ($this->messageReads->removeElement($messageRead)) {
+            // set the owning side to null (unless already changed)
+            if ($messageRead->getUser() === $this) {
+                $messageRead->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 

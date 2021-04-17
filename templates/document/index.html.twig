@@ -1,0 +1,50 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block table %}
+<div class="table-wrapper">
+{% include "dashboard/_sectiontitle.html.twig" %}
+{% for message in app.flashes('message_admin') %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+{% endfor %}
+<table class="table table-striped text-left">
+  <thead>
+    <tr>
+      {% for key, header in headers %}
+        <th>
+          <div class="headers">
+            {{ header }}
+            <div class="sort-buttons">
+              <a href="{{ path('document_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="{{ 'Descending sorting'|trans }}"></a>
+              <a href="{{ path('document_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="{{ 'Ascending sorting'|trans }}"></a>
+            </div>
+          </div>
+        </th>
+      {% endfor %}
+      <th>Actions</th>  
+    </tr>
+  </thead>
+  <tbody>
+    {% for document in documents %}
+      <tr>
+        <td>{{ document.name }}</td>
+        <td>{{ document.category|trans }}</td>
+        <td>{{ document.owner.firstname }} {{ document.owner.lastname }}<br>{{ document.owner.email }}</td>
+        <td>
+          {{ document.updatedAt|date('d/m/Y') }}<br>{{ document.updatedAt|date('H:i') }}
+        </td>
+        <td style="display: flex;">
+            <a href="{{ asset('documents/'~document.documentName) }}" class="btn-table btn-edit icon fa-eye" target="_blank" role="button" title="{{ 'Show document'|trans }}"></a>
+            {# <a href="{{ path('admin_document_delete', {'id':document.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ document.firstname }} {{ document.lastname }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a> #}
+          </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% if documents.getTotalItemCount > 7 %}
+  {{ knp_pagination_render(documents) }}
+{% endif %}
+<div class="button-right">
+  <a href="{{ path('document_new') }}" class="btn-lg btn-default icon fa-plus">&nbsp;{% trans %}Add{% endtrans %}</a>
+</div>
+{% endblock %}

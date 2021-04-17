@@ -23,13 +23,4 @@ class AgentController extends AbstractController
             ]);
     }
 
-    public function messageNotRead(MessageRepository $messageRepository)
-    {
-        $messageNotRead = $messageRepository->findMessageNotReadByRole('ROLE_AGENT');
-
-        return $this->render('dashboard/_messagenotread.html.twig', [
-            'messageNotRead' => $messageNotRead
-            ]);
-
-    }
 }

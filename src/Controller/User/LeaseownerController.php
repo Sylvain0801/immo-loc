@@ -21,14 +21,4 @@ class LeaseownerController extends AbstractController
             'active' => 'myspace',
         ]);
     }
-
-    public function messageNotRead(MessageRepository $messageRepository)
-    {
-        $messageNotRead = $messageRepository->findMessageNotReadByUserID($this->getUser()->getId());
-
-        return $this->render('dashboard/_messagenotread.html.twig', [
-            'messageNotRead' => $messageNotRead
-            ]);
-
-    }
 }

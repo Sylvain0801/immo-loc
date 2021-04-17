@@ -433,6 +433,54 @@
         <source>Testimonials</source>
         <target>Témoignages</target>
       </trans-unit>
+      <trans-unit id="RZS3N1a" resname="Insurance">
+        <source>Insurance</source>
+        <target>Assurance</target>
+      </trans-unit>
+      <trans-unit id="pvWw5ZL" resname="Contract">
+        <source>Contract</source>
+        <target>Contrat</target>
+      </trans-unit>
+      <trans-unit id="p4np4F7" resname="Lease">
+        <source>Lease</source>
+        <target>Bail</target>
+      </trans-unit>
+      <trans-unit id="w56QxRV" resname="Rent receipt">
+        <source>Rent receipt</source>
+        <target>Quittance de loyer</target>
+      </trans-unit>
+      <trans-unit id="_X6doOO" resname="Other">
+        <source>Other</source>
+        <target>Autre</target>
+      </trans-unit>
+      <trans-unit id="Jx1p8Hl" resname="--Category list--">
+        <source>--Category list--</source>
+        <target>--Liste catégories--</target>
+      </trans-unit>
+      <trans-unit id="2ZvNeLW" resname="Upload file">
+        <source>Upload file</source>
+        <target>Télécharger un document</target>
+      </trans-unit>
+      <trans-unit id="KSwG8AR" resname="Category">
+        <source>Category</source>
+        <target>Categorie</target>
+      </trans-unit>
+      <trans-unit id="N0zZ0iD" resname="Created by">
+        <source>Created by</source>
+        <target>Créé par</target>
+      </trans-unit>
+      <trans-unit id="d1tb_WR" resname="Created at">
+        <source>Created at</source>
+        <target>Créé le</target>
+      </trans-unit>
+      <trans-unit id="xoXyqf4" resname="Show document">
+        <source>Show document</source>
+        <target>Voir le document</target>
+      </trans-unit>
+      <trans-unit id="dbMgpu7" resname="New Properties">
+        <source>New Properties</source>
+        <target>Nouveautés</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

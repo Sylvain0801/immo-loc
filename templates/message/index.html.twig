@@ -26,7 +26,13 @@
   <tbody>
     {% for message in messages %}
       <tr>
-        <td><a class="{{ message.messageRead ? 'icon fa-envelope-open-o btn-message' : 'icon fa-envelope btn-message'}}" data-id="{{ message.id }}" value="{{ message.messageRead }}"></a></td>
+        <td>
+          {% set read = false %}
+          {% for msg in message.messageReads %}
+          {% if msg.user == app.user %}{% set read = msg.notRead %}{% endif %}     
+          {% endfor %}
+          <a class="{{ not read ? 'icon fa-envelope-open-o btn-message' : 'icon fa-envelope btn-message'}}" data-id="{{ message.id }}" value="{{ not read }}"></a>
+        </td>
         <td>{{ message.firstnameSender }}</td>
         <td>{{ message.lastnameSender }}</td>
         <td><strong>{{ message.subject }}</strong><br>{{ message.body|slice(0,100) }}...</td>

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\MessageRead;
 use App\Entity\User;
 use App\Form\MessageFormType;
+use App\Repository\MessageReadRepository;
 use App\Repository\MessageRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -35,7 +37,7 @@ class MessageController extends AbstractController
         $read = $translator->trans('Read');
 
         $headers = [
-            'message_read' => $read,
+            'messageReads' => $read,
             'firstname_sender' => $firstname,
             'lastname_sender' => $lastname,
             'subject' => $subject,
@@ -46,13 +48,15 @@ class MessageController extends AbstractController
         // si l'utilisateur connecté est un agent, il a accès à tous les messages des agents
         if(in_array('ROLE_AGENT', $roles)) {
             $role = 'ROLE_AGENT';
-            $data = $messageRepository->findMessagesByRecipientRole($role, $header, $sorting);
+            $data = $messageRepository->findMessagesByRecipientRole($this->getUser(), $role, $header, $sorting);
         }
 
         // si c'est un autre profil, il a accès uniquement aux messages qui lui sont propres
         if(in_array('ROLE_OWNER', $roles) || in_array('ROLE_LEASEOWNER', $roles) || in_array('ROLE_TENANT', $roles)) {
-            $data = $messageRepository->findMessagesByUser($this->getUser()->getId(), $header, $sorting);
+            $data = $messageRepository->findMessagesByUser($this->getUser(), $header, $sorting);
         }
+
+        dump($data);
 
         $messages = $paginator->paginate(
             $data,
@@ -72,10 +76,15 @@ class MessageController extends AbstractController
      */
     public function messageRead(Message $message):Response
     {
-        $message->setMessageRead($message->getMessageRead() ? false : true);
+        $messageRead = $this->getDoctrine()->getRepository(MessageRead::class)->findOneBy([
+            'user' => $this->getUser(),
+            'message' => $message
+        ]);
+
+        $messageRead->setNotRead($messageRead->getNotRead() ? false : true);
 
         $em= $this->getDoctrine()->getManager();
-        $em->persist($message);
+        $em->persist($messageRead);
         $em->flush();
 
         return new Response('true');
@@ -112,22 +121,40 @@ class MessageController extends AbstractController
                             'subject' => $contact->get('subject')->getData(),
                             'message' => $contact->get('body')->getData()
                         ]);
+
                 $mailer->send($email);
 
             }
             
-            if($senderInternal) { $message->addRecipient($senderInternal);}
+            $em= $this->getDoctrine()->getManager();
+
+            if($senderInternal) { 
+                
+                $message->addRecipient($senderInternal);
+            
+            }
 
             $recipients = $contact->get('recipient')->getData();
+            if($recipients) {
 
+                foreach($recipients as $recipient) {
+                    
+                    $messageRead = new MessageRead();
+                    $messageRead->setUser($recipient);
+                    $messageRead->setMessage($message);
+                    $messageRead->setNotRead(1);
+    
+                    $em->persist($messageRead);
+    
+                }
+            }
+            
             if($senderInternal || $recipients) {
-
+                
                 $message->setFirstnameSender($this->getUser()->getFirstname());
                 $message->setLastnameSender($this->getUser()->getLastname());
                 $message->setSender($this->getUser()->getUsername());
-                $message->setMessageRead(0);
-                
-                $em= $this->getDoctrine()->getManager();
+
                 $em->persist($message);
                 $em->flush();
                 
@@ -155,9 +182,15 @@ class MessageController extends AbstractController
     {
         $section = $translator->trans('messages');
 
-        $message->setMessageRead(1);
+        $messageRead = $this->getDoctrine()->getRepository(MessageRead::class)->findOneBy([
+            'user' => $this->getUser(),
+            'message' => $message
+        ]);
+
+        $messageRead->setNotRead(0);
 
         $em= $this->getDoctrine()->getManager();
+        $em->persist($messageRead);
         $em->persist($message);
         $em->flush();
 
@@ -175,10 +208,31 @@ class MessageController extends AbstractController
     {
         $message->removeRecipient($this->getUser());
 
+        $messageRead = $this->getDoctrine()->getRepository(MessageRead::class)->findOneBy([
+            'user' => $this->getUser(),
+            'message' => $message
+        ]);
+
         $em= $this->getDoctrine()->getManager();
         $em->persist($message);
+        $em->remove($messageRead);
         $em->flush();
 
         return new Response('true');
+    }
+
+    
+    public function messageNotRead()
+    {
+
+        $messageNotRead = $this->getDoctrine()->getRepository(MessageRead::class)->findBy([
+            'user' => $this->getUser(),
+            'not_read' => true
+        ]);
+
+        return $this->render('dashboard/_messagenotread.html.twig', [
+            'messageNotRead' => $messageNotRead
+            ]);
+
     }
 }

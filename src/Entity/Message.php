@@ -58,13 +58,15 @@ class Message
     private $lastname_sender;
 
     /**
-     * @ORM\Column(type="boolean", options={"default": 0})
+     * @ORM\OneToMany(targetEntity=MessageRead::class, mappedBy="message")
      */
-    private $message_read;
+    private $messageReads;
+
 
     public function __construct()
     {
         $this->recipient = new ArrayCollection();
+        $this->messageReads = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,14 +163,32 @@ class Message
         return $this;
     }
 
-    public function getMessageRead(): ?bool
+    /**
+     * @return Collection|MessageRead[]
+     */
+    public function getMessageReads(): Collection
     {
-        return $this->message_read;
+        return $this->messageReads;
     }
 
-    public function setMessageRead(bool $message_read): self
+    public function addMessageRead(MessageRead $messageRead): self
     {
-        $this->message_read = $message_read;
+        if (!$this->messageReads->contains($messageRead)) {
+            $this->messageReads[] = $messageRead;
+            $messageRead->setMessage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageRead(MessageRead $messageRead): self
+    {
+        if ($this->messageReads->removeElement($messageRead)) {
+            // set the owning side to null (unless already changed)
+            if ($messageRead->getMessage() === $this) {
+                $messageRead->setMessage(null);
+            }
+        }
 
         return $this;
     }

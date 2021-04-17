@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\MessageRead;
 use App\Form\ContactFormType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,14 +32,22 @@ class ContactController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+            
             // Donne accès au message à tous les agents
             foreach ($agents as $agent) {
+                
                 $message->addRecipient($agent);
-            }
 
-            $message->setMessageRead(0);
+                $messageRead = new MessageRead();
+                $messageRead->setUser($agent);
+                $messageRead->setMessage($message);
+                $messageRead->setNotRead(1);
+
+                $em->persist($messageRead);
+
+            }
             
-            $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
             

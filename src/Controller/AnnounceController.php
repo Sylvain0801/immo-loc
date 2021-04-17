@@ -72,7 +72,7 @@ class AnnounceController extends AbstractController
     public function announceList($header, $sorting, Request $request, TranslatorInterface $translator, PaginatorInterface $paginator): Response
     {
         // gestion des accès
-        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_OWNER') && !$this->isGranted('ROLE_LEASEOWNER')){
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_LEASEOWNER')){
             $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
             throw $this->createAccessDeniedException($messageAccessDeny);
         }
@@ -93,7 +93,14 @@ class AnnounceController extends AbstractController
             'tenant' => $tenant
         ];
 
-        $data = $this->getDoctrine()->getRepository(Announce::class)->findBy([], [$header => $sorting]);
+        if(!$this->isGranted('ROLE_AGENT')) {
+            $data = $this->getDoctrine()->getRepository(Announce::class)->findBy([], [$header => $sorting]);
+        }
+        
+        if(!$this->isGranted('ROLE_OWNER')) {
+            $data = $this->getDoctrine()->getRepository(Announce::class)->findBy(
+                ['owner' => $this->getUser()], [$header => $sorting]);
+        }
         $announces = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -130,6 +137,7 @@ class AnnounceController extends AbstractController
             $images = $form->get('images')->getData();
             
             foreach($images as $image){
+                
                 $file = md5(uniqid()).'.'.$image->guessExtension();
                 
                 $image->move($this->getParameter('images_directory'), $file);
