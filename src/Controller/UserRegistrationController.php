@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Admin;
+use App\Entity\AdminMessageRead;
+use App\Entity\Message;
 use App\Entity\User;
 use App\Form\UserRegistrationFormType;
 use App\Security\EmailVerifier;
@@ -33,7 +36,7 @@ class UserRegistrationController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(UserRegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        $contact = $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -44,9 +47,39 @@ class UserRegistrationController extends AbstractController
                 )
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+
+            // demande admin modif profil
+            if($contact->get('roles')->getData()) {
+                $subject = $translator->trans('New request for profile change : ');
+                $body = $translator->trans('Hello, thanks for taking my request into account.');
+                $admins = $this->getDoctrine()->getRepository(Admin::class)->findAll();
+                $message = new Message();
+                $message->setFirstnameSender($contact->get('firstname')->getData());
+                $message->setlastnameSender($contact->get('lastname')->getData());
+                $message->setEmailSender($contact->get('email')->getData());
+                $message->setSender($contact->get('email')->getData());
+                $message->setSubject($subject.$contact->get('roles')->getData());
+                $message->setBody($body);
+
+                foreach($admins as $admin) {
+                    
+                    $message->addAdminRecipient($admin);
+
+                    $messageRead = new AdminMessageRead();
+                    $messageRead->setAdmin($admin);
+                    $messageRead->setMessage($message);
+                    $messageRead->setNotRead(1);
+    
+                    $em->persist($messageRead);
+                }
+
+                $em->persist($message);
+                
+            }
+
+            $em->flush();
 
             // generate a signed url and email it to the user
             $subject = $translator->trans('Please Confirm your Email');

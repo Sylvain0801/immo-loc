@@ -49,6 +49,9 @@ class UserFixtures extends Fixture
             if($i % 4 === 2) {
                 $this->addReference('owner_'.$cpt, $user);
              }
+            if($i % 4 === 3) {
+                $this->addReference('tenant_'.$cpt, $user);
+             }
 
         }
 

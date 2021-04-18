@@ -3,11 +3,15 @@
 {% block table %}
 	{% include "dashboard/_sectiontitle.html.twig" %}
 	<div class="text-left edit-message">
-		<h4>
-			<strong>{% trans %}From{% endtrans %}
-				:</strong>
-			{{ message.firstnameSender }}
-			{{ message.lastnameSender }}</h4>
+		{% if message.senderUser %}
+			<h4><strong>{% trans %}From{% endtrans %} :</strong> {{ message.senderUser.firstname }} {{ message.senderUser.lastname }}</h4>
+		{% endif %}
+		{% if message.senderAdmin %}
+			<h4><strong>{% trans %}From{% endtrans %} :</strong> {{ message.senderAdmin.firstname }} {{ message.senderAdmin.lastname }}</h4>
+		{% endif %}
+		{% if message.emailSender %}
+			<h4><strong>{% trans %}From{% endtrans %} :</strong> {{ message.firstnameSender }} {{ message.lastnameSender }}</h4>
+		{% endif %}
 		<h4><strong>Email : </strong>{{ message.sender }}</h4>
 		<h4>
 			<strong>{% trans %}Sent at{% endtrans %}

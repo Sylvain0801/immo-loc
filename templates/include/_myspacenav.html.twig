@@ -1,6 +1,9 @@
 <li class="{{ active == 'myspace' ? 'active' : '' }}">
   {% if not is_granted('ROLE_USER') %}
 	  <a href="{{ path('app_login') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
+	{% endif %}
+	{% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') and not is_granted('ROLE_AGENT') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_LEASEOWNER') and not is_granted('ROLE_TENANT') %}
+	  <a href="" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>
   {% endif %}
   {% if is_granted('ROLE_ADMIN') %}
 	  <a href="{{ path('admin_home') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a>

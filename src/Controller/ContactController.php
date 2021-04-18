@@ -27,7 +27,7 @@ class ContactController extends AbstractController
         $agents = $userRepository->findUsersByRole("ROLE_AGENT");
         
         $form = $this->createForm(ContactFormType::class, $message);
-        $form->handleRequest($request);
+        $contact = $form->handleRequest($request);
 
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class ContactController extends AbstractController
                 $em->persist($messageRead);
 
             }
-            
+            $message->setSender($contact->get('email_sender')->getData());
             $em->persist($message);
             $em->flush();
             

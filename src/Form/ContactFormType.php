@@ -34,7 +34,7 @@ class ContactFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'label' => false
             ])
-            ->add('sender', EmailType::class, [
+            ->add('email_sender', EmailType::class, [
                 'attr' => ['class' => 'form-control'],
                 'label' => false
             ])

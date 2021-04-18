@@ -2,9 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Admin;
 use App\Entity\Message;
 use App\Entity\User;
-use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -26,13 +26,19 @@ class MessageFormType extends AbstractType
                 'multiple' => true,
                 'required' => false
             ])
+            ->add('adminrecipient', EntityType::class, [
+                'class' => Admin::class,
+                'attr' => ['class' => 'form-control'],
+                'multiple' => true,
+                'required' => false
+            ])
             ->add('subject', TextType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('body', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'rows' => 8,
+                    'rows' => 12,
                     'style' => 'resize:none'
                 ],
             ])

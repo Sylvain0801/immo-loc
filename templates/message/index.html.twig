@@ -3,7 +3,7 @@
 {% block table %}
 <div class="table-wrapper">
 {% include "dashboard/_sectiontitle.html.twig" %}
-{% for message in app.flashes('message_admin') %}
+{% for message in app.flashes('message_user') %}
   <div class="alert alert-success" role="alert">{{ message }}</div>
 {% endfor %}
 <table class="table table-striped text-left">
@@ -28,20 +28,45 @@
       <tr>
         <td>
           {% set read = false %}
-          {% for msg in message.messageReads %}
-          {% if msg.user == app.user %}{% set read = msg.notRead %}{% endif %}     
-          {% endfor %}
+          {% if is_granted('ROLE_ADMIN') %}
+            {% for msg in message.adminMessageReads %}
+              {% if msg.admin == app.user %}{% set read = msg.notRead %}{% endif %}     
+            {% endfor %}
+          {% else %}
+            {% for msg in message.messageReads %}
+              {% if msg.user == app.user %}{% set read = msg.notRead %}{% endif %}     
+            {% endfor %}
+          {% endif %}
           <a class="{{ not read ? 'icon fa-envelope-open-o btn-message' : 'icon fa-envelope btn-message'}}" data-id="{{ message.id }}" value="{{ not read }}"></a>
         </td>
-        <td>{{ message.firstnameSender }}</td>
-        <td>{{ message.lastnameSender }}</td>
+        <td>
+          {% if message.senderUser %}
+          {% set senderName = message.senderUser.firstname~' '~message.senderUser.lastname %}
+            <strong>
+              {% if 'ROLE_AGENT' in message.senderUser.roles %}{% trans %}Agent{% endtrans %}{% endif %}
+              {% if 'ROLE_LEASEOWNER' in message.senderUser.roles %}{% trans %}Lease owner{% endtrans %}{% endif %}
+              {% if 'ROLE_OWNER' in message.senderUser.roles %}{% trans %}Owner{% endtrans %}{% endif %}
+              {% if 'ROLE_TENANT' in message.senderUser.roles %}{% trans %}Tenant{% endtrans %}{% endif %}
+            </strong><br>{{ senderName }}<br>{{ message.senderUser.email }}
+          {% endif %}
+          {% if message.senderAdmin %}
+          {% set senderName = message.senderAdmin.firstname~' '~message.senderAdmin.lastname %}
+            <strong>{{ 'Administrator'|trans }}</strong>
+            <br>{{ senderName }}<br>{{ message.senderAdmin.email }}
+          {% endif %}
+          {% if message.emailSender %}
+          {% set senderName = message.firstnameSender~' '~message.lastnameSender %}
+            <strong>{{ 'External'|trans }}</strong>
+            <br>{{ senderName }}<br>{{ message.emailSender }}
+          {% endif %}
+        </td>
         <td><strong>{{ message.subject }}</strong><br>{{ message.body|slice(0,100) }}...</td>
         <td>
           {{ message.createdAt|date('d/m/Y') }}<br>{{ message.createdAt|date('H:i') }}
         </td>
         <td style="display: flex;">
           <a href="{{ path('message_edit', {'id':message.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
-          <a class="btn-table btn-delete icon fa-trash btn-delete-message" data-id="{{ message.id }}" role="button" title="{{ 'Delete'|trans }}" data-confirm="{{ 'Message of'|trans }} {{ message.firstnameSender }} {{ message.lastnameSender }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}"></a>
+          <a class="btn-table btn-delete icon fa-trash btn-delete-message" data-id="{{ message.id }}" role="button" title="{{ 'Delete'|trans }}" data-confirm="{{ 'Message of'|trans }} {{ senderName }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}"></a>
         </td>
       </tr>
     {% else %}
@@ -56,6 +81,6 @@
   {{ knp_pagination_render(messages) }}
 {% endif %}
 <div class="button-right">
-  <a href="{{ path('message_new') }}" class="btn-lg btn-default icon fa-envelope-o">&nbsp;{% trans %}New{% endtrans %}</a>
+  <a href="{{ path('message_new') }}" class="btn-sm btn-default icon fa-envelope-o">&nbsp;{% trans %}New{% endtrans %}</a>
 </div>
 {% endblock %}

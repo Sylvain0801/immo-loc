@@ -1,0 +1,31 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block table %}
+	{% include "dashboard/_sectiontitle.html.twig" %}
+  {% for message in app.flashes('message_user') %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+	<div class="row text-left">
+    <div class="col-md-12">
+      {{ form_start(messageForm) }}
+        <div class="form-group">
+          <label>{% trans %}Recipient{% endtrans %}</label>
+          <input type="text" value="{{ recipient }}" disabled class="form-control">
+        </div>
+        <div class="form-group" style="display:none">
+          {{ form_row(messageForm.recipient) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(messageForm.subject, {label: 'Subject'|trans}) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(messageForm.body, {label: 'Message'}) }}
+        </div>
+        <div class="button-between">
+          <a href="{{ path('announce_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+          <button type="submit" class="btn btn-primary icon fa-paper-plane-o">&nbsp;{% trans %}Send message{% endtrans %}</button>
+        </div>
+      {{ form_end(messageForm) }}
+    </div>
+  </div>
+{% endblock %}

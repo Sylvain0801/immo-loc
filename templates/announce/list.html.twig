@@ -46,7 +46,14 @@
 								</label>
 							</div>
 						</td>
-						<td>{{ announce.tenant ? 'yes'|trans : 'no'|trans }}</td>
+						<td>
+							{% if announce.tenant %}
+								{% trans %}yes{% endtrans %}
+								<a href="{{ path('message_contact_tenant', {'id': announce.tenant.id}) }}" class="btn-lg icon fa-envelope-o" role="button" title="{{ 'Contact tenant'|trans }}" style="padding:10px"></a>
+							{% else %}
+								{% trans %}no{% endtrans %}
+							{% endif %}
+						</td>
 						<td style="display: flex;">
 							<a href="{{ path('announce_edit', {'id': announce.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>
 							<a class="btn-table btn-delete icon fa-trash btn-delete-announce" data-id="{{ announce.id }}" role="button" title="{{ 'Delete'|trans }}" data-confirm="{{'The property'|trans }} {{ announce.title }} {{'will be definitely deleted, this choice must be confirmed ?'|trans }}"></a>
@@ -65,7 +72,7 @@
 	{% endif %}
   {% if is_granted('ROLE_AGENT') or is_granted('ROLE_LEASEOWNER') %}
     <div class="button-right">
-      <a href="{{ path('announce_new') }}" class="btn-lg btn-default icon fa-plus">&nbsp;{% trans %}Add{% endtrans %}</a>
+      <a href="{{ path('announce_new') }}" class="btn-sm btn-default icon fa-plus">&nbsp;{% trans %}Add{% endtrans %}</a>
     </div>
   {% endif %}
 {% endblock %}

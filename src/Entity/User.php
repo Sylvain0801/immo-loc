@@ -80,6 +80,11 @@ class User implements UserInterface
      */
     private $messageReads;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender_user")
+     */
+    private $messages_sent;
+
     public function __construct()
     {
         $this->announces = new ArrayCollection();
@@ -87,6 +92,7 @@ class User implements UserInterface
 
         $this->documents = new ArrayCollection();
         $this->messageReads = new ArrayCollection();
+        $this->messages_sent = new ArrayCollection();
     }
     
 
@@ -349,6 +355,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($messageRead->getUser() === $this) {
                 $messageRead->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessagesSent(): Collection
+    {
+        return $this->messages_sent;
+    }
+
+    public function addMessagesSent(Message $messagesSent): self
+    {
+        if (!$this->messages_sent->contains($messagesSent)) {
+            $this->messages_sent[] = $messagesSent;
+            $messagesSent->setSenderUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesSent(Message $messagesSent): self
+    {
+        if ($this->messages_sent->removeElement($messagesSent)) {
+            // set the owning side to null (unless already changed)
+            if ($messagesSent->getSenderUser() === $this) {
+                $messagesSent->setSenderUser(null);
             }
         }
 

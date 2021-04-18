@@ -489,6 +489,50 @@
         <source>My Properties</source>
         <target>Mes annonces</target>
       </trans-unit>
+      <trans-unit id="40wyTdl" resname="--Profile choice--">
+        <source>--Profile choice--</source>
+        <target>--Choix profil--</target>
+      </trans-unit>
+      <trans-unit id="NH540mU" resname="messages administrator">
+        <source>messages administrator</source>
+        <target>messages administrateur</target>
+      </trans-unit>
+      <trans-unit id="wpn5uFy" resname="Sender">
+        <source>Sender</source>
+        <target>Expéditeur</target>
+      </trans-unit>
+      <trans-unit id="Fajmt__" resname="New request for profile change : ">
+        <source>New request for profile change : </source>
+        <target>Nouvelle demande de changement de profil : </target>
+      </trans-unit>
+      <trans-unit id="wW7UvL6" resname="Hello, thanks for taking my request into account.">
+        <source>Hello, thanks for taking my request into account.</source>
+        <target>Bonjour, merci de prendre en compte ma demande.</target>
+      </trans-unit>
+      <trans-unit id="VKqCH41" resname="Contact tenant">
+        <source>Contact tenant</source>
+        <target>Contacter le locataire</target>
+      </trans-unit>
+      <trans-unit id="gimLmEK" resname="--Recipient admin list--">
+        <source>--Recipient admin list--</source>
+        <target>--Liste destinataire admin--</target>
+      </trans-unit>
+      <trans-unit id="rS29U.H" resname="Adminitrator">
+        <source>Adminitrator</source>
+        <target>Adminitrateur</target>
+      </trans-unit>
+      <trans-unit id="aMEU6py" resname="External">
+        <source>External</source>
+        <target>Externe</target>
+      </trans-unit>
+      <trans-unit id="GQYW5Vq" resname="Admin Recipient">
+        <source>Admin Recipient</source>
+        <target>Destinataire admin</target>
+      </trans-unit>
+      <trans-unit id="Jxxi_i3" resname="My profile">
+        <source>My profile</source>
+        <target>Mon profil</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

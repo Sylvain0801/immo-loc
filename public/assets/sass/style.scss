@@ -1923,7 +1923,7 @@ input[type="checkbox"]:checked {
 		width: 295px;
 	}
 	& a:nth-child(2) {
-		background-color: $brand-dark-footer;
+		background-color: $brand-dark-footer; 
 	}
 }
 
@@ -2010,7 +2010,7 @@ input[type="checkbox"]:checked {
 	text-decoration: none;
 	white-space: nowrap;
 	padding: 0.8rem;
-	margin: 0.5rem 0.25rem;
+	margin: 0 0.25rem;
 	&.btn-delete {
 		box-shadow: none;
 		background-color: $brand-primary;

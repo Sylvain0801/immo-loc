@@ -25,16 +25,16 @@ class UserEditType extends AbstractType
             'attr' => ['class' => 'form-control'],
             'label' => 'Email'
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'Tenant' => 'ROLE_TENANT', 
-                    'Owner' => 'ROLE_OWNER',
-                    'Lease owner' => 'ROLE_LEASEOWNER',
-                    'Agent' => 'ROLE_AGENT'
-                ],
-                'expanded' => true,
-                'multiple' => true,
-            ])
+        ->add('roles', ChoiceType::class, [
+            'choices' => [
+                'Tenant' => 'ROLE_TENANT', 
+                'Owner' => 'ROLE_OWNER',
+                'Lease owner' => 'ROLE_LEASEOWNER',
+                'Agent' => 'ROLE_AGENT'
+            ],
+            'expanded' => true,
+            'multiple' => true,
+        ])
            
         ;
     }

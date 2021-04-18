@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -53,6 +55,28 @@ class Admin implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Message::class, mappedBy="admin_recipient")
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AdminMessageRead::class, mappedBy="admin")
+     */
+    private $adminMessageReads;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender_admin")
+     */
+    private $messages_sent;
+
+    public function __construct()
+    {
+        $this->messages = new ArrayCollection();
+        $this->adminMessageReads = new ArrayCollection();
+        $this->messages_sent = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -162,6 +186,98 @@ class Admin implements UserInterface
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->addAdminRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            $message->removeAdminRecipient($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdminMessageRead[]
+     */
+    public function getAdminMessageReads(): Collection
+    {
+        return $this->adminMessageReads;
+    }
+
+    public function addAdminMessageRead(AdminMessageRead $adminMessageRead): self
+    {
+        if (!$this->adminMessageReads->contains($adminMessageRead)) {
+            $this->adminMessageReads[] = $adminMessageRead;
+            $adminMessageRead->setAdmin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdminMessageRead(AdminMessageRead $adminMessageRead): self
+    {
+        if ($this->adminMessageReads->removeElement($adminMessageRead)) {
+            // set the owning side to null (unless already changed)
+            if ($adminMessageRead->getAdmin() === $this) {
+                $adminMessageRead->setAdmin(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessagesSent(): Collection
+    {
+        return $this->messages_sent;
+    }
+
+    public function addMessagesSent(Message $messagesSent): self
+    {
+        if (!$this->messages_sent->contains($messagesSent)) {
+            $this->messages_sent[] = $messagesSent;
+            $messagesSent->setSenderAdmin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesSent(Message $messagesSent): self
+    {
+        if ($this->messages_sent->removeElement($messagesSent)) {
+            // set the owning side to null (unless already changed)
+            if ($messagesSent->getSenderAdmin() === $this) {
+                $messagesSent->setSenderAdmin(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstname().' '.$this->getLastname().' '.$this->getUsername().' ADMIN';
     }
 
 }
