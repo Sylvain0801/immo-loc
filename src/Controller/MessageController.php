@@ -56,8 +56,6 @@ class MessageController extends AbstractController
             $data = $messageRepository->findMessagesByUser($this->getUser(), $header, $sorting);
         }
 
-        dump($data);
-
         $messages = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -234,5 +232,39 @@ class MessageController extends AbstractController
             'messageNotRead' => $messageNotRead
             ]);
 
+    }
+
+    /**
+     * @Route("/contactus", name="contactus")
+     */
+    public function contacUS(Request $request, TranslatorInterface $translator, MailerInterface $mailer):Response
+    {
+
+        $section = $translator->trans('messages');
+
+        $message = new Message();
+        $form = $this->createForm(MessageFormType::class, $message);
+        $contact = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($message);
+                $em->flush();
+                
+
+            $successmsg = $translator->trans('Your message has been sent successfully');
+            $this->addFlash('message_user', $successmsg);
+            
+            return $this->redirectToRoute('message_new');
+            
+        } 
+
+        return $this->render('message/contactus.html.twig', [
+            'messageForm' => $form->createView(),
+            'section' => $section,
+            'active' => 'myspace'
+        ]);
     }
 }

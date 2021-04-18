@@ -21,6 +21,7 @@ class AnnounceFixtures extends Fixture implements DependentFixtureInterface
 
             $user = $this->getReference('user_'.$faker->numberBetween(1, 40));
             $owner = $this->getReference('owner_'.$faker->numberBetween(1, 10));
+            $leaseowner = $this->getReference('leaseowner_'.$faker->numberBetween(1, 10));
             $type = $types[$faker->numberBetween(0, 1)];
     
             $announce = new Announce();
@@ -38,7 +39,7 @@ class AnnounceFixtures extends Fixture implements DependentFixtureInterface
                 ->setActive(1)
                 ->setFirstpage(0)
                 ->setCreatedBy($user)
-                ->setOwner($owner);
+                ->setOwner($faker->randomElement([$owner, $leaseowner]));
 
             for($image = 1; $image <= 3; $image++){
                 $index = $faker->numberBetween(1, 14);

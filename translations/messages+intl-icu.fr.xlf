@@ -481,6 +481,14 @@
         <source>New Properties</source>
         <target>Nouveautés</target>
       </trans-unit>
+      <trans-unit id="J1NdIet" resname="Your document has been saved successfully">
+        <source>Your document has been saved successfully</source>
+        <target>Votre document a été enregistré avec succès</target>
+      </trans-unit>
+      <trans-unit id="QL4VjKh" resname="My Properties">
+        <source>My Properties</source>
+        <target>Mes annonces</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

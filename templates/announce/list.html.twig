@@ -39,13 +39,13 @@
               </div>
 						</td>
 						<td>
-              <div class="card-firstpage">
-                <label class="switch">
-                  <input type="checkbox" class="btn-firstpage" {{ announce.firstpage ? 'checked' : '' }} data-id="{{ announce.id }}">
-                  <span class="slider round"></span>
-                </label>
-              </div>
-            </td>
+							<div class="card-firstpage">
+								<label class="switch">
+									<input type="checkbox" class="btn-firstpage" {{ announce.firstpage ? 'checked' : '' }} data-id="{{ announce.id }}" {{ is_granted('ROLE_LEASEOWNER') ? 'disabled' : '' }}>
+									<span class="slider round"></span>
+								</label>
+							</div>
+						</td>
 						<td>{{ announce.tenant ? 'yes'|trans : 'no'|trans }}</td>
 						<td style="display: flex;">
 							<a href="{{ path('announce_edit', {'id': announce.id}) }}" class="btn-table btn-edit icon fa-pencil" role="button" title="{{ 'Edit'|trans }}"></a>

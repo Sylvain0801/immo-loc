@@ -43,6 +43,9 @@ class UserFixtures extends Fixture
                 $this->addReference('agent_'.$cpt, $user);
                 $cpt++; 
              }
+            if($i % 4 === 1) {
+                $this->addReference('leaseowner_'.$cpt, $user);
+             }
             if($i % 4 === 2) {
                 $this->addReference('owner_'.$cpt, $user);
              }

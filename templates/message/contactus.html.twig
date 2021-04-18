@@ -9,11 +9,11 @@
     <div class="col-md-12">
       {{ form_start(messageForm) }}
         <div class="form-group">
-          {{ form_label(messageForm.recipient, 'Recipient'|trans) }} :
-          {% if sender %}
-            <input type="text" name="sender" value="{{ sender }}" class="form-control" disabled>
-          {% endif %}
-          {{ form_widget(messageForm.recipient) }}
+          <label>{% trans %}Recipient{% endtrans %}</label>
+          <input type="text" value="LocationImmo" disabled class="form-control">
+        </div>
+        <div class="form-group" style="display:none">
+          {{ form_row(messageForm.recipient) }}
         </div>
         <div class="form-group">
           {{ form_row(messageForm.subject, {label: 'Subject'|trans}) }}

@@ -56,7 +56,11 @@
 			<div class="form-group checkbox-group-announce-form">
 				{{ form_widget(announceForm.active) }}
 				{{ form_label(announceForm.active) }}
-				{{ form_widget(announceForm.firstpage) }}
+				{% if is_granted('ROLE_LEASEOWNER') %}
+					{{ form_widget(announceForm.firstpage, {'attr': {'disabled':'disabled'}}) }}
+				{% else %}
+					{{ form_widget(announceForm.firstpage) }}
+				{% endif %}
 				{{ form_label(announceForm.firstpage, 'firstpage'|trans) }}
 			</div>
 			<div class="form-group">
