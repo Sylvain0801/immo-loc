@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace - LocationImmo
+{% endblock %}
+
+{% block body %}
+	<aside id="fh5co-hero" class="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<ul class="slides">
+				<li style="background-image: url({{asset('assets/images/properties/home_04.jpg')}})">
+					<div class="overlay"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-1 text-center js-fullheight slider-text">
+								<div class="slider-text-inner">
+                  <div class="global-form">
+                    <h1 class="h3 mb-3 font-weight-normal text-green">{% trans %}Payment centre{% endtrans %}</h1>
+                    {% for message in app.flashes('message_user') %}
+                      <div class="alert alert-success" role="alert">{{ message }}</div>
+                    {% endfor %}
+                    {{ form_start(paymentForm)}}
+                      <p style="color:#848484">{% trans %}The access to the lease owner's centre is subject to an annual fee of 550 €{% endtrans %}</p>
+                      <div class="form-group">
+                        {{ form_row(paymentForm.price)}}
+                      </div>
+                      <div class="button-right">
+                        <button class="btn btn-primary" type="submit">{% trans %}Make the payment{% endtrans %}</button>
+                      </div>
+                    {{ form_end(paymentForm)}}
+								  </div>
+                </div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</aside>
+{% endblock %}

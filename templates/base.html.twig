@@ -38,6 +38,8 @@
     {% block body %}{% endblock %}
     {% include "include/footer.html.twig" %}
     {% block javascripts %}
+      <script src="https://js.stripe.com/v3/"></script>
+      <script src="{{ asset('assets/js/scripts_paiement.js') }}"></script>
       <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
       <script src="{{ asset('assets/js/jquery.easing.1.3.js') }}"></script>
       <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

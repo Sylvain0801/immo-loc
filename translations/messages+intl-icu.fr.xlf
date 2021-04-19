@@ -533,6 +533,54 @@
         <source>My profile</source>
         <target>Mon profil</target>
       </trans-unit>
+      <trans-unit id="aK3qxm6" resname="My properties">
+        <source>My properties</source>
+        <target>Mes annonces</target>
+      </trans-unit>
+      <trans-unit id="SlBUw37" resname="Succesfull transaction">
+        <source>Succesfull transaction</source>
+        <target>Transaction réussie</target>
+      </trans-unit>
+      <trans-unit id="2Ayb_RD" resname="address">
+        <source>address</source>
+        <target>adresse</target>
+      </trans-unit>
+      <trans-unit id="XYjFadI" resname="rooms">
+        <source>rooms</source>
+        <target>pièces</target>
+      </trans-unit>
+      <trans-unit id="mhALI46" resname="bedrooms">
+        <source>bedrooms</source>
+        <target>chambres</target>
+      </trans-unit>
+      <trans-unit id="lfSGt6c" resname="advertizing">
+        <source>advertizing</source>
+        <target>publicité</target>
+      </trans-unit>
+      <trans-unit id="loeWEWU" resname="active">
+        <source>active</source>
+        <target>active</target>
+      </trans-unit>
+      <trans-unit id="IQ5Xxbn" resname="Payment centre">
+        <source>Payment centre</source>
+        <target>Espace paiement</target>
+      </trans-unit>
+      <trans-unit id="rtaimpx" resname="The access to the lease owner's centre is subject to an annual fee of 550 €">
+        <source>The access to the lease owner's centre is subject to an annual fee of 550 €</source>
+        <target>L'accès à l'espace propriétaire bailleur est soumis à un abonnement annuel de 550 €</target>
+      </trans-unit>
+      <trans-unit id="ESc7H93" resname="Make the payment">
+        <source>Make the payment</source>
+        <target>Procéder au paiement</target>
+      </trans-unit>
+      <trans-unit id="N8kaHp5" resname="Credit cardholder">
+        <source>Credit cardholder</source>
+        <target>Nom du titulaire de la carte</target>
+      </trans-unit>
+      <trans-unit id="DxenLOZ" resname="Validate the payment">
+        <source>Validate the payment</source>
+        <target>Valider le paiement</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
