@@ -353,6 +353,7 @@ class MessageController extends AbstractController
             $em->persist($messageRead);
 
             $message->setSenderUser($this->getUser());
+            $message->setSender($this->getUser()->getUsername());
 
             $em->persist($message);
             $em->flush();
@@ -361,13 +362,17 @@ class MessageController extends AbstractController
             $successmsg = $translator->trans('Your message has been sent successfully');
             $this->addFlash('message_user', $successmsg);
             
-            return $this->redirectToRoute('message_contact_tenant');
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_OWNER')) {
+                return $this->redirectToRoute('announce_ownerview');
+            } else {
+                return $this->redirectToRoute('announce_list');
+            }
             
         } 
 
         return $this->render('message/tenant.html.twig', [
             'messageForm' => $form->createView(),
-            'recipient' => $tenant->getUsername(),
+            'recipient' => $tenant->getFirstname().' '.$tenant->getLastname().' '.$tenant->getUsername(),
             'section' => $section,
             'active' => 'myspace'
         ]);

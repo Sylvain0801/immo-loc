@@ -93,14 +93,15 @@ class AnnounceController extends AbstractController
             'tenant' => $tenant
         ];
 
-        if(!$this->isGranted('ROLE_AGENT')) {
+        if($this->isGranted('ROLE_AGENT')) {
             $data = $this->getDoctrine()->getRepository(Announce::class)->findBy([], [$header => $sorting]);
         }
         
-        if(!$this->isGranted('ROLE_OWNER')) {
+        if($this->isGranted('ROLE_OWNER')) {
             $data = $this->getDoctrine()->getRepository(Announce::class)->findBy(
                 ['owner' => $this->getUser()], [$header => $sorting]);
         }
+        
         $announces = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -228,6 +229,27 @@ class AnnounceController extends AbstractController
         $em->flush();
 
         return new Response('true');
+    }
+
+     /**
+     * @Route("/ownerview", name="ownerview")
+     */
+    public function ownerview(TranslatorInterface $translator)
+    {
+        // gestion des accès
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_OWNER')){
+            $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
+            throw $this->createAccessDeniedException($messageAccessDeny);
+        }
+        $announces = $this->getDoctrine()->getRepository(Announce::class)->findBy(['owner' => $this->getUser()]);
+        $section = $translator->trans('My properties');
+        dump($announces);
+
+        return $this->render('announce/ownerview.html.twig', [
+            'active' => 'myspace',
+            'section' => $section,
+            'announces' => $announces
+        ]);
     }
 
     /**

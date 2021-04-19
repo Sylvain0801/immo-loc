@@ -17,7 +17,7 @@
 {# navigation espace propriétaire #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_OWNER') %}
   {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
-  <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}My Properties{% endtrans %}</a>
+  <a href="{{ path('announce_ownerview') }}" class="btn btn-primary">{% trans %}My Properties{% endtrans %}</a>
   <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
   <a href="{{ path('message_contactus') }}" class="btn btn-primary">{% trans %}Contact us{% endtrans %}</a>
 {% endif %}

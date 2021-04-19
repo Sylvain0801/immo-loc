@@ -3867,4 +3867,10 @@ ol, li {
   right: 0;
   background: rgba(0, 0, 0, 0.4);
 }
+
+.announce-img-owner {
+  width: 150px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
 /*# sourceMappingURL=style.css.map */

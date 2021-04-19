@@ -17,16 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/home", name="home")
-     */
-    public function index(): Response
-    {
-        return $this->render('dashboard/index.html.twig', [
-            'active' => 'myspace'
-        ]);
-    }
-
+   
     /**
      * @Route("/useradmin/list/{header}/{sorting}", name="useradmin_list", defaults={"header": "id", "sorting": "ASC"})
      */

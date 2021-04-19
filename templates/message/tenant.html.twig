@@ -15,6 +15,10 @@
         <div class="form-group" style="display:none">
           {{ form_row(messageForm.recipient) }}
         </div>
+        <div class="form-group" style="{{ not is_granted('ROLE_ADMIN') or not is_granted('ROLE_AGENT') ? 'display:none' : '' }}">
+          {{ form_label(messageForm.adminrecipient, 'Admin Recipient'|trans) }} :
+          {{ form_widget(messageForm.adminrecipient) }}
+        </div>
         <div class="form-group">
           {{ form_row(messageForm.subject, {label: 'Subject'|trans}) }}
         </div>
@@ -22,7 +26,7 @@
           {{ form_row(messageForm.body, {label: 'Message'}) }}
         </div>
         <div class="button-between">
-          <a href="{{ path('announce_list') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+          <a href="{{ path('dashboard') }}" class="btn-lg btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
           <button type="submit" class="btn btn-primary icon fa-paper-plane-o">&nbsp;{% trans %}Send message{% endtrans %}</button>
         </div>
       {{ form_end(messageForm) }}

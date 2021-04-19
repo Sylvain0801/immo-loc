@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MainController extends AbstractController
 {
@@ -30,6 +31,22 @@ class MainController extends AbstractController
             'announces' => $announces
         ]);
 
+    }
+
+    /**
+     * @Route("/dashboard", name="dashboard")
+     */
+    public function dashboard(TranslatorInterface $translator): Response
+    {
+        // gestion des accès
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_LEASEOWNER') && !$this->isGranted('ROLE_OWNER') && !$this->isGranted('ROLE_TENANT')){
+            $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
+            throw $this->createAccessDeniedException($messageAccessDeny);
+        }
+
+        return $this->render('dashboard/index.html.twig', [
+            'active' => 'myspace',
+        ]);
     }
 
     public function displayCookieBanner(Request $request): Response
