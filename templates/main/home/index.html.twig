@@ -34,7 +34,7 @@
 		<div class="row">
 			{% for announce in announces %}
 				<div class="col-md-4 animate-box">
-					<a href="#" class="fh5co-property" style="{% if announce.images|length > 0 %}background-image:url({{asset('images/announces/'~announce.images[0].image)}}){% else %}background-image:url({{asset('assets/images/properties/home_07.jpg')}}){% endif %}">
+					<a href="{{ path('announce_view', {'id': announce.id}) }}" class="fh5co-property" style="{% if announce.images|length > 0 %}background-image:url({{asset('images/announces/'~announce.images[0].image)}}){% else %}background-image:url({{asset('assets/images/properties/home_07.jpg')}}){% endif %}">
 						<span class="status">{{ announce.type|trans }}</span>
 						<div class="prop-details">
 							<span class="price">{{ announce.price|trans }} € / {% trans %}Month{% endtrans %}</span>

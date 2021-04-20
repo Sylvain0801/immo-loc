@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}My space{% endtrans %} - LocationImmo
+{% endblock %}
+
+{% block body %}
+	<div id="fh5co-hero" class="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<ul class="slides">
+				<li style="background: linear-gradient(180deg, rgba(3,10,96,1) 0%, rgba(9,136,162,1) 30%, rgba(68,198,98,1) 80%);">
+					<div class="container-fluid">
+						<div class="row" style="overflow-x: auto;">
+							<div class="col-sm-12 col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+								<div class="slider-text-inner">
+                  <div class="admin">
+										<h1 class="h3 mb-3 font-weight-normal text-green">{% trans %}Details of the property{% endtrans %}</h1>
+                    <div class="row">
+                      <div class="col-sm-6">
+												<div class="blog-text">
+                          <div class="prod-title">
+                            <h3>{{ announce.title }}</h3>
+                            <table class="table table-striped text-left">
+                              <caption><strong>Description</strong><br>{{ announce.type }}<br>{{ announce.description }}</caption>
+                              <tbody>
+                                <tr>
+                                  <td><strong>{{ 'city'|trans|capitalize }}</strong></td>
+                                  <td>{{ announce.city }}</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>{{ 'informations'|capitalize }}</strong></td>
+                                  <td>{{ announce.area }} m² | {{ announce.rooms }} {{ 'rooms'|trans }} | {{ announce.bedrooms }} {{ 'bedrooms'|trans }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <h3 class="text-green" style="text-align:right; border-bottom:none">{{ announce.price }} € / {% trans %}Month{% endtrans %}</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+												{{ include ('announce/_carousel.html.twig') }}
+                      </div>
+                    </div> 
+								  </div>
+                </div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}

@@ -43,7 +43,7 @@
 					{% if index < 10 %}{% set index = '0'~index %}{% endif %}
 					<div class="col-md-4 animate-box">
 						<div class="property">
-							<a href="#" class="fh5co-property" style="{% if announce.images|length > 0 %}background-image:url({{asset('images/announces/'~announce.images[0].image)}}){% else %}background-image:url({{asset('assets/images/properties/home_'~index~'.jpg')}}){% endif %}">
+							<a href="{{ path('announce_view', {'id': announce.id}) }}" class="fh5co-property" style="{% if announce.images|length > 0 %}background-image:url({{asset('images/announces/'~announce.images[0].image)}}){% else %}background-image:url({{asset('assets/images/properties/home_'~index~'.jpg')}}){% endif %}">
 								<span class="status">{{ announce.type|trans }}</span>
 								<ul class="list-details">
 									<li>{{ announce.area }} m²</li>
@@ -58,6 +58,9 @@
 								<span class="address">
 									<i class="icon-map"></i>
 									{{ announce.city }}</span>
+							</div>
+							<div class="button-right">
+								<a href="{{ path('announce_view', {'id': announce.id}) }}" class="btn-sm btn-primary icon fa-eye">&nbsp;{% trans %}Show details{% endtrans %}</a>
 							</div>
 						</div>
 					</div>

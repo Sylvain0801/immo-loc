@@ -106,6 +106,7 @@ $form-group-margin-bottom: 30px;
 @import 'bootstrap/icons';
 @import 'bootstrap/tables';
 @import 'bootstrap/grid';
+@import 'bootstrap/buttons';
 
 
 
@@ -2371,7 +2372,8 @@ ol, li {
 }
 
 .carousel__slide:before {
-  content: counter(item);
+  // content: counter(item);
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;

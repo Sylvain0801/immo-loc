@@ -8,34 +8,25 @@
 						</div>
 						
 						<div class="col-md-3 col-md-push-1">
-							<h3 class="section-title">Links</h3>
+							<h3 class="section-title">{% trans %}Links{% endtrans %}</h3>
 							<ul>
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Properties</a></li>
-								<li><a href="#">Agent</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">API</a></li>
-								<li><a href="#">FAQ / Contact</a></li>
-							</ul>
-						</div>
-
-						<div class="col-md-3">
-							<h3 class="section-title">Information</h3>
-							<ul>
-								<li><a href="#">Terms &amp; Condition</a></li>
-								<li><a href="#">License</a></li>
-								<li><a href="#">Privacy &amp; Policy</a></li>
-								<li><a href="#">Contact Us</a></li>
+								<li><a href="{{ path('home') }}">{% trans %}Home{% endtrans %}</a></li>
+								<li><a href="{{ path('announce_home') }}">{% trans %}Properties{% endtrans %}</a></li>
+								<li><a href="{{ path('contact_home') }}">Contact</a></li>
+								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_AGENT') or is_granted('ROLE_OWNER') or is_granted('ROLE_LEASEOWNER') or is_granted('ROLE_TENANT')  %}
+									<li><a href="{{ path('dashboard') }}" class="fh5co-sub-ddown">{% trans %}My space{% endtrans %}</a></li>
+								{% endif %}
+								<li><a href="#">FAQ</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3">
 							<h3 class="section-title">Newsletter</h3>
-							<p>Subscribe for our newsletter</p>
+							<p>{% trans %}Subscribe for our newsletter{% endtrans %}</p>
 							<form class="form-inline" id="fh5co-header-subscribe">
 								<div class="row">
 									<div class="col-md-12 col-md-offset-0">
 										<div class="form-group">
-											<input type="text" class="form-control" id="email" placeholder="Enter your email">
+											<input type="text" class="form-control" id="email" placeholder="{{ 'Enter your email'|trans }}">
 											<button type="submit" class="btn btn-default"><i class="icon-paper-plane"></i></button>
 										</div>
 									</div>

@@ -65,6 +65,21 @@ class AnnounceController extends AbstractController
             'active' => 'announce'
         ]);
     }
+
+    /**
+     * @Route("/view/{id}", name="view")
+     */
+    public function announceView(Announce $announce): Response
+    {
+        $imgview = $announce->getImages();
+
+        return $this->render('announce/view.html.twig', [
+            'announce' => $announce,
+            'active' => 'announce',
+            'images' => $imgview
+
+        ]);
+    }
     
     /**
      * @Route("/list/{header}/{sorting}", name="list", defaults={"header": "id", "sorting": "ASC"})
