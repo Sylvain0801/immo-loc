@@ -133,8 +133,23 @@ class MessageController extends AbstractController
             
             $em= $this->getDoctrine()->getManager();
 
-            if($senderUser) { $message->addRecipient($senderUser);}
-            if($senderAdmin) { $message->addAdminRecipient($senderAdmin);}
+            if($senderUser) { 
+                $messageRead = new MessageRead();
+                $messageRead->setUser($senderUser);
+                $messageRead->setMessage($message);
+                $messageRead->setNotRead(1);
+
+                $em->persist($messageRead);
+            }
+
+            if($senderAdmin) { 
+                $messageRead = new AdminMessageRead();
+                $messageRead->setAdmin($senderAdmin);
+                $messageRead->setMessage($message);
+                $messageRead->setNotRead(1);
+
+                $em->persist($messageRead);
+            }
 
             $recipients = $contact->get('recipient')->getData();
             if($recipients) {
@@ -227,13 +242,11 @@ class MessageController extends AbstractController
     {
         
         if($this->isGranted('ROLE_ADMIN')) {
-            $message->removeAdminRecipient($this->getUser());
             $messageRead = $this->getDoctrine()->getRepository(AdminMessageRead::class)->findOneBy([
                 'admin' => $this->getUser(),
                 'message' => $message
                 ]);
         } else {
-            $message->removeRecipient($this->getUser());
             $messageRead = $this->getDoctrine()->getRepository(MessageRead::class)->findOneBy([
                 'user' => $this->getUser(),
                 'message' => $message
@@ -297,23 +310,20 @@ class MessageController extends AbstractController
             // Donne accès au message à tous les agents
             foreach ($agents as $agent) {
                 
-                $message->addRecipient($agent);
-
                 $messageRead = new MessageRead();
                 $messageRead->setUser($agent);
                 $messageRead->setMessage($message);
                 $messageRead->setNotRead(1);
 
                 $em->persist($messageRead);
-
             }
 
             $message->setSenderUser($this->getUser());
+            $message->setSender($this->getUser()->getUserName());
 
             $em->persist($message);
             $em->flush();
                 
-
             $successmsg = $translator->trans('Your message has been sent successfully');
             $this->addFlash('message_user', $successmsg);
             
@@ -343,8 +353,6 @@ class MessageController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             
-            $message->addRecipient($tenant);
-
             $messageRead = new MessageRead();
             $messageRead->setUser($tenant);
             $messageRead->setMessage($message);

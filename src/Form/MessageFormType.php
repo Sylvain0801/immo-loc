@@ -24,13 +24,15 @@ class MessageFormType extends AbstractType
                 },
                 'attr' => ['class' => 'form-control'],
                 'multiple' => true,
-                'required' => false
+                'required' => false,
+                'mapped' => false
             ])
             ->add('adminrecipient', EntityType::class, [
                 'class' => Admin::class,
                 'attr' => ['class' => 'form-control'],
                 'multiple' => true,
-                'required' => false
+                'required' => false,
+                'mapped' => false
             ])
             ->add('subject', TextType::class, [
                 'attr' => ['class' => 'form-control'],

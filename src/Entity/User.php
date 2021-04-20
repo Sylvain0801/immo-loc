@@ -66,11 +66,6 @@ class User implements UserInterface
     private $announces;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Message::class, mappedBy="recipient")
-     */
-    private $messages;
-
-    /**
      * @ORM\OneToMany(targetEntity=Document::class, mappedBy="owner")
      */
     private $documents;
@@ -88,8 +83,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->announces = new ArrayCollection();
-        $this->messages = new ArrayCollection();
-
         $this->documents = new ArrayCollection();
         $this->messageReads = new ArrayCollection();
         $this->messages_sent = new ArrayCollection();
@@ -243,33 +236,6 @@ class User implements UserInterface
             if ($announce->getCreatedBy() === $this) {
                 $announce->setCreatedBy(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Message[]
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
-
-    public function addMessage(Message $message): self
-    {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->addRecipient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->messages->removeElement($message)) {
-            $message->removeRecipient($this);
         }
 
         return $this;

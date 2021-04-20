@@ -33,22 +33,16 @@ class MessageRepository extends ServiceEntityRepository
     public function findMessagesByAdmin($user, string $header, string $sorting)
     {
         $qb = $this->createQueryBuilder('m');
+        $qb->leftJoin('m.adminMessageReads', 'mr')
+            ->addSelect('mr')
+            ->andWhere('mr.admin = :admin')
+            ->setParameter('admin', $user);
         if($header !== 'messageReads') {
-            $qb->leftJoin('m.admin_recipient', 'r')
-                ->where('r.id = :id')
-                ->setParameter('id', $user->getId())
-                ->orderBy('m.'.$header, $sorting);
+            $qb->orderBy('m.'.$header, $sorting);
         }
         if($header === 'messageReads') {
-            $qb->leftJoin('m.admin_recipient', 'r')
-                ->where('r.id = :id')
-                ->setParameter('id', $user->getId())
-                ->leftJoin('m.adminMessageReads', 'mr')
-                ->addSelect('mr')
-                ->andWhere('mr.admin = :admin')
-                ->setParameter('admin', $user)
-                ->orderBy('mr.not_read', $sorting);
-        } 
+            $qb->orderBy('mr.not_read', $sorting);
+        }  
 
         return $qb->getQuery()->getResult();
     }
@@ -56,21 +50,15 @@ class MessageRepository extends ServiceEntityRepository
     public function findMessagesByUser($user, string $header, string $sorting)
     {
         $qb = $this->createQueryBuilder('m');
+        $qb->leftJoin('m.messageReads', 'mr')
+            ->addSelect('mr')
+            ->andWhere('mr.user = :user')
+            ->setParameter('user', $user);
         if($header !== 'messageReads') {
-            $qb->leftJoin('m.recipient', 'r')
-                ->where('r.id = :id')
-                ->setParameter('id', $user->getId())
-                ->orderBy('m.'.$header, $sorting);
+            $qb->orderBy('m.'.$header, $sorting);
         }
         if($header === 'messageReads') {
-            $qb->leftJoin('m.recipient', 'r')
-                ->where('r.id = :id')
-                ->setParameter('id', $user->getId())
-                ->leftJoin('m.messageReads', 'mr')
-                ->addSelect('mr')
-                ->andWhere('mr.user = :user')
-                ->setParameter('user', $user)
-                ->orderBy('mr.not_read', $sorting);
+            $qb->orderBy('mr.not_read', $sorting);
         } 
 
         return $qb->getQuery()->getResult();

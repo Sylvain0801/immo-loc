@@ -65,8 +65,6 @@ class UserRegistrationController extends AbstractController
 
                 foreach($admins as $admin) {
                     
-                    $message->addAdminRecipient($admin);
-
                     $messageRead = new AdminMessageRead();
                     $messageRead->setAdmin($admin);
                     $messageRead->setMessage($message);
@@ -98,6 +96,7 @@ class UserRegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+
         }
 
         return $this->render('registration/userregister.html.twig', [

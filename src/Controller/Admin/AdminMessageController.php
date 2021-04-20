@@ -41,7 +41,6 @@ class AdminMessageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_AGENT');
         $messages = $this->getDoctrine()->getRepository(Message::class)->findBy(['admin_recipient' => !null]);
-        dump($messages);
 
         $section = $translator->trans('messages administrator');
 
@@ -55,7 +54,6 @@ class AdminMessageController extends AbstractController
             $em= $this->getDoctrine()->getManager();
 
             foreach($agents as $agent) {
-                $message->addAdminRecipient($agent);
 
                 $adminMessageRead = new AdminMessageRead();
                 $adminMessageRead->setAdmin($agent);

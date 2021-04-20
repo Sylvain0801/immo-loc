@@ -38,19 +38,9 @@ class Message
     private $created_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="messages")
-     */
-    private $recipient;
-
-    /**
      * @ORM\OneToMany(targetEntity=MessageRead::class, mappedBy="message")
      */
     private $messageReads;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Admin::class, inversedBy="messages")
-     */
-    private $admin_recipient;
 
     /**
      * @ORM\OneToMany(targetEntity=AdminMessageRead::class, mappedBy="message")
@@ -90,9 +80,7 @@ class Message
 
     public function __construct()
     {
-        $this->recipient = new ArrayCollection();
         $this->messageReads = new ArrayCollection();
-        $this->admin_recipient = new ArrayCollection();
         $this->adminMessageReads = new ArrayCollection();
     }
 
@@ -131,30 +119,6 @@ class Message
     }
 
     /**
-     * @return Collection|User[]
-     */
-    public function getRecipient(): Collection
-    {
-        return $this->recipient;
-    }
-
-    public function addRecipient(User $recipient): self
-    {
-        if (!$this->recipient->contains($recipient)) {
-            $this->recipient[] = $recipient;
-        }
-
-        return $this;
-    }
-
-    public function removeRecipient(User $recipient): self
-    {
-        $this->recipient->removeElement($recipient);
-
-        return $this;
-    }
-
-    /**
      * @return Collection|MessageRead[]
      */
     public function getMessageReads(): Collection
@@ -180,30 +144,6 @@ class Message
                 $messageRead->setMessage(null);
             }
         }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Admin[]
-     */
-    public function getAdminRecipient(): Collection
-    {
-        return $this->admin_recipient;
-    }
-
-    public function addAdminRecipient(Admin $adminRecipient): self
-    {
-        if (!$this->admin_recipient->contains($adminRecipient)) {
-            $this->admin_recipient[] = $adminRecipient;
-        }
-
-        return $this;
-    }
-
-    public function removeAdminRecipient(Admin $adminRecipient): self
-    {
-        $this->admin_recipient->removeElement($adminRecipient);
 
         return $this;
     }

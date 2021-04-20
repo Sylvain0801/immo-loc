@@ -37,8 +37,6 @@ class ContactController extends AbstractController
             // Donne accès au message à tous les agents
             foreach ($agents as $agent) {
                 
-                $message->addRecipient($agent);
-
                 $messageRead = new MessageRead();
                 $messageRead->setUser($agent);
                 $messageRead->setMessage($message);

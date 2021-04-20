@@ -15,7 +15,7 @@
           {% endif %}
           {{ form_widget(messageForm.recipient) }}
         </div>
-        <div class="form-group" style="{{ not is_granted('ROLE_ADMIN') or not is_granted('ROLE_AGENT') ? 'display:none' : '' }}">
+        <div class="form-group" style="{{ not is_granted('ROLE_ADMIN') and not is_granted('ROLE_AGENT') ? 'display:none' : '' }}">
           {{ form_label(messageForm.adminrecipient, 'Admin Recipient'|trans) }} :
           {{ form_widget(messageForm.adminrecipient) }}
         </div>

@@ -17,7 +17,7 @@ class AnnounceFixtures extends Fixture implements DependentFixtureInterface
         $faker = Faker\Factory::create('fr_FR');
         $types = ['home', 'flat'];
         
-        for($i = 1; $i < 50; $i++) {
+        for($i = 1; $i <= 50; $i++) {
 
             $user = $this->getReference('user_'.$faker->numberBetween(1, 40));
             $owner = $this->getReference('owner_'.$faker->numberBetween(1, 10));
@@ -37,9 +37,15 @@ class AnnounceFixtures extends Fixture implements DependentFixtureInterface
                 ->setBedrooms($faker->numberBetween(0, 10))
                 ->setPrice($faker->numberBetween(40, 250) * 10)
                 ->setActive(1)
-                ->setFirstpage(0)
                 ->setCreatedBy($user)
                 ->setOwner($faker->randomElement([$owner, $leaseowner]));
+            if($i > 10 && $i <= 20) {
+                $announce->setFirstpage(1);
+            }
+            
+            if($i <=10) {
+                $announce->setTenant($this->getReference('tenant_'.$i));
+            }
 
             for($image = 1; $image <= 3; $image++){
                 $index = $faker->numberBetween(1, 14);

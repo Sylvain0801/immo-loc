@@ -16,8 +16,12 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(AnnounceRepository $announceRepository)
+    public function index(Request $request, AnnounceRepository $announceRepository)
     {
+        $cookie = $request->cookies->get('language');
+        if($cookie) {
+            $request->getSession()->set('_locale', $cookie);
+        }
 
         $announces = $announceRepository->findBy([
                 'active' => true,
@@ -102,6 +106,16 @@ class MainController extends AbstractController
     {
         // stocke la langue demandée dans la session
         $request->getSession()->set('_locale', $locale);
+
+        // stocke la langue de l'utilisateur dans un cookie si l'utilisateur accepte les cookies
+        $cookie = $request->cookies->get('accept-cookie');
+        if($cookie === 'accept') {
+            $cookie = new Cookie('language', $locale, strtotime('now') + 24 * 3600);
+                
+            $response = new Response();
+            $response->headers->setcookie($cookie);
+            $response->send();
+        }
 
         //redirige vers la page précédente
         return $this->redirect($request->headers->get('referer'));

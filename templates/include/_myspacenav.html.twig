@@ -32,5 +32,8 @@
 		{% else %}
 			<li><a href="{{ path('app_login') }}" class="icon fa-lock">&nbsp;{% trans %}Sign in{% endtrans %}</a></li>
 		{% endif %}
+		{% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') and not is_granted('ROLE_AGENT') %}
+			<li><a href="{{ path('payment') }}" class="icon fa-money">&nbsp;{% trans %}Payment{% endtrans %}</a></li>
+		{% endif %}
 	</ul>
 </li>

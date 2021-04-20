@@ -32,8 +32,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
             
             for($k = 1; $k <= 10; $k++) {
 
-                $message->addRecipient($this->getReference('agent_'.$k));
-
                 $messageRead = new MessageRead();
                 $messageRead->setUser($this->getReference('agent_'.$k));
                 $messageRead->setMessage($message);
@@ -59,8 +57,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
                 ->setBody($faker->paragraph(12, false));
             
             for($k = 1; $k <= 10; $k++) {
-
-                $message->addRecipient($this->getReference('agent_'.$k));
 
                 $messageRead = new MessageRead();
                 $messageRead->setUser($this->getReference('agent_'.$k));
@@ -90,8 +86,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
             
             for($k = 1; $k <= 10; $k++) {
 
-                $message->addRecipient($this->getReference('agent_'.$k));
-
                 $messageRead = new MessageRead();
                 $messageRead->setUser($this->getReference('agent_'.$k));
                 $messageRead->setMessage($message);
@@ -118,8 +112,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
                 ->setBody($faker->paragraph(12, false));
             
             for($k = 1; $k <= 10; $k++) {
-
-                $message->addRecipient($this->getReference('owner_'.$k));
 
                 $messageRead = new MessageRead();
                 $messageRead->setUser($this->getReference('owner_'.$k));
@@ -149,8 +141,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
             
             for($k = 1; $k <= 10; $k++) {
 
-                $message->addRecipient($this->getReference('leaseowner_'.$k));
-
                 $messageRead = new MessageRead();
                 $messageRead->setUser($this->getReference('leaseowner_'.$k));
                 $messageRead->setMessage($message);
@@ -176,8 +166,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
                 ->setBody($faker->paragraph(12, false));
             
             for($k = 1; $k <= 10; $k++) {
-
-                $message->addAdminRecipient($this->getReference('admin_'.$k));
 
                 $messageRead = new AdminMessageRead();
                 $messageRead->setAdmin($this->getReference('admin_'.$k));

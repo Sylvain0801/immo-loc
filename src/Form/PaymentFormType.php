@@ -15,7 +15,7 @@ class PaymentFormType extends AbstractType
             ->add('price', HiddenType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'value' => 500
+                    'value' => 550
                 ],
                 'label' => false
             ])

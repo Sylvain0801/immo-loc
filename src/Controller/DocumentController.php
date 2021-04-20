@@ -20,7 +20,7 @@ class DocumentController extends AbstractController
     /**
      * @Route("/list/{header}/{sorting}", name="list", defaults={"header": "updatedAt", "sorting": "DESC"})
      */
-    public function messageList($header, $sorting, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator, DocumentRepository $documentRepository): Response
+    public function documentList($header, $sorting, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator, DocumentRepository $documentRepository): Response
     {
 
         $name = $translator->trans('Name');

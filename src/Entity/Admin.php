@@ -57,11 +57,6 @@ class Admin implements UserInterface
     private $created_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Message::class, mappedBy="admin_recipient")
-     */
-    private $messages;
-
-    /**
      * @ORM\OneToMany(targetEntity=AdminMessageRead::class, mappedBy="admin")
      */
     private $adminMessageReads;
@@ -73,7 +68,6 @@ class Admin implements UserInterface
 
     public function __construct()
     {
-        $this->messages = new ArrayCollection();
         $this->adminMessageReads = new ArrayCollection();
         $this->messages_sent = new ArrayCollection();
     }
@@ -186,33 +180,6 @@ class Admin implements UserInterface
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
-    }
-
-    /**
-     * @return Collection|Message[]
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
-
-    public function addMessage(Message $message): self
-    {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->addAdminRecipient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->messages->removeElement($message)) {
-            $message->removeAdminRecipient($this);
-        }
-
-        return $this;
     }
 
     /**
