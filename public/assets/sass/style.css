@@ -3641,7 +3641,7 @@ input[type="checkbox"]:checked:before {
     height: 100%;
   }
   .aside-buttons > a {
-    width: 140px;
+    width: 170px;
   }
 }
 

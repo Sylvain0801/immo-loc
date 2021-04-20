@@ -385,4 +385,54 @@ class MessageController extends AbstractController
             'active' => 'myspace'
         ]);
     }
+
+    /**
+     * @Route("/contact-owner/{id}/{subject}", name="contact_owner", defaults={"subject":null})
+     */
+    public function contactOwner($subject, Request $request, User $owner, TranslatorInterface $translator):Response
+    {
+
+        $section = $translator->trans('messages');
+
+        $message = new Message();
+        $form = $this->createForm(MessageFormType::class, $message);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            
+            $messageRead = new MessageRead();
+            $messageRead->setUser($owner);
+            $messageRead->setMessage($message);
+            $messageRead->setNotRead(1);
+
+            $em->persist($messageRead);
+
+            $message->setSenderUser($this->getUser());
+            $message->setSender($this->getUser()->getUsername());
+
+            $em->persist($message);
+            $em->flush();
+                
+
+            $successmsg = $translator->trans('Your message has been sent successfully');
+            $this->addFlash('message_user', $successmsg);
+            
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_TENANT')) {
+                return $this->redirectToRoute('announce_tenantview');
+            } else {
+                return $this->redirectToRoute('message_list');
+            }
+            
+        } 
+
+        return $this->render('message/owner.html.twig', [
+            'messageForm' => $form->createView(),
+            'recipient' => $owner->getFirstname().' '.$owner->getLastname().' '.$owner->getUsername(),
+            'section' => $section,
+            'subject' => $subject,
+            'active' => 'myspace'
+        ]);
+    }
 }

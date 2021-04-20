@@ -581,6 +581,122 @@
         <source>Validate the payment</source>
         <target>Valider le paiement</target>
       </trans-unit>
+      <trans-unit id="OGVLvse" resname="My accommodation">
+        <source>My accommodation</source>
+        <target>Mon logement</target>
+      </trans-unit>
+      <trans-unit id="Gvd_4nP" resname="Show details">
+        <source>Show details</source>
+        <target>Voir les détails</target>
+      </trans-unit>
+      <trans-unit id="TBApaX7" resname="owner">
+        <source>owner</source>
+        <target>propriétaire</target>
+      </trans-unit>
+      <trans-unit id="CQVf.9J" resname="Contact owner">
+        <source>Contact owner</source>
+        <target>Contacter le propriétaire</target>
+      </trans-unit>
+      <trans-unit id="pHV2Pg1" resname="Details of the property">
+        <source>Details of the property</source>
+        <target>Détails de l'annonce</target>
+      </trans-unit>
+      <trans-unit id="kCTBl9h" resname="Links">
+        <source>Links</source>
+        <target>Liens</target>
+      </trans-unit>
+      <trans-unit id="EbrZTXf" resname="Subscribe for our newsletter">
+        <source>Subscribe for our newsletter</source>
+        <target>S'inscrire à la newsletter</target>
+      </trans-unit>
+      <trans-unit id="KDf2_hy" resname="Enter your email">
+        <source>Enter your email</source>
+        <target>Saisir votre email</target>
+      </trans-unit>
+      <trans-unit id="cEjzizP" resname="Payment">
+        <source>Payment</source>
+        <target>Paiement</target>
+      </trans-unit>
+      <trans-unit id="U9443sg" resname="Report a problem">
+        <source>Report a problem</source>
+        <target>Signaler un problème</target>
+      </trans-unit>
+      <trans-unit id="siu62bQ" resname="Request for work">
+        <source>Request for work</source>
+        <target>Demande de travaux</target>
+      </trans-unit>
+      <trans-unit id="8y0EvSb" resname="My rent schedule">
+        <source>My rent schedule</source>
+        <target>Mon échéancier de loyer</target>
+      </trans-unit>
+      <trans-unit id="NdfkLkW" resname="Rent price">
+        <source>Rent price</source>
+        <target>Loyer</target>
+      </trans-unit>
+      <trans-unit id="kg5BPH1" resname="Statute">
+        <source>Statute</source>
+        <target>Statut</target>
+      </trans-unit>
+      <trans-unit id="q6miIxU" resname="Payed">
+        <source>Payed</source>
+        <target>Payé</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkwq" resname="To pay">
+        <source>To pay</source>
+        <target>À payer</target>
+      </trans-unit>
+      <trans-unit id="Wmz.dFk" resname="There are no accommodations to display">
+        <source>There are no accommodations to display</source>
+        <target>Il n'y a aucun logement à afficher</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw1" resname="January">
+        <source>January</source>
+        <target>Janvier</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw2" resname="February">
+        <source>February</source>
+        <target>Février</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw3" resname="March">
+        <source>March</source>
+        <target>Mars</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw4" resname="April">
+        <source>April</source>
+        <target>Avril</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw5" resname="May">
+        <source>May</source>
+        <target>Mai</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw6" resname="June">
+        <source>June</source>
+        <target>Juin</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw7" resname="July">
+        <source>July</source>
+        <target>Juillet</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw8" resname="August">
+        <source>August</source>
+        <target>Août</target>
+      </trans-unit>
+      <trans-unit id="y0Dvkw9" resname="September">
+        <source>September</source>
+        <target>Septembre</target>
+      </trans-unit>
+      <trans-unit id="y0Dvk10" resname="October">
+        <source>October</source>
+        <target>Octobre</target>
+      </trans-unit>
+      <trans-unit id="y0Dvk11" resname="November">
+        <source>November</source>
+        <target>Novembre</target>
+      </trans-unit>
+      <trans-unit id="y0Dvk12" resname="December">
+        <source>December</source>
+        <target>Décembre</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -249,7 +249,7 @@ class AnnounceController extends AbstractController
      /**
      * @Route("/ownerview", name="ownerview")
      */
-    public function ownerview(TranslatorInterface $translator)
+    public function ownerView(TranslatorInterface $translator)
     {
         // gestion des accès
         if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_OWNER')){
@@ -258,9 +258,28 @@ class AnnounceController extends AbstractController
         }
         $announces = $this->getDoctrine()->getRepository(Announce::class)->findBy(['owner' => $this->getUser()]);
         $section = $translator->trans('My properties');
-        dump($announces);
 
         return $this->render('announce/ownerview.html.twig', [
+            'active' => 'myspace',
+            'section' => $section,
+            'announces' => $announces
+        ]);
+    }
+
+     /**
+     * @Route("/tenantview", name="tenantview")
+     */
+    public function tenantView(TranslatorInterface $translator)
+    {
+        // gestion des accès
+        if(!$this->isGranted('ROLE_AGENT') && !$this->isGranted('ROLE_TENANT')){
+            $messageAccessDeny = $translator->trans('Not privileged to request the resource.');
+            throw $this->createAccessDeniedException($messageAccessDeny);
+        }
+        $announces = $this->getDoctrine()->getRepository(Announce::class)->findBy(['tenant' => $this->getUser()]);
+        $section = $translator->trans('My accommodation');
+
+        return $this->render('announce/tenantview.html.twig', [
             'active' => 'myspace',
             'section' => $section,
             'announces' => $announces

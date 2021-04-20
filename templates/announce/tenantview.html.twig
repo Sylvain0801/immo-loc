@@ -1,0 +1,82 @@
+{% extends "dashboard/index.html.twig" %}
+{% block table %}
+{% include "dashboard/_sectiontitle.html.twig" %}
+ {% for message in app.flashes('message_user') %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+	<div class="row row-bottom-padded-md">
+		{% for announce in announces %}	
+		<div class="col-xs-12">
+			<div class="fh5co-blog animate-box">
+				<div class="blog-text">
+					<div class="prod-title">
+						<h3>{{ announce.title }}</h3>
+						<div class="row">
+						<div class="col-sm-3">
+							{% for image in announce.images %}
+								<div class="announce-img-owner" style="background:url({{asset('images/announces/'~image.image)}}) center/cover"></div>
+							{% else %}
+								<div class="announce-img-owner" style="background:url({{asset('assets/images/properties/home_01.jpg')}}) center/cover"></div>
+							{% endfor %}
+						</div>
+						<div class="col-sm-9">
+							<table class="table table-striped text-left">
+								<caption><strong>Description</strong><br>{{ announce.description }}</caption>
+								<tbody>
+									<tr>
+										<td><strong>{{ 'address'|trans|capitalize }}</strong></td>
+										<td>{{ announce.address }}<br>{{ announce.city }}</td>
+									</tr>
+									<tr>
+										<td><strong>{{ 'informations'|capitalize }}</strong></td>
+										<td>{{ announce.area }} m² | {{ announce.rooms }} {{ 'rooms'|trans }} | {{ announce.bedrooms }} {{ 'bedrooms'|trans }} | {{ announce.price }} € / {{ 'Month'|trans }}</td>
+									</tr>
+									<tr>
+										<td><strong>{{ 'owner'|trans|capitalize }}</strong></td>
+										<td>
+											{{ announce.owner.firstname~' '~announce.owner.lastname }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div style="display:flex;flex-wrap: wrap;justify-content: space-between;">
+								<a href="{{ path('message_contact_owner', {'id': announce.owner.id, 'subject': 'Report a problem' }) }}" style="margin-bottom: 5px; width: 190px" class="btn-sm btn-primary icon fa-exclamation-triangle" role="button">&nbsp;{{ 'Report a problem'|trans }}</a>
+								<a href="{{ path('message_contact_owner', {'id': announce.owner.id}) }}" style="margin-bottom: 5px; width: 190px" class="btn-sm btn-primary icon fa-envelope-o" role="button">&nbsp;{{ 'Contact owner'|trans }}</a>
+								<a href="{{ path('message_contact_owner', {'id': announce.owner.id, 'subject': 'Request for work' }) }}" style="margin-bottom: 5px; width: 190px" class="btn-sm btn-primary icon fa-building-o" role="button">&nbsp;{{ 'Request for work'|trans }}</a>
+							</div>
+							<h3 style="margin-top:1rem">{{ 'My rent schedule'|trans }}</h3>
+							<table class="table table-striped text-left">
+								<thead>
+									<tr>
+										<th>{{ 'Month'|trans }}</th>
+										<th>{{ 'Rent price'|trans }}</th>
+										<th>{{ 'Statute'|trans }}</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% set month = '' %}
+									{% for i in -4..10 %}
+										{% set month = '+'~i~' month' %}
+										<tr>
+											<td>{{ month|date('F')|trans }} {{ month|date('Y') }}</td>
+											<td>{{ announce.price }} €</td>
+											{% if i < 0 %}
+												<td class="text-green icon fa-check">&nbsp;{{ 'Payed'|trans }}</td>
+											{% else %}
+												<td class="icon fa-arrow-right">&nbsp;{{ 'To pay'|trans }}</td>
+											{% endif %}
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+							<a href="{{ path('message_contact_owner', {'id': announce.owner.id, 'subject': 'Change my rent schedule' }) }}" class="btn-sm btn-primary icon fa-money" role="button">&nbsp;{{ 'Change my rent schedule'|trans }}</a>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	{% else %}
+		{% trans %}There are no accommodations to display{% endtrans %}
+	{% endfor %}
+{% endblock %}

@@ -11,7 +11,6 @@
   {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
   <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}Properties{% endtrans %}</a>
   <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
-  {# <a href="{{ path('messageadmin_list') }}" class="btn btn-primary">{% trans %}Messages admin{% endtrans %}</a> #}
 {% endif %}
 
 {# navigation espace propriétaire #}
@@ -33,6 +32,8 @@
 {# navigation espace locataire #}
 {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_TENANT') %}
   {{ render(controller('App\\Controller\\MessageController::messageNotRead')) }}
+  <a href="{{ path('announce_tenantview') }}" class="btn btn-primary">{% trans %}My accommodation{% endtrans %}</a>
   <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
+  <a href="{{ path('message_contactus') }}" class="btn btn-primary">{% trans %}Contact us{% endtrans %}</a>
 {% endif %}
 

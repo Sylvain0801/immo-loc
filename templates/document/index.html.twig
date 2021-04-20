@@ -33,6 +33,7 @@
           {{ document.updatedAt|date('d/m/Y') }}<br>{{ document.updatedAt|date('H:i') }}
         </td>
         <td style="display: flex;">
+            <a href="{{ asset('documents/'~document.documentName) }}" class="btn-table btn-edit icon fa-eye" role="button" title="{{ 'Transfer the document'|trans }}"></a>
             <a href="{{ asset('documents/'~document.documentName) }}" class="btn-table btn-edit icon fa-eye" target="_blank" role="button" title="{{ 'Show document'|trans }}"></a>
             {# <a href="{{ path('admin_document_delete', {'id':document.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ document.firstname }} {{ document.lastname }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a> #}
           </td>
