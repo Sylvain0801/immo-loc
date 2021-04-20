@@ -3,7 +3,7 @@
 {% block table %}
 <div class="table-wrapper">
 {% include "dashboard/_sectiontitle.html.twig" %}
-{% for message in app.flashes('message_admin') %}
+{% for message in app.flashes('message_user') %}
   <div class="alert alert-success" role="alert">{{ message }}</div>
 {% endfor %}
 <table class="table table-striped text-left">
@@ -26,17 +26,24 @@
   <tbody>
     {% for document in documents %}
       <tr>
+        <td>{{ document.id }}</td>
         <td>{{ document.name }}</td>
         <td>{{ document.category|trans }}</td>
-        <td>{{ document.owner.firstname }} {{ document.owner.lastname }}<br>{{ document.owner.email }}</td>
         <td>
           {{ document.updatedAt|date('d/m/Y') }}<br>{{ document.updatedAt|date('H:i') }}
         </td>
         <td style="display: flex;">
-            <a href="{{ asset('documents/'~document.documentName) }}" class="btn-table btn-edit icon fa-eye" role="button" title="{{ 'Transfer the document'|trans }}"></a>
-            <a href="{{ asset('documents/'~document.documentName) }}" class="btn-table btn-edit icon fa-eye" target="_blank" role="button" title="{{ 'Show document'|trans }}"></a>
-            {# <a href="{{ path('admin_document_delete', {'id':document.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ document.firstname }} {{ document.lastname }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a> #}
-          </td>
+          {% if not is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('document_transfert', {'id': document.id}) }}" class="btn-table btn-edit icon fa-mail-forward" role="button" title="{{ 'Transfer the document'|trans }}"></a>
+          {% endif %}
+          <a href="{{ asset('documents/'~document.documentName) }}" class="btn-table btn-edit icon fa-eye" target="_blank" role="button" title="{{ 'Show document'|trans }}"></a>
+          {% if not is_granted('ROLE_ADMIN') and is_granted('ROLE_AGENT') %}
+            <a href="{{ path('document_delete', {'id':document.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Request for deletion'|trans }}" onclick="return confirm('{{ 'You are about to ask for the deletion of the document'|trans }} {{ document.name }} {{ ', this choice must be confirmed ?'|trans }}')"></a>
+          {% endif %}
+          {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('document_delete', {'id':document.id}) }}" class="btn-table btn-delete icon fa-trash" role="button" title="{{ 'Delete'|trans }}" onclick="return confirm('{{ 'The document'|trans }} {{ document.name }} {{ 'will be definitely deleted, this choice must be confirmed ?'|trans }}')"></a>
+          {% endif %}
+        </td>
       </tr>
     {% endfor %}
   </tbody>

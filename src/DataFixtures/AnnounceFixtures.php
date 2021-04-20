@@ -37,10 +37,12 @@ class AnnounceFixtures extends Fixture implements DependentFixtureInterface
                 ->setBedrooms($faker->numberBetween(0, 10))
                 ->setPrice($faker->numberBetween(40, 250) * 10)
                 ->setActive(1)
-                ->setCreatedBy($user)
                 ->setOwner($faker->randomElement([$owner, $leaseowner]));
+
             if($i > 10 && $i <= 20) {
                 $announce->setFirstpage(1);
+            } else {
+                $announce->setFirstpage(0);
             }
             
             if($i <=10) {

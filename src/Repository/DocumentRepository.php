@@ -19,6 +19,18 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
+    public function findDocumentsByUser($user, string $header, string $sorting)
+    {
+        $qb = $this->createQueryBuilder('d');
+        $qb->leftJoin('d.doc_user_access', 'du')
+            ->addSelect('du')
+            ->andWhere('du.id = :id')
+            ->setParameter('id', $user->getId())
+            ->orderBy('d.'.$header, $sorting);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Document[] Returns an array of Document objects
     //  */

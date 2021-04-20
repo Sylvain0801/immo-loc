@@ -61,16 +61,6 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Announce::class, mappedBy="created_by")
-     */
-    private $announces;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="owner")
-     */
-    private $documents;
-
-    /**
      * @ORM\OneToMany(targetEntity=MessageRead::class, mappedBy="user")
      */
     private $messageReads;
@@ -80,12 +70,16 @@ class User implements UserInterface
      */
     private $messages_sent;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Document::class, mappedBy="doc_user_access")
+     */
+    private $documents;
+
     public function __construct()
     {
-        $this->announces = new ArrayCollection();
-        $this->documents = new ArrayCollection();
         $this->messageReads = new ArrayCollection();
         $this->messages_sent = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
     
 
@@ -211,36 +205,6 @@ class User implements UserInterface
         return $this->created_at;
     }
 
-    /**
-     * @return Collection|Announce[]
-     */
-    public function getAnnounces(): Collection
-    {
-        return $this->announces;
-    }
-
-    public function addAnnounce(Announce $announce): self
-    {
-        if (!$this->announces->contains($announce)) {
-            $this->announces[] = $announce;
-            $announce->setCreatedBy($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnounce(Announce $announce): self
-    {
-        if ($this->announces->removeElement($announce)) {
-            // set the owning side to null (unless already changed)
-            if ($announce->getCreatedBy() === $this) {
-                $announce->setCreatedBy(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getUserMailRole()
     {
         $roles = $this->getRoles();
@@ -265,36 +229,6 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getUserMailRole();
-    }
-
-    /**
-     * @return Collection|Document[]
-     */
-    public function getDocuments(): Collection
-    {
-        return $this->documents;
-    }
-
-    public function addDocument(Document $document): self
-    {
-        if (!$this->documents->contains($document)) {
-            $this->documents[] = $document;
-            $document->setOwner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDocument(Document $document): self
-    {
-        if ($this->documents->removeElement($document)) {
-            // set the owning side to null (unless already changed)
-            if ($document->getOwner() === $this) {
-                $document->setOwner(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -352,6 +286,33 @@ class User implements UserInterface
             if ($messagesSent->getSenderUser() === $this) {
                 $messagesSent->setSenderUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Document[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Document $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->addDocUserAccess($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): self
+    {
+        if ($this->documents->removeElement($document)) {
+            $document->removeDocUserAccess($this);
         }
 
         return $this;

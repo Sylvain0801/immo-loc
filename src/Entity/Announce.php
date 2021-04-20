@@ -80,12 +80,6 @@ class Announce
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="announces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $created_by;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $active;
@@ -232,18 +226,6 @@ class Announce
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
-    }
-
-    public function getCreatedBy(): ?User
-    {
-        return $this->created_by;
-    }
-
-    public function setCreatedBy(?User $created_by): self
-    {
-        $this->created_by = $created_by;
-
-        return $this;
     }
 
     public function getActive(): ?bool

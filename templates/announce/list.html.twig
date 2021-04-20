@@ -41,7 +41,7 @@
 						<td>
 							<div class="card-firstpage">
 								<label class="switch">
-									<input type="checkbox" class="btn-firstpage" {{ announce.firstpage ? 'checked' : '' }} data-id="{{ announce.id }}" {{ is_granted('ROLE_LEASEOWNER') ? 'disabled' : '' }}>
+									<input type="checkbox" class="btn-firstpage" {{ announce.firstpage ? 'checked' : '' }} data-id="{{ announce.id }}" {{ not is_granted('ROLE_AGENT') ? 'disabled' : '' }}>
 									<span class="slider round"></span>
 								</label>
 							</div>

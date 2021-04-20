@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Admin;
+use App\Entity\AdminMessageRead;
 use App\Entity\Document;
+use App\Entity\Message;
 use App\Form\DocumentFormType;
+use App\Form\TransfertDocFormType;
 use App\Repository\DocumentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,25 +29,24 @@ class DocumentController extends AbstractController
 
         $name = $translator->trans('Name');
         $category = $translator->trans('Category');
-        $owner = $translator->trans('Created by');
         $createdat = $translator->trans('Created at');
 
         $headers = [
+            'id' => 'id',
             'name' => $name,
             'category' => $category,
-            'owner' => $owner,
             'updatedAt' => $createdat
         ];
 
         $roles = $this->getUser()->getRoles();
         // si l'utilisateur connecté est un agent, il a accès à tous les documents
-        if(in_array('ROLE_AGENT', $roles)) {
+        if($this->isGranted('ROLE_ADMIN') || $this->isGranted('ROLE_AGENT')) {
             $data = $documentRepository->findBy([], [$header => $sorting]);
         }
 
         // si c'est un autre profil, il a accès uniquement aux documents qui lui sont propres
-        if(in_array('ROLE_OWNER', $roles) || in_array('ROLE_LEASEOWNER', $roles) || in_array('ROLE_TENANT', $roles)) {
-            $data = $documentRepository->findBy(['owner' => $this->getUser()], [$header => $sorting]);
+        if(!$this->isGranted('ROLE_ADMIN') && ($this->isGranted('ROLE_OWNER') || $this->isGranted('ROLE_LEASEOWNER') || $this->isGranted('ROLE_TENANT'))) {
+            $data = $documentRepository->findDocumentsByUser($this->getUser(), $header, $sorting);
         }
 
         $documents = $paginator->paginate(
@@ -70,7 +73,7 @@ class DocumentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $document->setOwner($this->getUser());
+            $document->addDocUserAccess($this->getUser());
 
             $docName = $form->get('files')->getData();
              
@@ -96,5 +99,92 @@ class DocumentController extends AbstractController
             'section' => 'documents',
             'documentForm' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/transfert/{id}", name="transfert")
+     */
+    public function documentTransfert(Request $request, Document $document, TranslatorInterface $translator): Response
+    {
+
+        $form = $this->createForm(TransfertDocFormType::class, $document);
+        $dataForm = $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $recipients = $dataForm->get('recipient')->getData();
+            if($recipients) {
+                foreach($recipients as $recipient) {
+                    $document->addDocUserAccess($recipient);
+                }
+            }
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($document);
+            $em->flush();
+
+            $successmsg = $translator->trans('Your document has been sent successfully');
+            $this->addFlash('message_user', $successmsg);
+
+            return $this->redirectToRoute('document_list');
+
+        }
+
+        return $this->render('document/transfert.html.twig', [
+            'active' => 'myspace',
+            'section' => 'documents',
+            'transfertDocForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function documentDelete(Document $document, TranslatorInterface $translator)
+    {
+        if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_AGENT')) {
+
+            $subject = $translator->trans('Request for document deletion');
+            $body = $translator->trans('Hello, thanks for deleting the document with id:');
+
+            $em = $this->getDoctrine()->getManager();
+
+            $message = new Message();
+            $message->setSenderUser($this->getUser());
+            $message->setSender($this->getUser()->getId());
+            $message->setSubject($subject);
+            $message->setBody($body.' '.$document->getId());
+
+            $admins = $this->getDoctrine()->getRepository(Admin::class)->findAll();
+
+            foreach($admins as $admin) {
+                $messageRead = new AdminMessageRead();
+                $messageRead->setAdmin($admin);
+                $messageRead->setMessage($message);
+                $messageRead->setNotRead(1);
+
+                $em->persist($messageRead);
+            }
+            
+            $em->persist($message);
+            $em->flush();
+
+            $successmsg = $translator->trans('Your request has been sent successfully');
+            $this->addFlash('message_user', $successmsg);
+
+            return $this->redirectToRoute('document_list');
+        }
+
+        if($this->isGranted('ROLE_ADMIN')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($document);
+            $em->flush();
+
+            $successmsg = $translator->trans('The document has been deleted successfully');
+            $this->addFlash('message_user', $successmsg);
+
+            return $this->redirectToRoute('document_list');
+        }
     }
 }

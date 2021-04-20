@@ -633,7 +633,7 @@
         <source>Rent price</source>
         <target>Loyer</target>
       </trans-unit>
-      <trans-unit id="kg5BPH1" resname="Statute">
+      <trans-unit id="t7qzexb" resname="Statute">
         <source>Statute</source>
         <target>Statut</target>
       </trans-unit>
@@ -649,53 +649,101 @@
         <source>There are no accommodations to display</source>
         <target>Il n'y a aucun logement à afficher</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw1" resname="January">
+      <trans-unit id="NwguaN_" resname="January">
         <source>January</source>
         <target>Janvier</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw2" resname="February">
+      <trans-unit id="yHfG.0B" resname="February">
         <source>February</source>
         <target>Février</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw3" resname="March">
+      <trans-unit id="nZWizw1" resname="March">
         <source>March</source>
         <target>Mars</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw4" resname="April">
+      <trans-unit id="Sv5uoVD" resname="April">
         <source>April</source>
         <target>Avril</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw5" resname="May">
+      <trans-unit id="jHj_W5k" resname="May">
         <source>May</source>
         <target>Mai</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw6" resname="June">
+      <trans-unit id="1YCMDgp" resname="June">
         <source>June</source>
         <target>Juin</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw7" resname="July">
+      <trans-unit id="6c96HKS" resname="July">
         <source>July</source>
         <target>Juillet</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw8" resname="August">
+      <trans-unit id="pm2JcOV" resname="August">
         <source>August</source>
         <target>Août</target>
       </trans-unit>
-      <trans-unit id="y0Dvkw9" resname="September">
+      <trans-unit id="zVWeoKv" resname="September">
         <source>September</source>
         <target>Septembre</target>
       </trans-unit>
-      <trans-unit id="y0Dvk10" resname="October">
+      <trans-unit id=".deReHt" resname="October">
         <source>October</source>
         <target>Octobre</target>
       </trans-unit>
-      <trans-unit id="y0Dvk11" resname="November">
+      <trans-unit id="neb_HXJ" resname="November">
         <source>November</source>
         <target>Novembre</target>
       </trans-unit>
-      <trans-unit id="y0Dvk12" resname="December">
+      <trans-unit id="j7IEykY" resname="December">
         <source>December</source>
         <target>Décembre</target>
+      </trans-unit>
+      <trans-unit id="yrqNKjD" resname="Your document has been sent successfully">
+        <source>Your document has been sent successfully</source>
+        <target>Votre document a été envoyé avec succès</target>
+      </trans-unit>
+      <trans-unit id="z3eWEZC" resname="Request for document deletion">
+        <source>Request for document deletion</source>
+        <target>Demande de suppression de document</target>
+      </trans-unit>
+      <trans-unit id="tX21wT7" resname="Hello, thanks for deleting the document with id:">
+        <source>Hello, thanks for deleting the document with id:</source>
+        <target>Bonjour, merci de supprimer le document avec l'id:</target>
+      </trans-unit>
+      <trans-unit id="S.OIAXp" resname="Your request has been sent successfully">
+        <source>Your request has been sent successfully</source>
+        <target>Votre demande a été envoyée avec succès</target>
+      </trans-unit>
+      <trans-unit id="1LSJ5gZ" resname="The document has been deleted successfully">
+        <source>The document has been deleted successfully</source>
+        <target>__The document has been deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="BLVVbQD" resname="Change my rent schedule">
+        <source>Change my rent schedule</source>
+        <target>Modifier mon échéancier</target>
+      </trans-unit>
+      <trans-unit id="wbtKP5L" resname="Transfer the document">
+        <source>Transfer the document</source>
+        <target>Transférer le document</target>
+      </trans-unit>
+      <trans-unit id="Ri4uiRl" resname="Request for deletion">
+        <source>Request for deletion</source>
+        <target>Deamnde de suppression</target>
+      </trans-unit>
+      <trans-unit id="AQJ3nd8" resname="You are about to ask for the deletion of the document">
+        <source>You are about to ask for the deletion of the document</source>
+        <target>Vous êtes sur le point de demander la suppression du document</target>
+      </trans-unit>
+      <trans-unit id="ZLWx8e7" resname=", this choice must be confirmed ?">
+        <source>, this choice must be confirmed ?</source>
+        <target>, ce choix doit être confirmé ?</target>
+      </trans-unit>
+      <trans-unit id="oHL3puj" resname="The document">
+        <source>The document</source>
+        <target>Le document</target>
+      </trans-unit>
+      <trans-unit id="9vRoj.I" resname="Send">
+        <source>Send</source>
+        <target>Envoyer</target>
       </trans-unit>
     </body>
   </file>

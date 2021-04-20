@@ -22,10 +22,10 @@ class DocumentFixtures extends Fixture implements DependentFixtureInterface
     
             $document = new Document();
             
-            for($doc = 1; $doc <= 3; $doc++) {
+            for($doc = 1; $doc <= 4; $doc++) {
 
                 $document
-                    ->setOwner($this->getReference('user_'.$i))
+                    ->addDocUserAccess($this->getReference('user_'.$i))
                     ->setCategory($categories[$faker->numberBetween(0, 4)])
                     ->setName($faker->domainWord);
     

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DocumentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -44,16 +46,21 @@ class Document
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="documents")
-     */
-    private $owner;
-
-    /**
      * @var \DateTime $ created_at
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="documents")
+     */
+    private $doc_user_access;
+
+    public function __construct()
+    {
+        $this->doc_user_access = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -82,18 +89,6 @@ class Document
     {
         $this->category = $category;
 
-        return $this;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-    
-    public function setOwner(?User $owner): self
-    {
-        $this->owner = $owner;
-        
         return $this;
     }
 
@@ -128,5 +123,29 @@ class Document
     public function getDocumentName()
     {
         return $this->documentName;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getDocUserAccess(): Collection
+    {
+        return $this->doc_user_access;
+    }
+
+    public function addDocUserAccess(User $docUserAccess): self
+    {
+        if (!$this->doc_user_access->contains($docUserAccess)) {
+            $this->doc_user_access[] = $docUserAccess;
+        }
+
+        return $this;
+    }
+
+    public function removeDocUserAccess(User $docUserAccess): self
+    {
+        $this->doc_user_access->removeElement($docUserAccess);
+
+        return $this;
     }
 }

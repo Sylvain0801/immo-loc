@@ -1,0 +1,30 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block table %}
+	{% include "dashboard/_sectiontitle.html.twig" %}
+  {% for message in app.flashes('message_user') %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+	<div class="row text-left">
+    <div class="col-md-6">
+      {{ form_start(transfertDocForm) }}
+        <div class="form-group">
+          {{ form_row(transfertDocForm.name, {label: 'Name'|trans, 'attr': {'readonly':'readonly'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(transfertDocForm.category, {label: 'Category'|trans, 'attr': {'readonly':'readonly'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_row(transfertDocForm.recipient) }}
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <a href="{{ path('document_list') }}" class="btn-sm btn-default icon fa-backward">&nbsp;{% trans %}Back to list{% endtrans %}</a>
+          <button style="padding: 5px 20px!important;border: 1px solid #44c662!important" type="submit" class="btn-sm btn-primary icon fa-paper-plane-o">&nbsp;{% trans %}Send{% endtrans %}</button>
+        </div>
+      {{ form_end(transfertDocForm) }}
+    </div>
+    <div class="col-md-6"> 
+      <div style="background: url({{ asset('assets/images/bg-document.jpg') }}) center/cover; height: 315px"></div>
+    </div>
+  </div>
+{% endblock %}

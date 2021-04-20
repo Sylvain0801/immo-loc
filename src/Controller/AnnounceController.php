@@ -112,7 +112,7 @@ class AnnounceController extends AbstractController
             $data = $this->getDoctrine()->getRepository(Announce::class)->findBy([], [$header => $sorting]);
         }
         
-        if($this->isGranted('ROLE_OWNER')) {
+        if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_LEASEOWNER')) {
             $data = $this->getDoctrine()->getRepository(Announce::class)->findBy(
                 ['owner' => $this->getUser()], [$header => $sorting]);
         }
@@ -163,8 +163,6 @@ class AnnounceController extends AbstractController
                 $announce->addImage($img);
             }
 
-            $announce->setCreatedBy($this->getUser());
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($announce);
             $em->flush();
@@ -212,8 +210,6 @@ class AnnounceController extends AbstractController
                 $img->setImage($file);
                 $announce->addImage($img);
             }
-
-            $announce->setCreatedBy($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($announce);

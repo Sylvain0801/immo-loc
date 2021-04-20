@@ -3,6 +3,7 @@
   <a href="{{ path('admin_useradmin_list') }}" class="btn btn-primary">{% trans %}Administrators{% endtrans %}</a>
   <a href="{{ path('admin_user_list') }}" class="btn btn-primary">{% trans %}Users{% endtrans %}</a>
   <a href="{{ path('document_list') }}" class="btn btn-primary">Documents</a>
+  <a href="{{ path('announce_list') }}" class="btn btn-primary">{% trans %}Properties{% endtrans %}</a>
   {{ render(controller('App\\Controller\\MessageController::adminMessageNotRead')) }}
 {% endif %}
 
