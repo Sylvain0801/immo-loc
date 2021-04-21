@@ -1,6 +1,6 @@
 
 // On instancie Stripe et on lui passe notre clé publique
-let stripe = Stripe('pk_test_51IhWOpHIGsc4DWz6Z6M7I4MSWZti9X4hcSWm6mU0E9wIKvpFq5T2HLXgf698Edv8OMAgbaNJJQWsQBBbo84cto2500zn2xq8eO');
+let stripe = Stripe('');
 
 // Initialise les éléments du formulaire
 let elements = stripe.elements();
