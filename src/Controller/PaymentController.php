@@ -27,7 +27,7 @@ class PaymentController extends AbstractController
             require_once dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
             // Instanciation de stripe avec la clé privée
-            \Stripe\Stripe::setApiKey('sk_test_51IhWOpHIGsc4DWz6u0IVWfOAG33fe1e8rvZbcyWe3QsiA1fgDcOStd4ynEWFRzkRJuNV8p2oVf8ll1ZA5kMKwkBZ00BcaFd4k7');
+            \Stripe\Stripe::setApiKey('');
 
             // Création de l'intention de paiement et stockage dans $intent
             $intent = \Stripe\PaymentIntent::create([
