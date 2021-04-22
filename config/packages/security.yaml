@@ -44,11 +44,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/agent, roles: ROLE_AGENT }
-        - { path: ^/leaseowner, roles: ROLE_LEASEOWNER }
-        - { path: ^/owner, roles: ROLE_OWNER }
-        - { path: ^/tenant, roles: ROLE_TENANT }
-        - { path: ^/user|^/message, roles: ROLE_USER }
+        - { path: ^/document|^/message, roles: ROLE_AGENT }
+        - { path: ^/document|^/message, roles: ROLE_LEASEOWNER }
+        - { path: ^/document|^/message, roles: ROLE_OWNER }
+        - { path: ^/document|^/message, roles: ROLE_TENANT }
+        - { path: ^/document|^/message, roles: ROLE_USER }
     role_hierarchy:
         ROLE_ADMIN: [ROLE_AGENT, ROLE_LEASEOWNER, ROLE_OWNER, ROLE_TENANT, ROLE_USER]
